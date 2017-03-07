@@ -1,0 +1,38 @@
+// 清除浮动
+@mixin clearfix {
+    &:after{
+        content: "";
+        display: block;
+        height: 0;
+        font-size: 0;
+        overflow: hidden;
+        line-height: 0;
+        clear: both;
+    }
+}
+
+// 文字单行超出显示省略号
+@mixin otw {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// 文字多行超出显示省略号
+@mixin motw {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+//雪碧图
+@mixin sprite($sprite) {
+    background-image: url(nth($sprite, 9));
+    background-position: nth($sprite, 3)/2 nth($sprite, 4)/2;
+    width: nth($sprite, 5)/2;
+    height: nth($sprite, 6)/2;
+    background-size: nth($sprite, 7)/2 nth($sprite, 8)/2;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title></title>
+        <link rel="stylesheet" href="./css/base.css">
+        <link rel="stylesheet" href="./css/lottery.css">
+        <link rel="stylesheet" href="./css/animated.css">
+        <script src="./js/hotcss.js"></script>
+        <script src="./js/angular.min.js"></script>
+        <script src="./js/lottery.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="lottery">
+        <div class="container" ng-cloak>
+            <div class="zj_cont">
+                <div class="theme">
+                    <img src="./img/lottery_theme.png" alt="">
+                </div>
+                <div class="pic animated bounceIn">
+                    <img src="./img/lottery_zj_pic.png" alt="">
+                </div>
+                <div class="tip1">
+                    <img src="./img/lottery_zj_tip1.png" alt="">
+                </div>
+                <div class="tip2">
+                    <img src="./img/lottery_zj_tip2.png" alt="">
+                </div>
+                <div class="download">
+                    <button type="button" tap ng-click="downloadApp()">下载2台</button>
+                </div>
+                <p class="copyright">
+                    Copyright &copy; 2tai.cn
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

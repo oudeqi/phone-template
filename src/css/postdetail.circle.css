@@ -1,0 +1,647 @@
+body {
+  height: 100%;
+}
+
+.dropped {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 15px;
+  color: #666;
+}
+
+.page {
+  height: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #EBEBEB;
+}
+
+.page .page_contain {
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.page .edit_comment {
+  background-color: #f8f8f8;
+  padding: 0 12px;
+  padding-bottom: 12px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.page .edit_comment .t {
+  height: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.page .edit_comment .t .cancel {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  font-size: 14px;
+  color: #848689;
+  background-color: #f8f8f8;
+  border: 0;
+}
+
+.page .edit_comment .t .tit {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: center;
+  font-size: 15px;
+  color: #2B333B;
+  font-weight: normal;
+}
+
+.page .edit_comment .t .send {
+  background-color: #f8f8f8;
+  border: 0;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  font-size: 14px;
+  color: #007CFB;
+}
+
+.page .edit_comment .b {
+  width: 100%;
+  height: auto;
+  padding: 3px;
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.page .edit_comment .b textarea {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  resize: none;
+  min-height: 100px;
+  font-size: 16px;
+}
+
+.sec_1 {
+  padding: 0 10px;
+  background: #fff;
+}
+
+.sec_1 .post_head {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 12px 0;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sec_1 .post_head .pic {
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.sec_1 .post_head .pic img {
+  width: 100%;
+  height: auto;
+}
+
+.sec_1 .post_head .txt {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 10px;
+}
+
+.sec_1 .post_head .txt .t h3 {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #686868;
+  font-weight: normal;
+}
+
+.sec_1 .post_head .txt .t span {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 1px 4px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 2px;
+  background-color: #FD9E24;
+}
+
+.sec_1 .post_head .txt .b {
+  font-size: 12px;
+  color: #BFBFBF;
+}
+
+.sec_1 .post_head .btn_box .unfollow, .sec_1 .post_head .btn_box .isfollow {
+  background: #FFFFFF;
+  border-radius: 34px;
+  width: 80px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.sec_1 .post_head .btn_box .unfollow.unfollow, .sec_1 .post_head .btn_box .isfollow.unfollow {
+  border: 1px solid #129AEE;
+}
+
+.sec_1 .post_head .btn_box .unfollow.isfollow, .sec_1 .post_head .btn_box .isfollow.isfollow {
+  border: 1px solid #999;
+}
+
+.sec_1 .post_head .btn_box .unfollow.isfollow span, .sec_1 .post_head .btn_box .isfollow.isfollow span {
+  color: #999;
+}
+
+.sec_1 .post_head .btn_box .unfollow span, .sec_1 .post_head .btn_box .isfollow span {
+  color: #129AEE;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sec_1 .post_head .btn_box .unfollow .icon, .sec_1 .post_head .btn_box .isfollow .icon {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url("../img/sprite.png");
+  background-position: 0px -57px;
+  width: 17px;
+  height: 17px;
+  background-size: 98px 95px;
+}
+
+.sec_1 .post_head .btn_box .delbtn {
+  border: 0;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.sec_1 .post_head .btn_box .delbtn .icon {
+  background-image: url("../img/sprite.png");
+  background-position: -59px -79px;
+  width: 14px;
+  height: 14px;
+  background-size: 98px 95px;
+  margin-right: 4px;
+  display: block;
+  position: relative;
+}
+
+.sec_1 .post_head .btn_box .delbtn span {
+  color: #677BAF;
+  display: block;
+  line-height: 1.05;
+  font-size: 14px;
+}
+
+.sec_1 .post_cont .cont {
+  font-size: 16px;
+  color: #686868;
+  word-break: break-all;
+  white-space: normal;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.sec_1 .post_cont .cont .topic {
+  color: #129AEE;
+}
+
+.sec_1 .post_cont .pic_list {
+  padding-bottom: 10px;
+  margin-left: -3px;
+  margin-right: -3px;
+}
+
+.sec_1 .post_cont .pic_list:after {
+  content: "";
+  display: block;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+  line-height: 0;
+  clear: both;
+}
+
+.sec_1 .post_cont .pic_list li {
+  float: left;
+  width: 33.33%;
+  padding-top: 33.33%;
+  position: relative;
+}
+
+.sec_1 .post_cont .pic_list li .inner {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+}
+
+.sec_1 .post_cont .pic_list li .inner .pic {
+  width: 100%;
+  height: 100%;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.sec_1 .other {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+}
+
+.sec_1 .other .l {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 12px;
+  color: #686868;
+  line-height: 12px;
+}
+
+.sec_1 .other .r {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.sec_1 .other .r button {
+  background-color: transparent;
+  border: 0;
+  font-size: 14px;
+  margin-left: 14px;
+}
+
+.sec_1 .other .r button .icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sec_1 .other .r button span {
+  display: inline-block;
+  vertical-align: middle;
+  color: #848689;
+}
+
+.sec_1 .other .r button.ic_comment .icon {
+  background-image: url("../img/sprite.png");
+  background-position: -40px -79px;
+  width: 14px;
+  height: 14px;
+  background-size: 98px 95px;
+}
+
+.sec_1 .other .r button.ic_like .icon {
+  background-image: url("../img/sprite.png");
+  background-position: -46px -57px;
+  width: 14px;
+  height: 14px;
+  background-size: 98px 95px;
+}
+
+.sec_1 .other .r button.ic_like.active .icon {
+  background-image: url("../img/sprite.png");
+  background-position: -21px -79px;
+  width: 14px;
+  height: 14px;
+  background-size: 98px 95px;
+}
+
+.sec_1 .reward {
+  width: 220px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.sec_1 .reward button {
+  display: block;
+  border: 0;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  background-color: #FB4747;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.sec_1 .reward .tip {
+  text-align: center;
+  font-size: 14px;
+  color: #2B333B;
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.sec_1 .reward .number {
+  font-size: 12px;
+  color: #848689;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 18px;
+}
+
+.sec_1 .reward .reward_list {
+  position: relative;
+  left: 5px;
+  margin-top: 10px;
+}
+
+.sec_1 .reward .reward_list:after {
+  content: "";
+  display: block;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+  line-height: 0;
+  clear: both;
+}
+
+.sec_1 .reward .reward_list li {
+  float: left;
+  width: 28px;
+  height: 28px;
+  background: #ddd;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.sec_1 .reward .reward_list li img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sec_1 .reward .reward_list2 {
+  text-align: center;
+  font-size: 0;
+  margin-top: 10px;
+}
+
+.sec_1 .reward .reward_list2 li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28px;
+  height: 28px;
+  background: #ddd;
+  margin: 4px;
+}
+
+.sec_1 .reward .reward_list2 li img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sec_2 {
+  margin-top: 10px;
+  padding-left: 10px;
+  background: #fff;
+}
+
+.sec_2 .like {
+  border-bottom: 1px solid #d7d7d7;
+  padding-right: 10px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.sec_2 .like .l {
+  width: 40px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.sec_2 .like .l span {
+  border-right: 1px solid #d7d7d7;
+  display: block;
+  font-size: 14px;
+  padding: 2px 0;
+  color: #686868;
+}
+
+.sec_2 .like .r {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.sec_2 .like .r span {
+  font-size: 14px;
+  padding: 2px 0;
+  color: #129AEE;
+  margin-right: 10px;
+}
+
+.sec_2 .comment_list .item {
+  border-bottom: 1px solid #d7d7d7;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-right: 10px;
+  padding-top: 12px;
+  padding-bottom: 20px;
+}
+
+.sec_2 .comment_list .item:last-child {
+  border-bottom: 0;
+}
+
+.sec_2 .comment_list .item .pic {
+  width: 36px;
+  margin-top: 3px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.sec_2 .comment_list .item .pic img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sec_2 .comment_list .item .txt {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 10px;
+}
+
+.sec_2 .comment_list .item .txt .name {
+  font-weight: normal;
+  padding-bottom: 3px;
+}
+
+.sec_2 .comment_list .item .txt .name span {
+  font-size: 14px;
+  color: #686868;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sec_2 .comment_list .item .txt .name .lv {
+  font-size: 12px;
+  color: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: #FD9E24;
+  padding: 1px 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sec_2 .comment_list .item .txt .time {
+  font-size: 12px;
+  color: #BFBFBF;
+}
+
+.sec_2 .comment_list .item .txt .con {
+  font-size: 14px;
+  padding-top: 10px;
+  line-height: 1.5;
+  color: #686868;
+}
+
+.sec_2 .comment_list .item .txt .reply li {
+  background: #F8F8F8;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.3;
+  padding: 4px 6px;
+  word-break: break-all;
+  color: #2B333B;
+}
+
+.sec_2 .comment_list .item .txt .reply li .reply_name {
+  font-size: 14px;
+  color: #129AEE;
+}
+
+.sec_2 .comment_no {
+  text-align: center;
+  padding: 10px;
+  padding-left: 0;
+  color: #686868;
+  font-size: 15px;
+}
+
+.sec_2 .comment_more {
+  text-align: center;
+  padding-bottom: 20px;
+  padding-right: 10px;
+}
+
+.sec_2 .comment_more button {
+  border: 0;
+  font-size: 15px;
+  color: #007CFB;
+  background-color: #fff;
+}
+
+.commentBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 100px;
+  border: 0;
+  background-color: transparent;
+  background-image: url("../img/sprite.png");
+  background-position: 0px 0px;
+  width: 52px;
+  height: 52px;
+  background-size: 98px 95px;
+}

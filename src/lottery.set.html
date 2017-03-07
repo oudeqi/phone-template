@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title></title>
+        <link rel="stylesheet" href="./css/base.css">
+        <link rel="stylesheet" href="./css/lottery.css">
+        <script src="./js/hotcss.js"></script>
+        <script src="./js/angular.min.js"></script>
+        <script src="./js/lottery.set.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="lottery" ng-cloak>
+
+        <div class="container flex">
+            <div class="modal" ng-show="modalIsShow">
+                <div class="modal_cont">
+                    <button class="close" ng-click="modalIsShow = false" type="button" name="button"></button>
+                    <h2 class="tit">抽奖程序设置</h2>
+                    <div class="ipt_row">
+                        <p class="label">本场可参与总人数</p>
+                        <input type="number" ng-model="newLottery.number">
+                    </div>
+                    <div class="ipt_row">
+                        <p class="label">设置中奖人数</p>
+                        <input type="number" ng-model="newLottery.luckNumber">
+                    </div>
+                    <div class="ipt_row">
+                        <button class="btn" tap type="button" ng-click="addNew()">确认</button>
+                    </div>
+                </div>
+            </div>
+            <div class="top_cont">
+                <dl class="base_info" ng-show="!!lottery">
+                    <dt>抽奖信息</dt>
+                    <!-- <dd>本场可参与人数：{{lottery.number | number}}人</dd> -->
+                    <dd>设置中奖人数：{{lottery.luckNumber | number}}人</dd>
+                    <dd>目前参与人数：{{lottery.joinNumber | number}}人</dd>
+                </dl>
+                <div class="lucky_info" ng-show="!!lottery">
+                    <h3>本场中奖名单</h3>
+                    <ul>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li>交了定金佛开</li>
+                        <li ng-repeat="item in lottery.lucks track by $index">{{item.nickName}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bott_cont">
+                <!-- <button class="refresh" type="button" name="button">刷新数据</button> -->
+                <!-- <button class="refresh" type="button" name="button">
+                    <i class="icon_load"></i>
+                    <span>停止刷新</span>
+                </button> -->
+                <button class="addnew" type="button" tap name="button" ng-click="modalIsShow = true">新增场次</button>
+            </div>
+        </div>
+    </body>
+</html>

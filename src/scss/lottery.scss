@@ -1,0 +1,323 @@
+@import "./helper/px2rem.scss";
+$designWidth : 375;
+html{
+    height: 100%;
+}
+body{
+  width: 16rem;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    min-height: px2rem(600);
+    position: relative;
+    background-image: url(../img/lottery_bg.png);
+    background-repeat: repeat-y;
+    background-position: center;
+    background-size: cover;
+}
+// 中奖
+.zj_cont{
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .theme{
+        padding-top: px2rem(10);
+        height: px2rem(146);
+        margin-left: px2rem(20);
+        img{
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
+    .pic{
+        flex-grow: 1;
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .tip1{
+        width: px2rem(250);
+        margin: 0 auto;
+        margin-top: px2rem(4);
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .tip2{
+        width: px2rem(130);
+        margin: 0 auto;
+        margin-top: px2rem(5);
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .download{
+        text-align: center;
+        margin-top: px2rem(20);
+        flex-grow: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button{
+            width: px2rem(330);
+            background: #FB4747;
+            height: px2rem(48);
+            border-radius: px2rem(4);
+            border: 0;
+            color: #fff;
+            font-size: px2rem(18);
+        }
+    }
+    .copyright{
+        flex-grow: 2;
+        color: #71B1FF;
+        text-align: center;
+        font-size: px2rem(14);
+    }
+}
+// 未中奖
+.wzj_cont{
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .theme{
+        padding-top: px2rem(10);
+        height: px2rem(146);
+        margin-left: px2rem(20);
+        img{
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
+    .pic{
+        flex-grow: 1;
+        width: px2rem(250);
+        margin: 0 auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .tip1{
+        width: px2rem(250);
+        margin: 0 auto;
+        margin-top: px2rem(10);
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .tip2{
+        width: px2rem(200);
+        margin: 0 auto;
+        margin-top: px2rem(10);
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    .download{
+        text-align: center;
+        margin-top: px2rem(20);
+        flex-grow: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button{
+            width: px2rem(330);
+            background: #FB4747;
+            height: px2rem(48);
+            border-radius: px2rem(4);
+            border: 0;
+            color: #fff;
+            font-size: px2rem(18);
+        }
+    }
+    .copyright{
+        flex-grow: 1;
+        color: #71B1FF;
+        text-align: center;
+        font-size: px2rem(14);
+    }
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    .top_cont{
+        flex-grow: 1;
+        text-align: center;
+        // border-bottom: 1px solid red;
+        color: #fff;
+        .base_info{
+            padding-top: px2rem(30);
+            dt{
+                padding-bottom: px2rem(5);
+                font-size: px2rem(18);
+                font-weight: bold;
+            }
+            dd{
+                font-size: px2rem(14);
+                margin-top:  px2rem(5);
+            }
+        }
+        .lucky_info{
+            margin-top: px2rem(25);
+            h3{
+                font-size: px2rem(18);
+                padding-bottom: px2rem(5);
+                font-weight: bold;
+            }
+            ul{
+                height: px2rem(290);
+                max-height: 100%;
+                padding: 0 px2rem(10);
+                overflow-y:auto;
+                -webkit-overflow-scrolling:touch;
+                li{
+                    font-size: px2rem(14);
+                    margin-top:  px2rem(6);
+                    line-height: 1.3;
+                }
+            }
+        }
+    }
+    .bott_cont{
+        display: flex;
+        flex-direction: column;
+        height: px2rem(100);
+        justify-content: center;
+        align-items: center;
+        button{
+            width: px2rem(300);
+            height: px2rem(38);
+            display: block;
+            border: 0;
+            background: #ddd;
+            border-radius: px2rem(4);
+            color: #fff;
+            font-size: px2rem(18);
+            &.refresh{
+                background-color: #007CFB;
+                span{
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .icon_load{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: px2rem(16);
+                    height: px2rem(16);
+                    background-image: url(../img/loading.gif);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    opacity: 0.4;
+                }
+            }
+            &.addnew{
+                background-color: #FB4747;
+            }
+        }
+    }
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal_cont{
+        width: px2rem(330);
+        height: px2rem(330);
+        background: #fff;
+        border-radius: px2rem(4);
+        position: relative;
+        .close{
+            width: px2rem(16);
+            height: px2rem(16);
+            position: absolute;
+            top: px2rem(8);
+            right: px2rem(8);
+            background-color: #fff;
+            background-image: url(../img/lottery_close.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            border: 0;
+            opacity: 0.8;
+        }
+        .tit{
+            font-size: px2rem(20);
+            color: #2B333B;
+            text-align: center;
+            padding: px2rem(20) px2rem(10);
+        }
+        .ipt_row{
+            margin-top: px2rem(14);
+            .label{
+                font-size: px2rem(14);
+                color: #2B333B;
+                text-align: center;
+            }
+            input{
+                display: block;
+                width: px2rem(256);
+                height: px2rem(38);
+                padding-left: px2rem(4);
+                margin: 0 auto;
+                margin-top: px2rem(8);
+                background: #FFFFFF;
+                border: 1px solid #bbb;
+                border-radius: px2rem(3);
+                appearance: none;
+            }
+            .btn{
+                background: #007CFB;
+                border-radius: px2rem(3);
+                text-align: center;
+                width: px2rem(256);
+                height: px2rem(40);
+                line-height: px2rem(40);
+                display: block;
+                margin: 0 auto;
+                color: #fff;
+                font-size: px2rem(18);
+                border: 0;
+                margin-top: px2rem(30);
+            }
+        }
+    }
+}

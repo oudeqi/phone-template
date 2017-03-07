@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="./css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/postdetail.community.css"/>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/postdetail.community.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="content" ng-cloak>
+        <div class="dropped" ng-if="delSuccInfo">
+            {{delSuccInfo}}
+        </div>
+        <div class="page" ng-show="!delSuccInfo">
+            <div class="loading" ng-show="!post">
+                <img ng-src="./img/loading.gif" alt="" />
+            </div>
+            <div class="page_contain" ng-show="post">
+                <div class="container">
+                    <h1 class="page_tit">{{post.title}}</h1>
+                    <div class="user_info">
+                        <div class="l" ng-click="homepage(post.userId)">
+                            <img ng-src="{{post.headIconUrl}}?x-oss-process=image/resize,m_fill,h_72,w_72" alt="" />
+                        </div>
+                        <div class="m">
+                            <p class="t">{{post.nickName}}</p>
+                            <p class="b">
+                                <span>{{post.readNumber}} 阅读</span>{{post.createDate | date:"yyyy/MM/dd HH:mm"}}
+                            </p>
+                        </div>
+                        <div class="r" ng-show="post.isMe == 0">
+                            <button ng-show="post.isFollow == 0" tap ng-click="follow()" class="unfollow" type="button">
+                                <i class="icon"></i>
+                                <span>关注</span>
+                            </button>
+                            <button ng-show="post.isFollow == 1" class="isfollow" type="button">
+                                <span>已关注</span>
+                            </button>
+                        </div>
+                        <!-- <div class="r" ng-show="post.isMe == 1">
+                            <button type="button" tap ng-click="del()" class="delbtn">
+                                <i class="icon"></i>
+                                <span>删除</span>
+                            </button>
+                        </div> -->
+                    </div>
+                    <!-- post_cont 此类用于原生筛选图片 -->
+                    <div class="post_cont">
+                        <div ng-if="post.content">
+                            <p>
+                                {{post.content}}
+                            </p>
+                            <p ng-repeat="item in post.imgList" ng-click="picViewer(post.imgList,$index)">
+                                <img ng-src="{{item}}?x-oss-process=image/resize,m_mfit,h_{{screenW}},w_{{screenW}}" alt="" />
+                            </p>
+                        </div>
+                        <div ng-if="htmlContent" ng-bind-html="htmlContent"></div>
+                    </div>
+                </div>
+                <div class="goods" ng-show="fasle">
+                    <div class="pic">
+                        <img ng-src="./img/goods_view.png" alt="" />
+                    </div>
+                    <div class="txt">
+                        <p class="t">
+                            拇指西瓜种子 有机拇指迷你西瓜 微型特小型 可留种 蔬菜种子R
+                            拇指西瓜种子 有机拇指迷你西瓜 微型特小型 可留种 蔬菜种子R
+                        </p>
+                        <div class="b">
+                            <span class="price">￥6.80 起</span>
+                            <button type="button">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="reward">
+                    <button ng-show="post.isMe == 0" type="button" tap ng-click="reward()">赏</button>
+                    <p class="tip">点赞是美意，打赏是鼓励！</p>
+                    <p class="number">{{rewardList.length}}人打赏</p>
+                    <ul class="reward_list" ng-show="rewardList.length > 5">
+                        <li ng-repeat="item in rewardList">
+                            <img ng-src="{{item.headIconUrl}}" alt="" />
+                        </li>
+                    </ul>
+                    <ul class="reward_list2" ng-show="!!rewardList.length && rewardList.length < 6">
+                        <li ng-repeat="item in rewardList">
+                            <img ng-src="{{item.headIconUrl}}" alt="" />
+                        </li>
+                    </ul>
+                </div>
+                <!--  ng-show="false" -->
+                <ul class="share" ng-show="false">
+                    <li>
+                        <i class="icon weichat"></i>
+                        <span>朋友圈</span>
+                    </li>
+                    <li>
+                        <i class="icon sina"></i>
+                        <span>微博</span>
+                    </li>
+                    <li>
+                        <i class="icon qq"></i>
+                        <span>QQ空间</span>
+                    </li>
+                </ul>
+                <div class="like" ng-show="like && !!like.data.length">
+                    <div class="tit">
+                        <span>共有 <i>{{like.rowCount}}</i> 个点赞</span>
+                        <span ng-show="comment"><i>{{comment.rowCount}}</i> 条评论</span>
+                    </div>
+                    <ul class="like_list">
+                        <li ng-repeat="item in like.data" ng-click="homepage(item.uid)">
+                            <img ng-src="{{item.headIconUrl}}?x-oss-process=image/resize,m_fill,h_88,w_88" alt="" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="comment" ng-show="!!commentList.length">
+                    <div class="comment_tit">
+                        所有评论
+                    </div>
+                    <ul class="comment_list">
+                        <li class="item" ng-repeat="item in commentList">
+                            <div class="l">
+                                <div class="pic" ng-click="homepage(item.uid)">
+                                    <img ng-src="{{item.uHeadImg}}?x-oss-process=image/resize,m_fill,h_100,w_100" alt="" />
+                                </div>
+                            </div>
+                            <div class="r">
+                                <p class="name">{{item.uName}}</p>
+                                <p class="comment">{{item.content}}</p>
+                                <div class="other">
+                                    <span class="time">{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</span>
+                                    <button type="button" ng-show="item.isLike == 1" class="active">
+                                        <i class="icon icon-like"></i>
+                                        <span>{{item.likesNumber}}</span>
+                                    </button>
+                                    <button type="button" ng-show="item.isLike == 0" tap ng-click="iLike('11',item.id,item)">
+                                        <i class="icon icon-like"></i>
+                                        <span>{{item.likesNumber}}</span>
+                                    </button>
+                                    <button type="button" tap ng-click="replyComment(item)">
+                                        <i class="icon icon-comment"></i>
+                                        <span>{{item.sumComment.length}}</span>
+                                    </button>
+                                </div>
+                                <ul class="reply">
+                                    <li class="reply_cont" ng-repeat="i in item.sumComment" tap ng-click="replyReply(item,i,$index)">
+                                        <span class="name">{{i.uName}}</span>
+                                        <span ng-show="i.pUname">回复</span>
+                                        <span ng-show="i.pUname" class="name">{{i.pUname}}：</span>
+                                        <span>
+                                            {{i.content}}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="comment_more" ng-show="comment.pageSize == comment.data.length">
+                        <button type="button" tap ng-click="getCommentList()">查看更多评论...</button>
+                    </div>
+                    <div class="comment_nomore" ng-show="comment.pageSize != comment.data.length">
+                        <span>没有更多数据</span>
+                    </div>
+                </div>
+            </div>
+            <div class="edit_comment" ng-show="edit">
+                <div class="t">
+                    <button class="cancel" type="button" tap ng-click="cancelComment()">取消</button>
+                    <h2 class="tit">写评论</h2>
+                    <button class="send" type="button" tap ng-click="sendComment()">发送</button>
+                </div>
+                <div class="b">
+                    <textarea get-focus="edit" class="edit" ng-model="commentContent" placeholder="{{holder?'回复 '+holder : '请输入...'}}"></textarea>
+                </div>
+            </div>
+            <!--  && like && !!like.data.length -->
+            <div class="opra" ng-show="!edit && post">
+                <div class="inner">
+                    <div class="l">
+                        <button type="button" tap="postComment()">
+                            <i class="icon write"></i>
+                            <span>写评论</span>
+                        </button>
+                    </div>
+                    <div class="r">
+                        <button type="button" ng-show="post.isLike == 1" class="active">
+                            <i class="icon like"></i>
+                            <span>{{like.rowCount || 0}}</span>
+                        </button>
+                        <button type="button" ng-show="post.isLike == 0" tap ng-click="iLike('32',post.id,post,like)">
+                            <i class="icon like"></i>
+                            <span>{{like.rowCount || 0}}</span>
+                        </button>
+                        <button type="button">
+                            <i class="icon comment"></i>
+                            <span>{{comment.rowCount || 0}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

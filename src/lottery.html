@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title></title>
+        <link rel="stylesheet" href="./css/base.css">
+        <link rel="stylesheet" href="./css/lottery.css">
+        <script src="./js/hotcss.js"></script>
+        <script src="./js/angular.min.js"></script>
+        <script src="./js/lottery.js"></script>
+    </head>
+    <body>
+        <img class="hide" src="./img/lottery_bg.png" alt="">
+        <img class="hide" src="./img/lottery_theme.png" alt="">
+        <img class="hide" src="./img/lottery_wzj_pic.png" alt="">
+        <img class="hide" src="./img/lottery_zj_pic.png" alt="">
+        <script type="text/javascript">
+            var appid = 'wx2c77d9039b6b9635',
+                redirect_uri = 'http://partner.uoolle.com/v1/meeting/prize/luck';
+            window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" +
+            encodeURIComponent(redirect_uri) + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        </script>
+    </body>
+</html>
