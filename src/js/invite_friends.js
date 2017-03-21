@@ -13,7 +13,7 @@
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
 })(window,document);
-var APP_HOST="http://192.168.10.254:8080"
+var APP_HOST="https://api.2tai.com"
 var app=angular.module("app",[]);
 app.controller("appct",["$scope","$http",
 	function($scope,$http){
