@@ -1,0 +1,145 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	border:none;
+}
+body {
+	background-color: rgba(248,248,248,1)
+}
+.top_pic {
+	width: 100%;
+	height: auto;
+}
+.top_one {
+	font-size: 1rem;
+	line-height: 1.428571rem;
+	color: #2b333b;
+	text-align: center;
+	margin:1.071428rem 0 0 0;
+}
+.top_two {
+	font-size: 1.42857rem;
+	line-height: 2rem;
+	color: #2b333b;
+	text-align: center;
+}
+.share {
+	width: 94.6%;
+	margin: 1.42857rem auto 0 auto;
+	box-shadow: 0 0 4px 0 rgba(0,0,0,0.10);
+	background-color: #ffffff;
+	height: 10.7142857rem;
+}
+.share_title {
+	font-size: 1rem;
+	line-height: 1.42857rem;
+	color: #2b333b;
+	text-align: center;
+	padding: 1.071428rem 0;
+	font-family: PingFangSC-Medium;
+}
+.share_s {
+	display: block;
+	/*width: 25%;*/
+	width: 30%;
+	float: left;
+	height: 7.14285714rem;
+	background-color: #ffffff;
+	text-align: center;
+}
+.share_s_img {
+	background-size: cover;
+	height: 3.428571rem;
+	width: 3.428571rem;
+	margin: 0 auto 0.71428574rem auto;
+
+}
+.share_name {
+	font-size: 1rem;
+	color: #848689;
+}
+.man {
+	height: 5rem;
+	width: 100%;
+}
+.man_head {
+	height: 3.2857142857rem;
+	width: 3.2857142857rem;
+	margin: 0.8571428571rem 0 0 0.8571428571rem;
+	float: left;
+}
+.man_content {
+	margin: 1.2857142857rem 0 0 0.5714285714rem;
+	float: left;
+}
+.man_name {
+	font-size: 1.142857142857rem;
+	color: #2b333b;
+}
+.man_time {
+	font-size: 0.8571428571rem;
+	color: #bfbfbf;
+}
+.man_u {
+	font-size: 1.142857142857rem;
+	color: #2b333b;
+	float: right;
+	margin: 0 0.8571428571rem 0 0;
+	line-height: 5rem;
+}
+.man_line {
+	height: 1px;
+	width: 94.6%;
+	margin: 0 auto;
+	opacity: .5;
+	background-color: #bfbfbf;
+}
+
+.mask {
+	z-index: 100;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	background-color: #000000;
+	opacity: .5;
+}
+.mask_cv {
+	position: fixed;
+	z-index: 140;
+	left: calc((100% - 23.57rem) / 2);
+	top: 10vh;
+	height: 30.71rem;
+	width: 23.57rem;
+	background-color: #ffffff;
+	border: 1px solid #EBEBEB;
+	border-radius: 8px;
+}
+.mask_qr {
+	display: block;
+	width: 12.21rem;
+	height: 12.21rem;
+	margin: 3rem auto 1.8rem auto;
+}
+.mark_code {
+	font-size:1.29rem;
+	color: #2B333B;
+	text-align: center;
+}
+.mask_user {
+	height: 5.57rem;
+	width: 100%;
+}
+.mask_user_head {
+	float: left;
+	width: 3.57rem;
+	height: 3.57rem;
+	margin: 0 0.8rem 0 3rem;
+}
+.mask_close {
+	position: absolute;
+	top: 32.71rem;
+	left: calc(50% - 1.07rem);
+	width: 2.14rem;
+	height: 2.14rem;
+}

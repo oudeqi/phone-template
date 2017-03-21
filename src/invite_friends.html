@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+    <title>邀请好友</title>
+    <link rel="stylesheet" type="text/css" href="css/invite_friends.css">
+
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+</head>
+<body>
+<div ng-app="app" ng-controller="appct" ng-cloak>
+<div class="mask" ng-show="show">
+</div>
+ <div class="mask_cv" ng-show="show">
+     <img class="mask_qr" ng-src="{{xd.imgUrl}}"></img>
+     <div class="mark_code">邀请码：{{xd.inviteCode}}</div>
+     <div class="man_line" style="margin: 6rem auto 1.2rem auto"></div>
+     <div class="mask_user">
+         <img class="mask_user_head" ng-src="{{xd.headIconUrl}}">
+         <div class="man_name" style="margin: 0 0 .2rem 0;">{{xd.nickName}}</div>
+         <div class="man_name" style="color:#848689">微信扫二维码，加入2台</div>
+         <img ng-click="closeShow()" class="mask_close" src="img/close.png">
+     </div>
+ </div>
+
+    <img class="top_pic" src="img/top_pic.png">
+    <div class="top_one">邀请好友成功注册，好友将获得1000U币</div>
+    <div class="top_two">您可获得1000U币奖励</div>
+
+    <div class="share">
+        <div class="share_title">通过以下方式邀请好友加入2台</div>
+        <div class="share_s" ng-click="goShare()" style="margin: 0 0 0 20%;">
+            <div class="share_s_img" style="background-image: url('img/nowshare.png')"></div>
+             <div class="share_name">立即分享</div>
+        </div>
+        <div class="share_s" ng-click="openShow()">
+            <div class="share_s_img" style="background-image: url('img/sao.png')"></div>
+             <div class="share_name">扫码邀请</div>
+        </div>
+    </div>
+
+
+    <div class="share" style="height: auto">
+
+        
+        <div class="share_title">推荐记录和奖励</div>
+        <div ng-repeat="x in xd.inviteList">
+        <div class="man">
+            <img class="man_head" ng-src="{{x.headIconUrl}}">
+            <div class="man_content">
+                <div class="man_name">{{x.nickName}}</div>
+                <div class="man_time">{{x.createDate | date:"yyyy/MM/dd HH:mm"}}</div>
+            </div>
+            <div class="man_u">{{x.reward}}</div>
+        </div>
+        <div class="man_line"></div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+<script src="js/invite_friends.js"></script>
+</html>
