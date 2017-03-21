@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta name="hotcss" content="initial-dpr=1"> -->
+        <!-- <meta name="hotcss" content="max-width=540"> -->
+        <!-- <meta name="hotcss" content="design-width=750"> -->
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>注册2台</title>
+        <style>
+            [ng-cloak]{
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="./css/base.css">
+        <link rel="stylesheet" href="./css/webreg.css">
+        <script src="./js/hotcss.js"></script>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/webreg.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="reg">
+        <!-- 错误提示 -->
+        <div class="toast" ng-show="msg" ng-click="msg = ''" ng-cloak>
+            <div class="inner">
+                {{msg}}
+            </div>
+        </div>
+        <!-- 注册成功 -->
+        <div class="regSucc" ng-show="regSucc" ng-cloak>
+            <div class="inner">
+                <div class="icon"></div>
+                <div class="tit">注册成功</div>
+                <div class="tip-1">
+                    <p>恭喜您由【{{inviteName}}】推荐</p>
+                    <p>成为第<span>{{userCount}}</span>位2台用户</p>
+                </div>
+                <button type="button" name="button" ng-click="downloadApp()">立即下载</button>
+            </div>
+        </div>
+
+        <!-- 内容 -->
+        <div class="warpper" ng-cloak>
+            <div class="top-cont">
+                <!-- 巨幕 -->
+                <div class="jumbotron">
+					<div class="logo-box">
+						<!-- <div class="logo"></div> -->
+						<!-- <div class="youdu"></div> -->
+					</div>
+                    <div class="pic-bg"></div>
+                    <div class="tip">
+						享品味生活 | 读快讯美文 | 抢企业红包
+					</div>
+                </div>
+                <div class="tel">
+                    <input type="tel" ng-model="tel" placeholder="输入手机号码">
+                </div>
+                <div class="v-code">
+                    <input type="text" ng-model="vcode" placeholder="输入验证码">
+                    <div class="btn-box">
+                        <button type="button" name="button" ng-disabled="codeBtnClicked" ng-click="sendCode()">{{codeBtnTxt}}</button>
+                        <!-- 获取验证码 countDown sendCode -->
+                    </div>
+                </div>
+                <div class="pwd">
+                    <input type="text" ng-show="eyeOpen" ng-model="pwd" placeholder="设置登陆密码">
+                    <input type="password" ng-show="!eyeOpen" ng-model="pwd" placeholder="设置登陆密码">
+                    <button class="eye" ng-class="{'eye-open':eyeOpen}" type="button" name="button" ng-click="eyeSwitch()"></button>
+                </div>
+				<div class="agreement">
+					注册表示您已同意 <a href="javascripot:void(0);">《2台用户服务协议》</a>
+				</div>
+            </div>
+
+            <div class="bott-cont">
+                <button type="button" name="button" ng-click="webReg()">立即注册</button>
+            </div>
+            <div class="bott-cont2">
+             <!-- ng-show="regSucc" -->
+                <button type="button" name="button" ng-click="downloadApp()">已有账号</button>
+            </div>
+        </div>
+    </body>
+</html>

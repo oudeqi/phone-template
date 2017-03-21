@@ -1,3 +1,23 @@
 @function px2rem( $px ){
 	@return $px*320/$designWidth/20 + rem;
 }
+
+@function _px2rem( $px ){
+	@return $px*320/($designWidth + px) /20 * 1rem;
+}
+
+@function adaptPx( $px ){
+	@return $px*16/375 + px;
+}
+
+@function base14px2rem( $px ){
+	@return $px/14px * 1rem;
+}
+
+@function base14rem2base16rem( $rem ){
+	@return $rem*14/16 + rem;
+}
+
+@function _base14rem2base16rem( $rem ){
+	@return $rem*14/16;
+}

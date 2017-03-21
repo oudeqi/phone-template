@@ -213,10 +213,10 @@ body {
   display: inline-block;
   vertical-align: middle;
   background-image: url("../img/sprite.png");
-  background-position: -92px -28px;
+  background-position: -58px -62px;
   width: 17px;
   height: 17px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .sec_1 .post_head .btn_box .delbtn {
@@ -238,10 +238,10 @@ body {
 
 .sec_1 .post_head .btn_box .delbtn .icon {
   background-image: url("../img/sprite.png");
-  background-position: -24px -116px;
+  background-position: -121px -24px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
   margin-right: 4px;
   display: block;
   position: relative;
@@ -356,26 +356,26 @@ body {
 
 .sec_1 .other .r button.ic_comment .icon {
   background-image: url("../img/sprite.png");
-  background-position: -48px -116px;
+  background-position: -121px -48px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .sec_1 .other .r button.ic_like .icon {
   background-image: url("../img/sprite.png");
-  background-position: -120px -78px;
+  background-position: -76px -91px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .sec_1 .other .r button.ic_like.active .icon {
   background-image: url("../img/sprite.png");
-  background-position: 0px -116px;
+  background-position: -121px 0px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .sec_1 .reward {
@@ -643,5 +643,5 @@ body {
   background-position: 0px 0px;
   width: 52px;
   height: 52px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }

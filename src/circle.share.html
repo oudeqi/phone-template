@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="./css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/circle.share.css"/>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/circle.share.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="content">
+        <div class="dropped" ng-if="delSuccInfo">
+            {{delSuccInfo}}
+        </div>
+        <div class="page" ng-show="!delSuccInfo" ng-cloak>
+            <div class="loading" ng-show="!post">
+                <img ng-src="./img/loading.gif" alt="" />
+            </div>
+            <div class="page_contain" ng-show="post">
+                <div class="sec_1">
+                    <div class="post_head">
+                        <div class="pic">
+                            <img ng-src="{{post.headIconUrl}}?x-oss-process=image/resize,m_fill,h_72,w_72" alt="" />
+                        </div>
+                        <div class="txt">
+                            <div class="t">
+                                <h3>{{post.nickName}}</h3>
+                                <!-- <span>lv2</span> -->
+                            </div>
+                            <p class="b">
+                                {{post.createDate | date:"yyyy-MM-dd hh:mm:ss"}}
+                            </p>
+                        </div>
+                        <div class="btn_box" ng-show="post.isMe == 0">
+                            <button ng-show="post.isFollow == 0" tap ng-click="follow()" class="unfollow" type="button">
+                                <i class="icon"></i>
+                                <span>关注</span>
+                            </button>
+                            <button ng-show="post.isFollow == 1" class="isfollow" type="button">
+                                <span>已关注</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- post_cont 此类用于原生筛选图片 -->
+                    <div class="post_cont">
+                        <!--  ng-bind-html="domStr" -->
+                        <div class="cont">
+                            <span ng-class="{'topic':!!item.type}" ng-if="item.value" ng-repeat="item in domArr">{{item.value}}</span>
+                        </div>
+                        <ul class="pic_list">
+                            <li ng-repeat="item in post.imgList">
+                                <div class="inner">
+                                    <div class="pic" style="background-image:url({{item}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}});" ng-click="picViewer(post.imgList,$index)">
+                                        <!-- <img ng-src="{{item}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}}" alt="" /> -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="other">
+                        <p class="l">
+                            {{post.userReadNumbers || "0"}}人阅读
+                        </p>
+                        <p class="r">
+                            <button type="button" tap ng-click="postComment()" class="ic_comment">
+                                <i class="icon"></i>
+                                <span>{{post.commentNumbers || "0"}}</span>
+                            </button>
+
+                            <button type="button" class="ic_like active" ng-show="post.like">
+                                <i class="icon"></i>
+                                <span>{{post.likeNumbers || "0"}}</span>
+                            </button>
+                            <button type="button" tap ng-click="iLike(post)" class="ic_like" ng-show="!post.like">
+                                <i class="icon"></i>
+                                <span>{{post.likeNumbers || "0"}}</span>
+                            </button>
+                        </p>
+                    </div>
+                    <div class="reward">
+                        <button ng-show="post.isMe == 0" type="button" tap ng-click="reward()">赏</button>
+                        <p class="tip">点赞是美意，打赏是鼓励！</p>
+                        <p class="number">{{rewardList.length}}人打赏</p>
+                        <ul class="reward_list" ng-show="rewardList.length > 5">
+                            <li ng-repeat="item in rewardList">
+                                <img ng-src="{{item.headIconUrl}}?x-oss-process=image/resize,m_fill,h_80,w_80" alt="" />
+                            </li>
+                        </ul>
+                        <ul class="reward_list2" ng-show="!!rewardList.length && rewardList.length < 6">
+                            <li ng-repeat="item in rewardList">
+                                <img ng-src="{{item.headIconUrl}}?x-oss-process=image/resize,m_fill,h_80,w_80" alt="" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sec_2">
+                    <div class="like" ng-show="!!post.likeUserList.length">
+                        <div class="l">
+                            <span>点赞</span>
+                        </div>
+                        <div class="r">
+                            <span ng-repeat="item in post.likeUserList">{{item.nickName}}</span>
+                        </div>
+                    </div>
+                    <ul class="comment_list">
+                        <li class="item" ng-repeat="item in commentList">
+                            <div class="pic">
+                                <img ng-src="{{item.uHeadImg}}?x-oss-process=image/resize,m_fill,h_80,w_80" alt="" />
+                            </div>
+                            <div class="txt">
+                                <h3 class="name">
+                                    <span>{{item.uName}}</span>
+                                    <!-- <span class="lv">lv2</span> -->
+                                </h3>
+                                <p class="time">{{item.createDate | date:"yyyy-MM-dd hh:mm:ss"}}</p>
+                                <p class="con" tap ng-click="replyComment(item)">{{item.content}}</p>
+                                <ul class="reply" ng-show="!!item.sumComment.length">
+                                    <li ng-repeat="i in item.sumComment" ng-click="replyReply(item,i,$index)">
+                                        <span class="reply_name">{{i.uName}}</span>
+                                        <span class="reply_con" ng-show="i.pUname">回复</span>
+                                        <span class="reply_name" ng-show="i.pUname">{{i.pUname}}：</span>
+                                        <span class="reply_con">{{i.content}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="comment_no" ng-show="!commentList.length">
+                        暂无评论
+                    </div>
+                    <!-- <div class="comment_more">
+                        <button type="button" name="button">加载更多</button>
+                    </div> -->
+                </div>
+            </div>
+            <div class="edit_comment" ng-show="edit">
+                <div class="t">
+                    <button class="cancel" type="button" tap ng-click="cancelComment()">取消</button>
+                    <h2 class="tit">写评论</h2>
+                    <button class="send" type="button" tap="sendComment()">发送</button>
+                </div>
+                <div class="b">
+                    <textarea get-focus="edit" class="edit" ng-model="commentContent" placeholder="{{holder?'回复 '+holder : '请输入...'}}"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="button" tap ng-click="postComment()" ng-show="!edit && post && !delSuccInfo" class="commentBtn"></button>
+    </body>
+</html>

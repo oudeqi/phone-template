@@ -27,7 +27,7 @@ gulp.task('sprite', function() {
         cssFormat: 'scss',
         cssTemplate: 'scss.template.mustache',
         cssOpts: 'spriteSrc',//定义变量名
-        padding: 10,
+        padding: 20,
         cssVarMap: function(sprite) {
             sprite.name = "icon-" + sprite.name;
         }

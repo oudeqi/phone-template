@@ -134,10 +134,10 @@ body {
   display: inline-block;
   vertical-align: middle;
   background-image: url("../img/sprite.png");
-  background-position: -92px -28px;
+  background-position: -58px -62px;
   width: 17px;
   height: 17px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .page .page_contain .user_info .r .delbtn {
@@ -159,10 +159,10 @@ body {
 
 .page .page_contain .user_info .r .delbtn .icon {
   background-image: url("../img/sprite.png");
-  background-position: -24px -116px;
+  background-position: -121px -24px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
   margin-right: 4px;
   display: block;
   position: relative;
@@ -417,18 +417,18 @@ body {
 
 .page .page_contain .share li .icon.weichat {
   background-image: url("../img/sprite.png");
-  background-position: -92px 0px;
+  background-position: -30px -62px;
   width: 18px;
   height: 18px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .page .page_contain .share li .icon.sina {
   background-image: url("../img/sprite.png");
-  background-position: 0px -91px;
+  background-position: -92px 0px;
   width: 19px;
   height: 15px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .page .page_contain .share li .icon.qq {
@@ -436,7 +436,7 @@ body {
   background-position: 0px -62px;
   width: 20px;
   height: 19px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .page .page_contain .like {
@@ -625,10 +625,10 @@ body {
 
 .comment .comment_list .item .r .other button.active .icon.icon-like {
   background-image: url("../img/sprite.png");
-  background-position: 0px -116px;
+  background-position: -121px 0px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .comment .comment_list .item .r .other button .icon {
@@ -639,18 +639,18 @@ body {
 
 .comment .comment_list .item .r .other button .icon.icon-like {
   background-image: url("../img/sprite.png");
-  background-position: -120px -78px;
+  background-position: -76px -91px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .comment .comment_list .item .r .other button .icon.icon-comment {
   background-image: url("../img/sprite.png");
-  background-position: -48px -116px;
+  background-position: -121px -48px;
   width: 14px;
   height: 14px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .comment .comment_list .item .r .other button span {
@@ -815,10 +815,10 @@ body {
 
 .opra .inner .l button .icon.write {
   background-image: url("../img/sprite.png");
-  background-position: -120px -52px;
+  background-position: 0px -91px;
   width: 16px;
   height: 16px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .opra .inner .l button span {
@@ -862,10 +862,10 @@ body {
 
 .opra .inner .r button.active .icon.like {
   background-image: url("../img/sprite.png");
-  background-position: -92px -55px;
+  background-position: -26px -91px;
   width: 16px;
   height: 16px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .opra .inner .r button .icon {
@@ -875,20 +875,20 @@ body {
 
 .opra .inner .r button .icon.like {
   background-image: url("../img/sprite.png");
-  background-position: -120px -26px;
+  background-position: -92px -25px;
   width: 16px;
   height: 16px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
   position: relative;
   top: -2px;
 }
 
 .opra .inner .r button .icon.comment {
   background-image: url("../img/sprite.png");
-  background-position: -120px 0px;
+  background-position: -92px -51px;
   width: 16px;
   height: 16px;
-  background-size: 136px 130px;
+  background-size: 135px 107px;
 }
 
 .opra .inner .r button span {

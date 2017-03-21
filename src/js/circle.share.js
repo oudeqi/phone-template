@@ -57,30 +57,17 @@ app.directive('getFocus',function(){
 app.run(['$rootScope', '$location',
     function($rootScope, $location) {
         $rootScope.worldId = $location.search().id;
-        if($location.search().token && $location.search().token != "null" && $location.search().token != "undefined"){
-            $rootScope.token = $location.search().token;
-        }else{
-            $rootScope.token = null;
-        }
         console.log($rootScope.worldId);
-        console.log($rootScope.token);
     }
 ]);
 app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$sce','$window','$compile',
     function($scope,$rootScope,APP_HOST,$http,$timeout,$sce,$window,$compile){
-
-        $scope.reload = function(token){
-            location.href = "./postdetail.circle.html?id="+$rootScope.worldId+"&token="+token;
-        };
 
         $scope.screenW = parseInt($window.innerWidth / 2);
         // console.log($window);
         //http://192.168.10.96:3000/postdetail.circle.html?id=w17031400000006&token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2Jhc2VfaWQiOiIxMDAwNXwxNDc5MzgxNTgzODE4In0.NM3HBAxhpJgjh8WXvDpz8qO599olClzMFdDis7hh4r0
         $scope.post = null;
         $http.get(APP_HOST + '/v2/world/detail', {
-            headers: {
-                'Authorization': $rootScope.token,
-            },
             params:{
                 worldId:$rootScope.worldId,
             }
@@ -89,7 +76,6 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
             console.log(data);
             data.data.clicked = false;
             $scope.post = data.data;
-            // $scope.post.isMe = 1;
             var domArr = [];
             angular.forEach($scope.post.content.split("#"),function(v,i){
                 var obj = {};
@@ -113,36 +99,7 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
             console.log(imgList);
             console.log(imgStr);
             console.log(index);
-            if(typeof h5 == "undefined"){
-                alert("no such obj");
-            }else{
-                h5.picViewer(imgStr,index);
-            }
-        };
-
-
-        //进入个人主页
-        $scope.homepage = function(uid){
-            console.log(uid);
-            if(typeof h5 == "undefined"){
-                alert("no such obj");
-            }else{
-                h5.homepage(uid);
-            }
-        };
-
-        //进入话题
-        $scope.topic = function(topic,id){
-            console.log(topic);
-            console.log(id);
-            if(topic.type === 0){
-                return;
-            }
-            if(typeof h5 == "undefined"){
-                alert("no such obj");
-            }else{
-                h5.topic(topic.value,id);
-            }
+            // TODO
         };
 
         //打赏
@@ -157,27 +114,6 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
                 }
             }
         };
-
-        //删除动态
-        $scope.del = function(){
-            $http.delete(APP_HOST+'/v2/aut/world/detail',{
-                headers:{
-                    'Authorization': $rootScope.token
-                },
-                params:{
-                    worldId:$rootScope.worldId
-                }
-            }).success(function(data){
-                console.log("删除动态");
-                console.log(data);
-                if(data.data === 1){//成功
-                    $scope.delSuccInfo = "该内容不存在或已被删除";
-                }else{
-                    alert("删除失败");
-                }
-            }).error(function(data){});
-        };
-
 
         //关注
         $scope.followClicked = false;

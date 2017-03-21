@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>2台</title>
+        <style>
+            [ng-cloak]{
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="/css/base.css"/>
+        <link rel="stylesheet" href="/css/art.multpic.share.css">
+    </head>
+    <body>
+        <div id="container" ng-controller="detail" ng-cloak>
+            <h1 class="art_tit">{{detail.title}}</h1>
+            <p class="sub_art_tit" ng-show="detail">
+                <span>/ {{detail.sellerName}} / {{detail.createDate | date:"yyyy-MM-dd HH:mm"}}</span>
+            </p>
+            <ul class="list">
+                <li ng-repeat="item in detail.templateData">
+                    <p class="txt">{{item.explain}}</p>
+                    <p class="pic">
+                        <img ng-src="{{item.imgUrl}}" alt="">
+                    </p>
+                </li>
+            </ul>
+            <!-- <div class="reward">
+                <button type="button">赏</button>
+                <p>点赞是美意，打赏是鼓励！</p>
+            </div>
+            <div class="reward_list">
+                <p>16人打赏</p>
+                <ul>
+                    <li><img src="./test/head_pic.jpg" alt=""></li>
+                </ul>
+            </div> -->
+            <div class="praise" ng-show="detail">
+                <div class="btn_box">
+                    <button type="button" ng-click="callApp()">
+                        <i class="icon"></i>
+                        <span>{{praise.length | number}}人赞</span>
+                    </button>
+                </div>
+                <div class="praise_list">
+                    <p>{{praiseList}}</p>
+                    <!-- <button type="button" class="">
+                        <i class="icon-more"></i>
+                    </button> -->
+                </div>
+            </div>
+            <div class="comment" ng-show="detail">
+                <h3 class="comment_tit">-热门评论-</h3>
+                <ul class="comment_list">
+                    <li class="comment_list_item" ng-repeat="item in commentList | limitTo:5">
+                        <div class="l">
+                            <img ng-src="{{item.uHeadImg}}" alt="">
+                        </div>
+                        <div class="r">
+                            <div class="row1">
+                                <p class="name">{{item.uName}}</p>
+                                <div class="name_r">
+                                    <span>{{item.likesNumber}}</span>
+                                    <button ng-click="callApp()" type="button" class="icon"></button>
+                                </div>
+                            </div>
+                            <div class="row2">
+                                <!-- <span class="addr">成都网友</span> -->
+                                <span class="time"> {{item.createDate | date:"yyyy-MM-dd HH:mm"}}</span>
+                            </div>
+                            <div class="row3">
+                                {{item.content}}
+                            </div>
+                            <!-- <ul class="row4">
+                                <li>
+                                    <p class="reply_name">哞哞：</p>
+                                    <p class="reply_cont">写的太好了</p>
+                                </li>
+                                <li>
+                                    <p class="reply_name">哞哞：</p>
+                                    <p class="reply_cont">写的太好了</p>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </li>
+                </ul>
+                <p class="look_more" ng-show="commentList.length < rowCount && commentList.length > 0">
+                    <button type="button" ng-click="callApp()">查看更多评论</button>
+                </p>
+                <div class="write_comment" ng-show="detail">
+                    <button type="button" ng-click="callApp()">写评论</button>
+                </div>
+            </div>
+            <div class="fixed_btn">
+                <div class="fixed_btn_inner">
+                    <div class="pic_box">
+                        <div class="pic_cont">
+                            <img src="./img/share-bottom.png" alt="">
+                        </div>
+                    </div>
+                    <p class="desc">本地资讯 尽在2台</p>
+                    <div class="btn_box">
+                        <button type="button" name="button" ng-click="callApp()">打开</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/art.multpic.share.js"></script>
+    </body>
+</html>

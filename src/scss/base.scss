@@ -1,8 +1,25 @@
-
+@import "./helper/px2rem.scss";
+@import "./helper/_sprite.scss";
+@import "./helper/_mixin.scss";
 html {
 	height: 100%;
 	-ms-touch-action: none;
 	font-size: 16px;
+}
+@media screen and (min-width: 320px) {
+    html {
+		font-size: adaptPx(320);
+    }
+}
+@media screen and (min-width: 360px) {
+    html {
+		font-size: adaptPx(360);
+    }
+}
+@media screen and (min-width: 375px) {
+    html {
+		font-size: adaptPx(375);
+    }
 }
 body {
     font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
@@ -12,7 +29,7 @@ body {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
     min-height: 100%;
-	line-height: 1.4;
+	line-height: 1.3;
 	color: #000;
 	background: #fff;
 	text-align: justify;
