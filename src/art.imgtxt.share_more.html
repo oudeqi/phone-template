@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>2台</title>
+        <style>
+            [ng-cloak]{
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="/css/base.css"/>
+        <link rel="stylesheet" href="/css/art.imgtxt.share.css">
+    </head>
+    <body>
+        <div id="container" ng-controller="detail" ng-cloak>
+            <h1 class="art_tit" style="text-align: left;">{{detail.title}}</h1>
+            <p class="sub_art_tit" ng-show="detail">
+                <span style="float: left;"> {{detail.sellerName}} </span> <span style="float: right;"> {{detail.pushTime | date:"yyyy-MM-dd HH:mm"}}</span>
+            </p>
+            <div class="tpl_container">
+                <div class="tpl_content" ng-bind-html="tpl"></div>
+            </div>
+            <!-- <div class="reward">
+                <button type="button">赏</button>
+                <p>点赞是美意，打赏是鼓励！</p>
+            </div>
+            <div class="reward_list">
+                <p>16人打赏</p>
+                <ul>
+                    <li><img src="./test/head_pic.jpg" alt=""></li>
+                </ul>
+            </div> -->
+        </div>
+        <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/art.imgtxt.share_more.js"></script>
+    </body>
+</html>
