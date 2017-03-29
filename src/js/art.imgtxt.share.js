@@ -1,7 +1,8 @@
 var app = angular.module("app",[]);
-// http://192.168.10.96:3000/art.multpic.share.html?id=24004
-// app.constant("APP_HOST", "http://101.200.129.132");
+// http://192.168.10.96:3000/art.imgtxt.share.html?id=24017
+// 24023
 app.constant("APP_HOST", "https://api.2tai.com");
+// app.constant("APP_HOST", "https://101.200.129.132");
 // app.constant("APP_HOST", "http://192.168.10.254:8080");
 app.config(["$locationProvider",
     function($locationProvider) {
@@ -31,16 +32,15 @@ app.factory("device",["$window",function($window){
         }
     };
 }]);
-app.controller("detail",["$scope","$http","APP_HOST","$rootScope",
-    function($scope,$http,APP_HOST,$rootScope){
+app.controller("detail",["$scope","$http","APP_HOST","$rootScope","$sce",
+    function($scope,$http,APP_HOST,$rootScope,$sce){
 
         var dataForWeixin = {
 			signurl: location.href,
 			nonceStr: "2tai" + new Date().getTime(),
 			timestamp: new Date().getTime(),
 			imgUrl: "",
-            // lineLink: "http://tpl.2tai.net/art.multpic.share.html?id=" + $rootScope.id,
-            lineLink: location.href,
+			lineLink: "http://tpl.2tai.net/art.imgtxt.share.html?id=" + $rootScope.id,
 			descContent: "",
 			shareTitle: "",
 			appid: "wx7c0b913b4c5452ad",
@@ -61,11 +61,26 @@ app.controller("detail",["$scope","$http","APP_HOST","$rootScope",
         }).success(function(res){
             console.log("获取详情：",res);
             if(res.data && typeof res.data === "object"){
-                $scope.detail = res.data;
                 //分享信息
                 dataForWeixin.imgUrl = res.data.shareImg;
     			dataForWeixin.descContent = res.data.introduction;
     			dataForWeixin.shareTitle = res.data.title;
+                // 显示数据
+                $scope.detail = res.data;
+                $scope.tpl = $sce.trustAsHtml(res.data.templateData[0].content);
+                //修复微信视频
+                setTimeout(function(){
+                    var iframeArr = document.querySelectorAll("iframe");
+                    var tplDom = document.querySelector(".tpl_content");
+                    var style = window.getComputedStyle ? window.getComputedStyle(tplDom,null) : null || tplDom.currentStyle;
+                    var w = style.width;
+                    for (var i = 0; i < iframeArr.length; i++) {
+                        iframeArr[i].width = w;
+                        iframeArr[i].height = parseInt(w)*258/345+"px";
+                        // console.log(iframeArr[i].contentWindow.document.querySelector("video"));
+                    }
+                    console.log(iframeArr);
+                },300);
             }
         }).error(function(res){
 
