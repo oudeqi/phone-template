@@ -10,11 +10,8 @@
                 display: none;
             }
         </style>
-        <!-- build:css /css/app.css -->
         <link rel="stylesheet" href="/css/base.css"/>
-        <link rel="stylesheet" href="/css/art.multpic.share.css">
-        <!-- endbuild -->
-
+        <link rel="stylesheet" href="/css/art.imgtxt.share.css">
     </head>
     <body>
         <div id="container" ng-controller="detail" ng-cloak>
@@ -22,14 +19,9 @@
             <p class="sub_art_tit" ng-show="detail">
                 <span>/ {{detail.sellerName}} / {{detail.createDate | date:"yyyy-MM-dd HH:mm"}}</span>
             </p>
-            <ul class="list">
-                <li ng-repeat="item in detail.templateData">
-                    <p class="txt">{{item.explain}}</p>
-                    <p class="pic">
-                        <img ng-src="{{item.imgUrl}}" alt="">
-                    </p>
-                </li>
-            </ul>
+            <div class="tpl_container">
+                <div class="tpl_content" ng-bind-html="tpl"></div>
+            </div>
             <!-- <div class="reward">
                 <button type="button">赏</button>
                 <p>点赞是美意，打赏是鼓励！</p>
@@ -111,11 +103,9 @@
             </div>
         </div>
         <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-        <!-- build:js /js/app.js -->
-        <script type="text/javascript" src="/js/angular.js"></script>
-        <script type="text/javascript" src="/js/core.js"></script>
-		<script type="text/javascript" src="/js/sha1.js"></script>
-        <script type="text/javascript" src="/js/art.multpic.share.js"></script>
-        <!-- endbuild -->
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/art.imgtxt.share.js"></script>
     </body>
 </html>

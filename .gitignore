@@ -1,6 +1,7 @@
 
 ##############################
 dist/
+onepage/
 node_modules/
 .idea/
 src/scss/helper/_sprite.scss

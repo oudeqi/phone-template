@@ -1,7 +1,8 @@
 var app = angular.module("app",[]);
-// http://192.168.10.96:3000/art.multpic.share.html?id=24004
-// app.constant("APP_HOST", "http://101.200.129.132");
+// http://192.168.10.96:3000/art.video.share.html?id=24118
+// 24023
 app.constant("APP_HOST", "https://api.2tai.com");
+// app.constant("APP_HOST", "https://101.200.129.132");
 // app.constant("APP_HOST", "http://192.168.10.254:8080");
 app.config(["$locationProvider",
     function($locationProvider) {
@@ -31,16 +32,39 @@ app.factory("device",["$window",function($window){
         }
     };
 }]);
-app.controller("detail",["$scope","$http","APP_HOST","$rootScope",
-    function($scope,$http,APP_HOST,$rootScope){
+app.directive("myVideo",["device",function(device){
+    return {
+        restrict:"E",
+        replace:true,
+        transclude:true,
+        scope:{
+            src:"@videoSrc",
+            poster:"@videoPoster"
+        },
+        template: function(elem,attrs){
+            return '<video controls="'+attrs.controls+'" ng-transclude></video>';
+        },
+        link:function(scope,elem,attrs){
+            var w = parseInt(device.screenW()*1.5);
+            var h = parseInt(w*210/375);
+            scope.$watch("src",function(){
+                elem[0].src = scope.src;
+                elem[0].poster = scope.poster+"?x-oss-process=image/resize,m_fill,h_"+h+",w_"+w;
+            });
+
+        }
+    };
+}]);
+
+app.controller("detail",["$scope","$http","APP_HOST","$rootScope","$sce",
+    function($scope,$http,APP_HOST,$rootScope,$sce){
 
         var dataForWeixin = {
 			signurl: location.href,
 			nonceStr: "2tai" + new Date().getTime(),
 			timestamp: new Date().getTime(),
 			imgUrl: "",
-            // lineLink: "http://tpl.2tai.net/art.multpic.share.html?id=" + $rootScope.id,
-            lineLink: location.href,
+			lineLink: "http://tpl.2tai.net/art.video.share.html?id=" + $rootScope.id,
 			descContent: "",
 			shareTitle: "",
 			appid: "wx7c0b913b4c5452ad",
@@ -61,27 +85,14 @@ app.controller("detail",["$scope","$http","APP_HOST","$rootScope",
         }).success(function(res){
             console.log("获取详情：",res);
             if(res.data && typeof res.data === "object"){
-                $scope.detail = res.data;
                 //分享信息
                 dataForWeixin.imgUrl = res.data.shareImg;
     			dataForWeixin.descContent = res.data.introduction;
     			dataForWeixin.shareTitle = res.data.title;
-            }
-        }).error(function(res){
-
-        });
-
-        //点赞
-        $http.get(APP_HOST + "/v1/common/follow?busType=30&isFollow=0&busId="+$rootScope.id)
-        .success(function(res){
-            console.log("获取点赞：",res);
-            if(res.data && typeof res.data === "object"){
-                $scope.praise = res.data;
-                var praiseList = [];
-                $scope.praise.forEach(function(item,i){
-                    praiseList.push(item.nickName);
-                });
-                $scope.praiseList = praiseList.join("、");
+                // 显示数据
+                $scope.detail = res.data;
+                $scope.videoUrl = res.data.templateData[0].videoUrl;
+                $scope.poster = res.data.templateData[0].imageUrl;
             }
         }).error(function(res){
 

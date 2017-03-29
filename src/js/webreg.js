@@ -38,12 +38,12 @@ app.controller('reg', [
         $scope.eyeOpen = false;
         $scope.eyeSwitch = function() {
             $scope.eyeOpen = !$scope.eyeOpen;
-        }
+        };
 
         // 去下载app
         $scope.downloadApp = function() {
             window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
-        }
+        };
 
         var counter = 60;
         $scope.codeBtnTxt = '发送验证码';
@@ -62,10 +62,10 @@ app.controller('reg', [
                     $scope.codeBtnTxt = '发送验证码';
                 }
             }, 1000);
-        }
+        };
 
         $scope.sendCode = function() {
-            if ($scope.tel == '') {
+            if ($scope.tel === '') {
                 $scope.msg = '手机号码不能为空';
                 $timeout(function() {
                     $scope.msg = '';
@@ -108,10 +108,10 @@ app.controller('reg', [
                     $scope.msg = '';
                 }, 1500);
             }
-        }
+        };
 
         $scope.webReg = function() {
-            if ($scope.tel == '') {
+            if ($scope.tel === '') {
                 $scope.msg = '手机号码不能为空';
                 $timeout(function() {
                     $scope.msg = '';
@@ -125,7 +125,7 @@ app.controller('reg', [
                 }, 1500);
                 return;
             }
-            if ($scope.vcode == '') {
+            if ($scope.vcode === '') {
                 $scope.msg = '请填写手机验证码';
                 $timeout(function() {
                     $scope.msg = '';

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>2台</title>
+        <style>
+            [ng-cloak]{
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="/css/base.css"/>
+        <link rel="stylesheet" href="/css/art.video.share.css">
+    </head>
+    <body>
+        <div id="container" ng-controller="detail" ng-cloak>
+            <div class="video_con">
+                <my-video video-src="{{videoUrl}}" controls="controls" video-poster="{{poster}}">
+                    你的浏览器不支持video标签
+                </my-video>
+            </div>
+            <div class="content_pad">
+                <h1 class="tit" ng-bind="detail.title"></h1>
+                <p class="source" ng-bind="detail.sellerName"></p>
+                <div class="comment_list" ng-show="commentList.length !== 0">
+                    <h2 class="list_tit">最新评论（34）</h2>
+                    <ul class="list_cont">
+                        <li ng-repeat="item in commentList">
+                            <div class="l">
+                                <img ng-src="{{item.uHeadImg}}" alt="">
+                            </div>
+                            <div class="r">
+                                <div class="row1">
+                                    <p class="name" ng-bind="item.uName"></p>
+                                    <p class="name_r">
+                                        <span ng-bind="item.likesNumber"></span>
+                                        <button ng-click="callApp()" type="button" class="icon"></button>
+                                    </p>
+                                </div>
+                                <p class="row2" ng-bind="item.createDate | date:'yyyy-MM-dd HH:mm'"></p>
+                                <p class="row3" ng-bind="item.content"></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="btn_cont">
+                        <button type="button" ng-click="callApp()" name="button">写评论</button>
+                    </div>
+                </div>
+                <div class="no_comment" ng-show="commentList.length == 0">
+                    <h2 class="list_tit">最新评论（0条）</h2>
+                    <div class="content">
+                        <div class="pic">
+                            <img src="./img/no-comment.png" alt="">
+                        </div>
+                        <p>还没有评论  快来说两句</p>
+                    </div>
+                    <div class="btn_cont">
+                        <button type="button" ng-click="callApp()" name="button">抢沙发</button>
+                    </div>
+                </div>
+            </div>
+            <div class="fixed_btn">
+                <div class="fixed_btn_inner">
+                    <div class="pic_box">
+                        <div class="pic_cont">
+                            <img src="./img/share-bottom.png" alt="">
+                        </div>
+                    </div>
+                    <p class="desc">本地资讯 尽在2台</p>
+                    <div class="btn_box">
+                        <button type="button" name="button" ng-click="callApp()">打开</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/art.video.share.js"></script>
+    </body>
+</html>
