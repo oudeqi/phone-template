@@ -143,19 +143,19 @@ body {
   margin-right: 0.72533rem;
   border: 0;
   background-image: url("../img/sprite.png");
-  background-position: -1.23733rem -3.88267rem;
+  background-position: -1.23733rem -3.92533rem;
   width: 0.98133rem;
   height: 0.42667rem;
-  background-size: 5.80267rem 5.54667rem;
+  background-size: 7.12533rem 5.67467rem;
   background-color: inherit;
 }
 
 .top-cont .pwd button.eye.eye-open {
   background-image: url("../img/sprite.png");
-  background-position: -1.28rem -2.64533rem;
+  background-position: -4.01067rem 0rem;
   width: 0.98133rem;
   height: 0.59733rem;
-  background-size: 5.80267rem 5.54667rem;
+  background-size: 7.12533rem 5.67467rem;
 }
 
 .top-cont .agreement {
