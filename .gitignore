@@ -5,4 +5,5 @@ onepage/
 node_modules/
 .idea/
 src/scss/helper/_sprite.scss
+src/.project
 ##############################
