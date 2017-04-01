@@ -1,8 +1,8 @@
 var app = angular.module("app",[]);
 // http://192.168.10.96:3000/art.imgtxt.share.html?id=24017
 // 24023
-//app.constant("APP_HOST", "https://api.2tai.com");
-   app.constant("APP_HOST", "http://101.200.129.132");
+app.constant("APP_HOST", "https://api.2tai.com");
+// app.constant("APP_HOST", "http://101.200.129.132");
 // app.constant("APP_HOST", "http://192.168.10.254:8080");
 app.config(["$locationProvider",
     function($locationProvider) {
