@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>2台投票</title>
+        <style>
+            [ng-cloak]{
+                display: none !important;
+            }
+        </style>
+        <!-- build:css /css/app.css -->
+        <link rel="stylesheet" href="/css/base.css"/>
+        <link rel="stylesheet" href="/css/vote.share.css">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div ng-controller="detail" class="warpper" ng-cloak>
+            <div class="poster">
+                <img ng-src="{{detail.coverPhoto}}" alt="">
+            </div>
+            <ul class="rule-list" ng-show="detail">
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>活动介绍</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p>{{detail.actProfile}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>活动组织</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p>主办单位：{{detail.orgMain}}</p>
+                        <p>协办单位：{{detail.orgSecondary}}</p>
+                        <p>承办单位：{{detail.undertaker}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>活动时间</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p>报名时间：{{detail.signupStart | date:"yyyy/MM/dd HH:mm"}} - {{detail.signupEnd | date:"yyyy/MM/dd HH:mm"}}</p>
+                        <p>投票时间：{{detail.voteStart | date:"yyyy/MM/dd HH:mm"}} - {{detail.voteEnd | date:"yyyy/MM/dd HH:mm"}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>参选指南</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p ng-repeat="item in detail.signUpRule">{{item}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>活动奖励</span>
+                    </h2>
+                    <div class="rule-cont" ng-repeat="item in detail.reward">
+                        <p>{{item.grade}} {{item.number}}人</p>
+                        <p>奖品：{{item.goods}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>投票方式</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p>{{detail.voteMethod}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>投票规则</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p ng-repeat="item in detail.voteRule">{{$index+1}}、{{item}}</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="signup-btn" ng-show="detail">
+                <!-- 1未开始 2报名中 3报名已结束 -->
+                <button ng-if="detail.status==2" class="notover" ui-sref="signup" type="button" ng-click="download()">我要报名</button>
+                <button ng-if="detail.status==3" class="over" type="button" ng-click="download()">报名已结束</button>
+                <button ng-if="detail.status==1" class="over" type="button" ng-click="download()">报名未开始</button>
+            </div>
+        </div>
+        <!-- build:js /js/app.js -->
+        <script type="text/javascript" src="/js/angular.js"></script>
+        <script type="text/javascript" src="/js/vote.detail.js"></script>
+        <!-- endbuild -->
+        <script type="text/javascript">
+            document.body.addEventListener('touchstart', function(){});
+        </script>
+    </body>
+</html>

@@ -21,3 +21,8 @@
 @function _base14rem2base16rem( $rem ){
 	@return $rem*14/16;
 }
+
+// 投票分享页
+@function base16px2rem( $px ){
+	@return $px / 16 + rem;
+}

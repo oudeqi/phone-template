@@ -1,6 +1,6 @@
 
 var gulp = require("gulp");
-var ass = require("gulp-sass");
+var sass = require("gulp-sass");
 var imagemin = require("gulp-imagemin");
 var spritesmith = require("gulp.spritesmith");
 var browserSync = require("browser-sync").create();

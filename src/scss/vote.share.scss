@@ -1,0 +1,464 @@
+@import "./helper/px2rem.scss";
+@import "./helper/_sprite.scss";
+@import "./helper/_mixin.scss";
+.warpper{
+    max-width: 640px;
+    min-width: 320px;
+    margin: 0 auto;
+    .poster{
+        width: 100%;
+        background-color: #ddd;
+        height: base16px2rem(180);
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .padd-cont{
+        padding: 0 base16px2rem(10);
+        .title{
+            padding-top: base16px2rem(20);
+            font-size: base16px2rem(20);
+            color: #2B333B;
+        }
+        .tip{
+            position: relative;
+            z-index: 10;
+            .over{
+                position: absolute;
+                top: 0;
+                right: 5px;
+                width: base16px2rem(70);
+                height: base16px2rem(70);
+                overflow: hidden;
+                img{
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+            .p1{
+                padding: base16px2rem(10) 0;
+                .icon{
+                    display: inline-block;
+                    vertical-align: middle;
+                    @include sprite($icon-timer);
+                }
+                .time{
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: base16px2rem(14);
+                    color: #686868;
+                }
+                .status{
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: base16px2rem(14);
+                    color: #FB4747;
+                }
+            }
+            .p2{
+                height: base16px2rem(40);
+                background: #FDF8E3;
+                border: 1px solid #DACCAF;
+                border-radius: base16px2rem(4);
+                display: flex;
+                align-items: center;
+                padding-left: base16px2rem(10);
+                .icon{
+                    margin-right: base16px2rem(8);
+                    @include sprite($icon-warning);
+                }
+                .status{
+                    font-size: base16px2rem(14);
+                    color: #8D5A5A;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+        }
+        .reward{
+            margin-top: base16px2rem(15);
+            .reward-pic{
+                border-radius:base16px2rem(3) base16px2rem(3) 0 0;
+                overflow: hidden;
+                width: 100%;
+                height: auto;
+                img{
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+            .reward-list{
+                padding: base16px2rem(10);
+                border: 1px solid #dfdfdf;
+                border-top: 0;
+                border-radius: 0 0 base16px2rem(3) base16px2rem(3);
+                li{
+                    padding-bottom: base16px2rem(15);
+                    text-align: center;
+                    color: #2b333b;
+                    h3{
+                        line-height: 1.5;
+                        font-size: base16px2rem(15);
+                    }
+                    p{
+                        line-height: 1.5;
+                        font-size: base16px2rem(15);
+                    }
+                }
+            }
+        }
+        .table-cont{
+            margin-top: base16px2rem(15);
+            table{
+                width: 100%;
+                border-collapse: collapse;
+                text-align: center;
+                color: #444;
+                font-size: base16px2rem(14);
+                tr{
+                    border: 0;
+                    th{
+                        background: #BDDBFF;
+                        padding: base16px2rem(8);
+                        border: 1px solid #ccc;
+                        font-weight: normal;
+                    }
+                    td{
+                        background: #fff;
+                        padding: base16px2rem(8);
+                        border: 1px solid #ccc;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 查看详情按钮
+.look-detail-btn{
+	margin-top: base16px2rem(20);
+	.link{
+		text-decoration: none;
+		display: flex;
+		background: #129AEE;
+		border-radius: base16px2rem(3);
+		width: 100%;
+		height: base16px2rem(40);
+		color: #fff;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		.icon{
+			margin-right: 5px;
+			display: block;
+			@include sprite($icon-notice);
+		}
+		&:active{
+			opacity: 0.8;
+		}
+	}
+}
+
+// 搜索按钮
+.search-btn{
+	display: flex;
+	align-items: center;
+	margin-top: base16px2rem(20);
+	.ipt{
+		flex-grow: 1;
+		margin-right: base16px2rem(10);
+		display: flex;
+		align-items: center;
+		padding-left: base16px2rem(10);
+		height: base16px2rem(40);
+		border: 1px solid #dfdfdf;
+		border-radius: base16px2rem(3);
+		.icon{
+			flex-shrink: 0;
+			margin-right: base16px2rem(6);
+			@include sprite($icon-search);
+		}
+		input{
+			width: 100%;
+			border: 0;
+		}
+	}
+	.btn{
+		flex-shrink: 0;
+		button{
+			color: #fff;
+			width: base16px2rem(80);
+			height: base16px2rem(40);
+			background: #FB4747;
+			border: 0;
+			border-radius: base16px2rem(3);
+			&:active{
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
+// 选手列表
+.player-list{
+	@include clearfix();
+	margin-top: base16px2rem(20);
+	li{
+		float: left;
+		width: 50%;
+		margin-bottom: base16px2rem(10);
+		&:nth-child(odd){
+			padding-right: base16px2rem(5);
+		}
+		&:nth-child(even){
+			padding-left: base16px2rem(5);
+		}
+		.inner{
+			width: 100%;
+			border: 1px solid #dfdfdf;
+			border-radius: base16px2rem(3);
+			padding: base16px2rem(8);
+			.pic{
+				height: base16px2rem(200);
+				width: 100%;
+				overflow: hidden;
+				border-radius: base16px2rem(2);
+				background-color: #eee;
+				display: block;
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+				}
+			}
+			.p1{
+				font-size: base16px2rem(14);
+				color: #686868;
+				margin-top: base16px2rem(10);
+			}
+			.p2{
+				font-size: base16px2rem(14);
+				color: #686868;
+				line-height: base16px2rem(20);
+				margin-top: base16px2rem(3);
+				strong{
+					background: #EBEBEB;
+					padding: 0 5px;
+					border-radius: base16px2rem(2);
+					font-weight: normal;
+				}
+			}
+			button{
+				margin-top: base16px2rem(8);
+				height: base16px2rem(30);
+				text-align: center;
+				color: #fff;
+				border: 0;
+				width: 100%;
+				border-radius: base16px2rem(2);
+				&:disabled{
+					background-color: #2b333b;
+					cursor: not-allowed;
+				}
+				&.notgive{
+					background-color: #129AEE;
+					&:active{
+						opacity: 0.8;
+					}
+				}
+				&.give{
+					background-color: #FB4747;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+}
+// 加载更多
+.load-more,.load-all,.list-loading{
+	padding-top: base16px2rem(4);
+	padding-bottom: base16px2rem(15);
+	text-align: center;
+	color: #ccc;
+}
+.load-more{
+	font-size: base16px2rem(15);
+}
+.load-all{
+	font-size: base16px2rem(14);
+}
+.list-loading{
+	font-size: base16px2rem(15);
+}
+
+//选手详情
+.base-info{
+    padding: base16px2rem(13);
+    padding-bottom: base16px2rem(16);
+    border-bottom: 1px dashed #BFBFBF;
+    .row1{
+        display: flex;
+        align-items: center;
+        .name{
+            font-size: 30px;
+            color: #2B333B;
+            flex-grow: 1;
+        }
+        .btn-box{
+            flex-shrink: 0;
+            button{
+                height: base16px2rem(38);
+                width: base16px2rem(110);
+                border: 0;
+                color: #fff;
+                border-radius: base16px2rem(2);
+                &:disabled{
+                    background-color: #2b333b;
+                    cursor: not-allowed;
+                }
+                &.notgive{
+                    background-color: #129AEE;
+                    &:active{
+                        opacity: 0.8;
+                    }
+                }
+                &.give{
+                    background-color: #FB4747;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+    .row2{
+        margin-top: base16px2rem(10);
+        line-height: 1;
+        color: #2b333b;
+        strong{
+            font-weight: normal;
+            color: #FB4747;
+        }
+    }
+    .row3{
+        margin-top: base16px2rem(10);
+        color: #2b333b;
+        line-height: 1;
+    }
+}
+.play-info{
+    .declaration{
+        font-size: base16px2rem(16);
+        line-height: 1.5;
+        color: #686868;
+        padding: base16px2rem(20) base16px2rem(13);
+    }
+    .pic{
+        margin-bottom: base16px2rem(10);
+        img{
+            width: 100%;
+            display: block;
+        }
+    }
+}
+.btn-group{
+    padding: base16px2rem(16) base16px2rem(13);
+    p{
+        padding-bottom: base16px2rem(13);
+        button{
+            width: 100%;
+            height: base16px2rem(48);
+            color: #fff;
+            font-size: base16px2rem(18);
+            border-radius: base16px2rem(3);
+            border: 0;
+            &:disabled{
+                background-color: #2b333b;
+                cursor: not-allowed;
+            }
+            &.notgive{
+                background-color: #129AEE;
+                &:active{
+                    opacity: 0.8;
+                }
+            }
+            &.give{
+                background-color: #FB4747;
+                cursor: not-allowed;
+            }
+        }
+        a{
+            background: #FD9E24;
+            width: 100%;
+            display: block;
+            height: base16px2rem(48);
+            line-height: base16px2rem(48);
+            text-align: center;
+            color: #fff;
+            font-size: base16px2rem(18);
+            border-radius: base16px2rem(3);
+            text-decoration: none;
+            border: 0;
+            &:active{
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+//投票详情
+
+.rule-list{
+    li{
+        border-bottom: 1px dashed #BFBFBF;
+        padding-bottom: base16px2rem(20);
+        &:last-child{
+            border-bottom:0;
+        }
+        .tit{
+            padding-top: base16px2rem(20);
+            .icon{
+                display: inline-block;
+                vertical-align: middle;
+                @include sprite($icon-tit-item);
+            }
+            span{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: base16px2rem(16);
+                color: #2b333b;
+            }
+        }
+        .rule-cont{
+            color: #686868;
+            padding-top: 20px;
+            p{
+                padding-bottom: base16px2rem(10);
+                line-height: 1.5;
+                font-size: base16px2rem(16);
+            }
+        }
+    }
+}
+.signup-btn{
+    .notover,.over{
+        height: 48px;
+        color: #fff;
+        display: block;
+        width: 100%;
+        border: 0;
+        font-size: base16px2rem(18);
+    }
+    .notover{
+        background: #129AEE;
+        &:active{
+            opacity: 0.8;
+        }
+    }
+    .over{
+        background: #686868;
+    }
+
+}
