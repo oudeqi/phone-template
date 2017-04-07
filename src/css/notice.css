@@ -1,0 +1,133 @@
+body {
+  width: 16rem;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.notice-list {
+  width: 16rem;
+  min-height: 100%;
+  margin: 0 auto;
+  background: #ebebeb;
+  padding-bottom: 0.59733rem;
+  box-sizing: border-box;
+}
+
+.notice-list .more {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.64rem;
+  padding: 0.512rem;
+  background: #fff;
+  border-radius: 0.21333rem;
+  margin: 0 0.68267rem;
+  margin-top: 0.59733rem;
+  margin-bottom: 0;
+}
+
+.notice-list .nomore {
+  font-size: 0.64rem;
+  padding-top: 0.59733rem;
+  text-align: center;
+  color: #aaa;
+}
+
+.notice-list .list {
+  padding: 0.59733rem 0.68267rem;
+  padding-bottom: 0;
+}
+
+.notice-list .list .item {
+  margin-bottom: 0.42667rem;
+  background: #fff;
+  border-radius: 0.21333rem;
+  padding: 0.59733rem;
+}
+
+.notice-list .list .item:last-child {
+  margin-bottom: 0;
+}
+
+.notice-list .list .item .tit {
+  font-size: 0.768rem;
+  line-height: 1.5;
+  color: #686868;
+  font-weight: bold;
+  max-height: 100%;
+}
+
+.notice-list .list .item .time {
+  font-size: 0.512rem;
+  color: #bfbfbf;
+  margin-top: 0.17067rem;
+  line-height: 1.5;
+  max-height: 100%;
+}
+
+.notice-list .list .item hr {
+  border: 0;
+  background-color: #bbb;
+  height: 1px;
+  margin: 0.42667rem 0;
+}
+
+.notice-list .list .item .content {
+  max-height: 100%;
+}
+
+.notice-list .list .item .content p {
+  font-size: 0.68267rem;
+  color: #686868;
+  line-height: 0.93867rem;
+}
+
+.notice-list .list .item .content img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.notice-detail {
+  min-height: 100%;
+  background: #fff;
+}
+
+.notice-detail .tit {
+  font-size: 0.85333rem;
+  line-height: 1.5;
+  color: #686868;
+  font-weight: bold;
+  padding: 0.59733rem;
+  padding-bottom: 0.42667rem;
+  max-height: 100%;
+}
+
+.notice-detail .time {
+  font-size: 0.512rem;
+  color: #bfbfbf;
+  line-height: 1;
+  padding: 0 0.59733rem;
+  max-height: 100%;
+}
+
+.notice-detail hr {
+  margin: 0.85333rem 0;
+  border: 0;
+  background-color: #bbb;
+  height: 1px;
+}
+
+.notice-detail .content {
+  padding: 0 0.59733rem;
+  font-size: 0.768rem;
+  color: #686868;
+  line-height: 1.36533rem;
+  text-align: justify;
+  max-height: 100%;
+}
+
+.notice-detail .content img {
+  width: 100%;
+  height: auto;
+  border: 0;
+}

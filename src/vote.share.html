@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
         <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <meta name="apple-itunes-app" content="app-id=1195472673, affiliate-data=myAffiliateData, app-argument=myURL">
         <title>2台投票</title>
         <style>
             [ng-cloak]{
@@ -92,7 +93,7 @@
                     <li ng-repeat="item in list">
                         <div class="inner">
                             <a class="pic" ng-click="goPlayerDetail(item.id)">
-                                <img ng-src="{{item.photos[0]}}" alt="">
+                                <img ng-src="{{item.photos[0]}}?x-oss-process=image/resize,m_fill,h_{{h}},w_{{w}}" alt="">
                             </a>
                             <p class="p1">{{item.name}}  编号:{{item.seriaNumber}}</p>
                             <p class="p2">
@@ -101,7 +102,8 @@
                                 <span>名次</span>
                                 <strong>{{item.ranking}}</strong>
                             </p>
-                            <button class="notgive" type="button" ng-click="download()">投一票</button>
+                            <button class="notgive" type="button" ng-click="confirm()">投一票</button>
+                            <!-- http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai -->
                         </div>
                     </li>
                 </ul>
@@ -111,17 +113,64 @@
                 <p class="load-all" ng-show="loading==3">
                     已加载完所有
                 </p>
-                <p class="list-loading" ng-show="loading==1">
+                <p class="list-loading" ng-show="loading==1 || loading==4">
                     加载中...
                 </p>
             </div>
+            <div class="confirm" ng-show="confirmStatus==1">
+                <div class="inner">
+                    <h3 class="confirm-header">温馨提示</h3>
+                    <div class="confirm-body">
+                        <p>本投票活动由2台app提供，需要安装2台app才可进行投票，若已经安装则不需要下载。是否前往下载？</p>
+                    </div>
+                    <div class="confirm-footer">
+                        <div class="btns">
+                            <button type="button" name="button" ng-click="cancel()">拒绝</button>
+                        </div>
+                        <div class="btns">
+                            <button type="button" name="button" ng-click="download()">前往下载</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open-in-browser" ng-show="openInBrowser==1">
+                <div class="contain">
+                    <p class="p1">
+                        <span>点击右上角 “</span>
+                        <i></i><i></i><i></i>
+                        <span>” 按钮</span>
+                    </p>
+                    <p class="p2" ng-show="android">
+                        <span>选择</span>
+                        <img src="./img/browser.png" alt="">
+                        <span>在浏览器中打开</span>
+                    </p>
+                    <p class="p2" ng-show="iphone">
+                        <span>选择</span>
+                        <img src="./img/safari.png" alt="">
+                        <span>在浏览器中打开</span>
+                    </p>
+                    <p class="p3">即可参与投票</p>
+                    <p class="arrow-up">
+                        <img src="./img/arrow-up.png" alt="">
+                    </p>
+                    <p class="close-cont">
+                        <button class="close-btn" type="button" ng-click="openInBrowser=0">
+                            <img src="./img/close.png" alt="">
+                        </button>
+                    </p>
+                </div>
+            </div>
         </div>
+
+
         <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
         <!-- build:js /js/app.js -->
-        <script type="text/javascript" src="/js/angular.js"></script>
-        <script type="text/javascript" src="/js/core.js"></script>
-		<script type="text/javascript" src="/js/sha1.js"></script>
-        <script type="text/javascript" src="/js/vote.share.js"></script>
+        <script type="text/javascript" src="./js/angular.js"></script>
+        <script type="text/javascript" src="./js/angular.confirm.js"></script>
+        <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/vote.share.js"></script>
         <!-- endbuild -->
         <script type="text/javascript">
             document.body.addEventListener('touchstart', function(){});

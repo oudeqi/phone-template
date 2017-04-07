@@ -1,0 +1,118 @@
+@import "./helper/px2rem.scss";
+$designWidth : 375;
+
+body{
+  width: 16rem;
+  margin: 0 auto;
+  min-height: 100%;
+}
+.notice-list{
+    width: 16rem;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #ebebeb;
+    padding-bottom: px2rem(14);
+    box-sizing: border-box;
+    .more{
+        text-align: center;
+        color: #aaa;
+        font-size: px2rem(15);
+        padding: px2rem(12);
+        background: #fff;
+        border-radius: px2rem(5);
+        margin: 0 px2rem(16);
+        margin-top: px2rem(14);
+        margin-bottom: 0;
+    }
+    .nomore{
+        font-size: px2rem(15);
+        padding-top: px2rem(14);
+        text-align: center;
+        color: #aaa;
+    }
+    .list{
+        padding:px2rem(14) px2rem(16);
+        padding-bottom: 0;
+        .item{
+            margin-bottom: px2rem(10);
+            background: #fff;
+            border-radius: px2rem(5);
+            padding: px2rem(14);
+            &:last-child{
+                margin-bottom: 0;
+            }
+            .tit{
+                font-size:px2rem(18);
+                line-height: 1.5;
+                color:#686868;
+                font-weight: bold;
+                max-height: 100%;
+            }
+            .time{
+                font-size:px2rem(12);
+                color:#bfbfbf;
+                margin-top: px2rem(4);
+                line-height: 1.5;
+                max-height: 100%;
+            }
+            hr{
+                border:0;
+                background-color:#bbb;
+                height:1px;
+                margin: px2rem(10) 0;
+            }
+            .content{
+                max-height: 100%;
+                p{
+                    font-size:px2rem(16);
+                    color:#686868;
+                    line-height:px2rem(22);
+                }
+                img{
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+        }
+    }
+}
+.notice-detail{
+    min-height: 100%;
+    background: #fff;
+    .tit{
+        font-size:px2rem(20);
+        line-height: 1.5;
+        color:#686868;
+        font-weight: bold;
+        padding: px2rem(14);
+        padding-bottom: px2rem(10);
+        max-height: 100%;
+    }
+    .time{
+        font-size:px2rem(12);
+        color:#bfbfbf;
+        line-height: 1;
+        padding: 0 px2rem(14);
+        max-height: 100%;
+    }
+    hr{
+        margin: px2rem(20) 0;
+        border:0;
+        background-color:#bbb;
+        height:1px;
+    }
+    .content{
+        padding: 0 px2rem(14);
+        font-size:px2rem(18);
+        color:#686868;
+        line-height:px2rem(32);
+        text-align: justify;
+        max-height: 100%;
+        img{
+            width: 100%;
+            height: auto;
+            border: 0;
+        }
+    }
+}

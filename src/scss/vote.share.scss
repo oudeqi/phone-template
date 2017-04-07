@@ -460,5 +460,161 @@
     .over{
         background: #686868;
     }
+}
+.open-in-browser{
+    position: fixed;
+    z-index: 2000;
+    min-width: 320px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .contain{
+        max-width: 640px;
+        min-width: 320px;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        color: #fff;
+        font-size: base16px2rem(20);
+        padding-left: base16px2rem(60);
+        font-weight: bold;
+        position: relative;
+        .p1{
+            padding-top: base16px2rem(70);
+            span{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #fff;
+                position: relative;
+                top: 5px;
+                margin: 0 2px;
+            }
+        }
+        .p2{
+            padding-top: base16px2rem(25);
+            span{
+                vertical-align: middle;
+                display: inline-block;
+            }
+            img{
+                vertical-align: middle;
+                display: inline-block;
+                margin: 0 4px;
+                width: base16px2rem(50);
+                height: auto;
+            }
+        }
+        .p3{
+            padding-top: base16px2rem(25);
+            text-align: left;
+        }
+        .arrow-up{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: base16px2rem(30);
+            img{
+                width: base16px2rem(40);
+                height: auto;
+            }
+        }
+        .close-cont{
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding-bottom: base16px2rem(80);
+            .close-btn{
+                border: 0;
+                padding: base16px2rem(20);
+                img{
+                    width: base16px2rem(40);
+                    height: auto;
+                }
+                &:active{
+                    opacity: 0.5;
+                }
+            }
+        }
 
+    }
+}
+
+.confirm{
+    position: fixed;
+    z-index: 2000;
+    min-width: 320px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .inner{
+        height: base16px2rem(180);
+        width: base16px2rem(270);
+        background-color: #fff;
+        border-radius: base16px2rem(6);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        .confirm-header{
+            padding: 0 base16px2rem(18);
+            color: #2b333b;
+            padding-top: base16px2rem(20)
+        }
+        .confirm-body{
+            padding: 0 base16px2rem(10);
+            line-height: 1.5;
+            font-size: base16px2rem(15);
+            color: #2b333b;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .confirm-footer{
+            border-top: 1px solid #eee;
+            display: flex;
+            height: base16px2rem(46);
+            margin-top: base16px2rem(4);
+            align-items: center;
+            .btns{
+                width: 50%;
+                height: 100%;
+                box-sizing: border-box;
+                &:first-child{
+                    border-right: 1px solid #eee;
+                }
+                button{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                    color: #0076FF;
+                    background-color: inherit;
+                    &:active{
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+    }
 }

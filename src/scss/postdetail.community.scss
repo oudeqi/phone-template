@@ -116,16 +116,24 @@ body{
             font-size: 15px;
             color: #686868;
             padding-bottom: 10px;
-            p{
+            .txt-pre{
                 padding-top: 14px;
                 text-align: left;
-                word-break: break-all;
-                word-spacing: normal;
+                line-height: 1.5;
+                word-wrap: break-word;
+                white-space : normal;
+                pre{
+                    white-space:pre-wrap;
+                    word-wrap:break-word;
+                }
             }
-            img{
-                max-width: 100%;
-                height: auto;
-                display: block;
+            p{
+                padding-top: 14px;
+                img{
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                }
             }
         }
         .goods{

@@ -1,5 +1,5 @@
 var app = angular.module('app', []);
-app.constant('host', 'https://api.uoolle.com/');
+app.constant('host', 'https://api.2tai.com/');
 app.config([
     '$locationProvider',
     function($locationProvider) {

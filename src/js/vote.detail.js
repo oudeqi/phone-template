@@ -14,7 +14,27 @@
             $rootScope.id = $location.search().id;
         }
     ]);
-    app.controller("detail",["$scope","$http","HOST","$rootScope",function($scope,$http,HOST,$rootScope){
+    app.factory("device",["$window",function($window){
+        var userAgent = $window.navigator.userAgent.toLowerCase();
+        function find(needle){
+            return userAgent.indexOf(needle) !== -1;
+        }
+        return {
+            screenW : function(){
+                return parseInt($window.innerWidth);
+            },
+            iphone : function(){
+                return find('iphone');
+            },
+            android : function(){
+                return find('android');
+            },
+            weiXin : function(){
+                return find('micromessenger');
+            }
+        };
+    }]);
+    app.controller("detail",["$scope","$http","HOST","$rootScope","device",function($scope,$http,HOST,$rootScope,device){
 
         $http.get(HOST+"/v1/vote/details",{
             params: {
@@ -32,6 +52,28 @@
 
         $scope.download = function(){
             location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
+        };
+        $scope.confirmStatus = 0;
+        $scope.openInBrowser = 0;
+        $scope.iphone = device.iphone();
+        $scope.android = device.android();
+        $scope.confirm = function(){
+            if(device.weiXin()){
+                $scope.openInBrowser = 1;
+            }else{
+                $scope.confirmStatus = 1;
+                var param = {
+                    h5Url:"http://vote.2tai.net/index.html?id="+$rootScope.id,
+                    action:1,
+                    busType:30,
+                };
+                var paramStr = JSON.stringify(param);
+                location.href = "union://ertai?content="+encodeURIComponent(paramStr);
+            }
+
+        };
+        $scope.cancel = function(){
+            $scope.confirmStatus = 0;
         };
 
     }]);

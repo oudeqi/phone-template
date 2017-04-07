@@ -50,9 +50,9 @@
                     <!-- post_cont 此类用于原生筛选图片 -->
                     <div class="post_cont">
                         <div ng-if="post.content">
-                            <p>
-                                {{post.content}}
-                            </p>
+                            <div class="txt-pre">
+                                <pre>{{post.content}}</pre>
+                            </div>
                             <p ng-repeat="item in post.imgList" ng-click="picViewer(post.imgList,$index)">
                                 <img ng-src="{{item}}?x-oss-process=image/resize,m_mfit,h_{{screenW}},w_{{screenW}}" alt="" />
                             </p>
