@@ -139,10 +139,10 @@ html, body {
 .content_pad .comment_list .list_cont li .r .row1 .name_r .icon {
   display: inline-block;
   background-image: url("../img/sprite.png");
-  background-position: -9.5625rem 0rem;
+  background-position: -3.9375rem -3.875rem;
   width: 0.875rem;
   height: 0.875rem;
-  background-size: 10.4375rem 8.3125rem;
+  background-size: 8.5rem 8.125rem;
   vertical-align: baseline;
 }
 
