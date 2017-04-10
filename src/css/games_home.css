@@ -1,0 +1,75 @@
+.headBack {
+  position: absolute;
+  left: 1rem;
+  top: 1.1rem;
+  height: 1rem;
+  width: 0.9rem;
+}
+
+.subTitle {
+  width: 95%;
+  margin: 0 0 0 5%;
+  height: 2.86rem;
+  line-height: 2.86rem;
+  background-color: #ebebeb;
+  color: #848689;
+  font-size: 1.14rem;
+}
+
+.banner {
+  height: 12.86rem;
+}
+
+.pagination {
+  width: 90%;
+  text-align: right !important;
+}
+
+.gameCover {
+  width: 100%;
+  height: 6.29rem;
+  background-color: white;
+}
+
+.gameCover .gameCoverImg {
+  width: 4.29rem;
+  height: 4.29rem;
+  margin: 1rem 1rem 0 1rem;
+  float: left;
+}
+
+.gameCover .gameInfoCover {
+  width: 50%;
+  height: 4.29rem;
+  margin: 1rem 0 0 0;
+  float: left;
+}
+
+.gameInfoCover .gameInfoCoverName {
+  font-size: 1.14rem;
+  margin: 0 0 .2rem 0;
+}
+
+.gameInfoCover .gameInfoCoverContent {
+  font-size: 1rem;
+  color: #848689;
+  margin: 0 0 .1rem 0;
+}
+
+.gameInfoCover .gameInfoCoverSubTitle {
+  font-size: 0.86rem;
+  color: #848689;
+}
+
+.gameCover .gameInfoButton {
+  width: 4.29rem;
+  height: 2.14rem;
+  float: right;
+  margin: calc((6.29rem - 2rem) / 2) 1rem 0 0;
+  border-color: #d7d7d7;
+  border-radius: 0.29rem;
+  background-color: #f8f8f8;
+  font-size: 1.14rem;
+  color: #2b333b;
+  box-shadow: none;
+}

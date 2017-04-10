@@ -1,0 +1,65 @@
+@import "./helper/px2rem.scss";
+$designWidth : 375;
+
+body{
+  width: 16rem;
+  margin: 0 auto;
+}
+
+.list{
+    background: #fafafa;
+    .item{
+        padding-left: px2rem(20);
+        &:last-child{
+            hr{
+                height: 0;
+            }
+        }
+        .q{
+            padding-top: px2rem(30);
+            padding-bottom: px2rem(16);
+            display: flex;
+            line-height: 1;
+            .l{
+                width: px2rem(20);
+                font-size:px2rem(16);
+                color:#fd9e24;
+                text-transform: uppercase;
+                max-height: 100%;
+            }
+            .r{
+                flex: 1;
+                font-size:px2rem(16);
+                color:#686868;
+                padding-right: px2rem(16);
+                max-height: 100%;
+            }
+        }
+        .a{
+            padding-bottom: px2rem(16);
+            display: flex;
+            .l{
+                width: px2rem(20);
+                font-size:px2rem(14);
+                color:#fd9e24;
+                line-height: 1.5;
+                text-transform: uppercase;
+                max-height: 100%;
+            }
+            .r{
+                flex: 1;
+                font-size:px2rem(14);
+                color:#686868;
+                text-align: justify;
+                line-height: 1.5;
+                padding-right: px2rem(16);
+                max-height: 100%;
+            }
+        }
+        hr{
+            border: 0;
+            height: 1px;
+            background: #ccc;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta name="viewport" content="user-scalable=no"/> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>游戏</title>
+        <link rel="stylesheet" type="text/css" href="css/base1.css">
+        <link rel="stylesheet" type="text/css" href="css/photoSlider.css">
+        <link rel="stylesheet" type="text/css" href="css/games_home.css">
+        <script type="text/javascript" src="js/adapt1.js"></script>
+
+    </head>
+    <body>
+        <div ng-app="games" ng-controller="gamesCt">
+            <!-- <div class="head">
+                <div ng-click="back()" class="headBackCover">
+                    <img class="headBack" src="img/back2.png">
+                </div>
+                游戏
+            </div> -->
+            <div class="LINE"></div>
+            <div style="height:12.86rem; width:26.79rem;">
+                <app-banner banner-arr="banner"></app-banner>
+            </div>
+            <div class="subTitle">精品游戏</div>
+
+            <div class="gameCover" ng-repeat="x in gamesInfo">
+                <img class="gameCoverImg" ng-src="{{x.imgSrc}}">
+                <div class="gameInfoCover">
+                    <div class="gameInfoCoverName">{{x.name}}</div>
+                    <div class="gameInfoCoverContent">{{x.content}}</div>
+                    <div class="gameInfoCoverSubTitle">{{x.subTitle}}</div>
+                </div>
+                <a ng-href="{{x.go}}">
+                    <button class="gameInfoButton">进入</button>
+                </a>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/photoSlider.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+    <script src="js/games_home.js"></script>
+</html>

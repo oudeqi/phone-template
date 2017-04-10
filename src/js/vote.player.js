@@ -32,6 +32,9 @@
             },
             weiXin : function(){
                 return find('micromessenger');
+            },
+            iosQqApp : function(){//iosQqApp
+                return find('qq') && find('iphone') && !find('mqqbrowser');
             }
         };
     }]);
@@ -61,7 +64,7 @@
         $scope.iphone = device.iphone();
         $scope.android = device.android();
         $scope.confirm = function(){
-            if(device.weiXin()){
+            if(device.weiXin() || device.iosQqApp()){
                 $scope.openInBrowser = 1;
             }else{
                 $scope.confirmStatus = 1;
