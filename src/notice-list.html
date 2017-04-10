@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>平台公告</title>
+        <style>
+            [ng-cloak]{
+                display: none !important;
+            }
+        </style>
+        <link rel="stylesheet" href="./css/base.css">
+        <link rel="stylesheet" href="./css/notice.css">
+        <script src="./js/hotcss.js"></script>
+        <script src="./js/angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="noticeList">
+        <div class="notice-list" ng-cloak>
+            <ul class="list">
+                <li class="item" ng-repeat="item in list" tap="detail(item.id)">
+                    <div class="tit">{{item.typeName}}：{{item.title}}</div>
+                    <div class="time">{{item.pushTime | date:"yyyy/M/d HH:mm"}}</div>
+                    <hr>
+                    <div class="content" ng-bind-html="item.sceContent"></div>
+                </li>
+            </ul>
+			<div class="more" tap="loadMore()" ng-show="more">
+				加载更多
+			</div>
+			<div class="nomore" ng-show="nomore">
+				没有更多
+			</div>
+        </div>
+        <script type="text/javascript">
+
+            var app = angular.module('app', []);
+			app.constant('host', 'https://api.2tai.com/');
+			// app.constant('host', 'http://192.168.1.188');
+            app.config(['$locationProvider',function($locationProvider) {
+                    $locationProvider.html5Mode({enabled: true, requireBase: false});
+                }
+            ]);
+			app.directive('tap',function(){
+				return function(scope, elem, attrs){
+					var start,end,t,moved = false;
+					elem.bind('touchstart',function(e){
+						start = e.timeStamp;
+						moved = false;
+					});
+					elem.bind('touchmove',function(e){
+						moved = true;
+					});
+					elem.bind('touchend',function(e){
+						end = e.timeStamp;
+						t = end - start;
+						if(!moved && t>30 && t<300){
+							scope.$apply(attrs.tap);
+						}
+					});
+				}
+			});
+            app.controller('noticeList', ['$scope','$http','host','$location','$sce',function($scope,$http,host,$location,$sce) {
+
+				if ($location.search().token) {
+					$scope.token = $location.search().token;
+				} else {
+					// $scope.token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2Jhc2VfaWQiOiIxNTA2MXwwfDE0NzA5OTU3NzY0MzAifQ._5vvnbwrPdMw8RM9xF5F54UvQO-cTyNDVy8ORq6fBUs";
+					$scope.token = "";
+				}
+                if(!$scope.token){
+    				return;
+    			}
+				$scope.currentPage = 1;
+				$scope.pageSize = 10;
+                $scope.list = [];
+                $scope.getNotiveList = function(){
+                    // /v1/aut/usercenter/h5/notice/list  app公告列表
+                    $http.get(host + '/v1/aut/usercenter/h5/notice/list', {
+    	                headers: {
+    	                    'Authorization': $scope.token,
+    	                    'Content-Type': 'application/json;charset=utf-8'
+    	                },
+    					params: {
+    	                    pageIndex: $scope.currentPage,
+    	                    pageSize: $scope.pageSize
+    	                }
+    	            }).success(function(data){
+                        console.log(data.data.data);
+                        if(data.data.data){
+                            angular.forEach(data.data.data, function(value, key) {
+                                var start = value.content.indexOf("<body>")+6;
+                                var end = value.content.indexOf("</body>");
+                                var domStr = value.content.substring(start,end);
+                                // console.log(domStr);
+                                var s,e;
+                                if(domStr.indexOf("<img") >= 0){
+                                    // 显示图片
+                                    s = domStr.indexOf(' src="') + 6;
+                                    e = domStr.indexOf('" _src="');
+                                    domStr = '<img src="' + domStr.substring(s,e) + '" style="width: 100%;"/>';
+
+                                }else{
+                                    // 显示文字
+                                    s = domStr.indexOf('<p') + 2;
+                                    e = domStr.indexOf('</p>');
+                                    domStr = domStr.substring(s,e)
+                                    if(domStr[0] == ">"){
+                                        domStr = '<p>'+domStr.substring(1)+'</p>';
+                                    }else if(domStr[0] == " "){
+                                        domStr = domStr.substring(domStr.indexOf(';">') + 3);
+                                        domStr = '<p>'+domStr+'</p>';
+                                    }
+                                }
+                                console.log(domStr);
+                                value.sceContent = $sce.trustAsHtml(domStr);
+                                $scope.list.push({
+                                    id:value.id,
+                                    title:value.title,
+                                    type:value.type,
+                                    typeName:value.typeName,
+                                    pushTime:value.pushTime,
+                                    sceContent:value.sceContent,
+                                });
+                            });
+                            if($scope.list.length === data.data.rowCount){
+                                $scope.nomore = true;
+                            }else{
+                                $scope.nomore = false;
+                            }
+                            if($scope.list.length < data.data.rowCount){
+                                $scope.more = true;
+                            }else{
+                                $scope.more = false;
+                            }
+                        }
+    				});
+                };
+
+                $scope.detail = function(i){
+                    console.log(i);
+                    location.href = "./notice-detail.html?id="+i+"&token="+$scope.token;
+                };
+
+                $scope.getNotiveList();
+                $scope.loadMore = function(){
+                    $scope.currentPage = $scope.currentPage + 1;
+                    $scope.getNotiveList();
+                };
+
+            }]);
+        </script>
+    </body>
+</html>

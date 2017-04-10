@@ -1,9 +1,9 @@
 ;(function(){
 
     'use strict';
-
+//"ng.confirm"
     var app = angular.module("app",[]);
-    app.constant("HOST","http://101.200.129.132");
+    app.constant("HOST","https://api.2tai.com");
     app.config(["$locationProvider",
         function($locationProvider) {
             $locationProvider.html5Mode({enabled: true, requireBase: false});
@@ -14,7 +14,43 @@
             $rootScope.id = $location.search().id;
         }
     ]);
-    app.controller("detail",["$scope","$http","HOST","$rootScope",function($scope,$http,HOST,$rootScope){
+    app.factory("device",["$window",function($window){
+        var userAgent = $window.navigator.userAgent.toLowerCase();
+        function find(needle){
+            return userAgent.indexOf(needle) !== -1;
+        }
+        return {
+            screenW : function(){
+                return parseInt($window.innerWidth);
+            },
+            iphone : function(){
+                return find('iphone');
+            },
+            android : function(){
+                return find('android');
+            },
+            weiXin : function(){
+                return find('micromessenger');
+            },
+            iosQqApp : function(){//iosQqApp
+                return find('qq') && find('iphone') && !find('mqqbrowser');
+            }
+        };
+    }]);
+    //,"confirmModal"
+    app.controller("detail",["$scope","$http","HOST","$rootScope","device","$timeout",function($scope,$http,HOST,$rootScope,device,$timeout){
+
+        $scope.w = parseInt(device.screenW());
+        $scope.h = parseInt(device.screenW()*200/155);
+
+        window.addEventListener("scroll",function(e){
+            if(window.innerHeight + document.body.scrollTop > document.querySelector(".warpper").offsetHeight - 1){
+                if($scope.loading == "0" || $scope.loading == "2"){
+                    console.log("加载数据...");
+                    $scope.getList();
+                }
+            }
+        },false);
 
         var dataForWeixin = {
 			signurl: location.href,
@@ -55,7 +91,10 @@
         });
 
         $scope.goPlayerDetail = function(id){
-            location.href = "./vote.player.html?id="+id;
+            localStorage.setItem("currentPage",$scope.pageIndex);
+            localStorage.setItem("currentScrollTop",document.body.scrollTop);
+            localStorage.setItem("currentKeywords",$scope.keywords);
+            location.href = "./vote.player.html?id="+id+"&vote="+$rootScope.id;
         };
 
         $scope.goVoteDetail = function(id){
@@ -63,14 +102,59 @@
         };
 
         $scope.download = function(){
+            // var modalInstance = confirmModal.open({
+            //     tit:"温馨提示",
+            //     desc: "本投票活动由2台App提供，需要下载2台App才可进行投票，是否前往下载？",
+            //     cancelBtnTxt: "拒绝",
+            //     okBtnTxt: "前往下载",
+            // });
+            // modalInstance.result.then(function (data) {
+            //     console.info("确认"+data);
+            // }).catch(function (data) {
+            //     console.info('模态框取消: ' + data);
+            // });
             location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
+        };
+
+        $scope.confirmStatus = 0;
+        $scope.openInBrowser = 0;
+        $scope.iphone = device.iphone();
+        $scope.android = device.android();
+        $scope.confirm = function(){
+            if(device.weiXin() || device.iosQqApp()){
+                $scope.openInBrowser = 1;
+            }else{
+                $scope.confirmStatus = 1;
+                var param = {
+                    h5Url:"http://vote.2tai.net/index.html?id="+$rootScope.id,
+                    action:1,
+                    busType:30,
+                };
+                var paramStr = JSON.stringify(param);
+                location.href = "union://ertai?content="+encodeURIComponent(paramStr);
+            }
+
+            // {"h5Url":"http://vote.2tai.net/index.html?id=4","action":1,"busType":30}
+            // if($rootScope.refresh == 1){
+            //     $scope.confirmStatus = 1;
+            // }else{
+            //     location.href = "union://ertai?content=%7b%22h5Url%22%3a%22http%3a%2f%2fvote.2tai.net%2findex.html%3fid%3d4%22%2c%22action%22%3a1%2c%22busType%22%3a30%7d";
+            //     setTimeout(function () {
+            //         window.location.href += '&refresh=1'; // 附加一个特殊参数，用来标识这次刷新不要再调用myapp:// 了
+            //     }, 500);
+            // }
+
+        };
+
+        $scope.cancel = function(){
+            $scope.confirmStatus = 0;
         };
 
         $scope.keywords = "";
         $scope.pageSize = 10;
         $scope.pageIndex = 1;
         $scope.list = [];
-        $scope.loading = 0;//1，加载中 2，加载更多 3，加载完所有
+        $scope.loading = 0;//1，加载中 2，加载更多 3，加载完所有 4，历史加载中
         $scope.getList = function(){
             $scope.loading = 1;
             $http.get(HOST+"/v1/player/list",{
@@ -107,9 +191,58 @@
                 console.log(error);
             });
         };
-        $scope.getList();
 
-        $scope.clicked = false;
+        var currentPage = localStorage.getItem("currentPage");
+        var currentScrollTop = localStorage.getItem("currentScrollTop");
+        var currentKeywords = localStorage.getItem("currentKeywords");
+        console.log(currentPage,currentScrollTop,currentKeywords);
+        if(currentPage && currentScrollTop){
+            $scope.loading = 4;
+            $http.get(HOST+"/v1/player/list",{
+                params: {
+                    id: $rootScope.id,
+                    type: 1,//type:1 最新，2，排名
+                    keywords:currentKeywords,
+                    pageSize:(parseInt(currentPage)-1)*$scope.pageSize,
+                    pageIndex:1
+                },
+                headers:{
+                    "Authorization":""
+                }
+            }).then(function(res){
+                console.log("获取参选者列表：",res);
+                localStorage.removeItem("currentPage");
+                localStorage.removeItem("currentScrollTop");
+                localStorage.removeItem("currentKeywords");
+                if(res.data.data.data && typeof res.data.data.data==="object"){
+                    angular.forEach(res.data.data.data,function(item){
+                        $scope.list.push(item);
+                    });
+
+                    $timeout(function(){
+                        document.body.scrollTop = currentScrollTop;
+                        if(res.data.data.pageCount == res.data.data.pageIndex){
+                            $scope.loading = 3;
+                        }else{
+                            $scope.pageIndex = parseInt(currentPage);
+                            $scope.loading = 2;
+                        }
+                    },300);
+                }else{
+                    $scope.loading = 0;
+                }
+
+            }).catch(function(error){
+                $scope.loading = 0;
+                localStorage.removeItem("currentPage");
+                localStorage.removeItem("currentScrollTop");
+                localStorage.removeItem("currentKeywords");
+                console.log(error);
+            });
+        }else{
+            $scope.getList();
+        }
+
         $scope.search = function(){
             if($scope.clicked){
                 return;

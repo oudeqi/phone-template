@@ -181,14 +181,24 @@ body {
   padding-bottom: 10px;
 }
 
-.page .page_contain .post_cont p {
+.page .page_contain .post_cont .txt-pre {
   padding-top: 14px;
   text-align: left;
-  word-break: break-all;
-  word-spacing: normal;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
-.page .page_contain .post_cont img {
+.page .page_contain .post_cont .txt-pre pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.page .page_contain .post_cont p {
+  padding-top: 14px;
+}
+
+.page .page_contain .post_cont p img {
   max-width: 100%;
   height: auto;
   display: block;

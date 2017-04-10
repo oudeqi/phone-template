@@ -21,7 +21,7 @@
                 <div class="row1">
                     <h3 class="name">{{detail.name}}</h3>
                     <div class="btn-box">
-                        <button class="notgive" type="button" ng-click="download()">投TA一票</button>
+                        <button class="notgive" type="button" ng-click="confirm()">投TA一票</button>
                     </div>
                 </div>
                 <p class="row2">
@@ -34,16 +34,60 @@
             <div class="play-info" ng-show="detail">
                 <p class="declaration">{{detail.declaration}}</p>
                 <p class="pic" ng-repeat="item in detail.photos">
-                    <img ng-src="{{item}}" alt="">
+                    <img ng-src="{{item}}?x-oss-process=image/resize,m_mfit,h_{{w}},w_{{w}}" alt="">
                 </p>
             </div>
             <div class="btn-group" ng-show="detail">
                 <p>
-                    <button class="notgive" type="button" ng-click="download()">投TA一票</button>
+                    <button class="notgive" type="button" ng-click="confirm()">投TA一票</button>
                 </p>
                 <p>
-                    <a type="button" ui-sref="signup" ng-click="download()">我也要参加</a>
+                    <a type="button" ui-sref="signup" ng-click="confirm()">我也要参加</a>
                 </p>
+            </div>
+            <div class="confirm" ng-show="confirmStatus==1">
+                <div class="inner">
+                    <h3 class="confirm-header">温馨提示</h3>
+                    <div class="confirm-body">
+                        <p>本投票活动由2台app提供，需要安装2台app才可进行投票和报名，若已经安装则不需要下载。是否前往下载？</p>
+                    </div>
+                    <div class="confirm-footer">
+                        <div class="btns">
+                            <button type="button" name="button" ng-click="cancel()">拒绝</button>
+                        </div>
+                        <div class="btns">
+                            <button type="button" name="button" ng-click="download()">前往下载</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open-in-browser" ng-show="openInBrowser==1">
+                <div class="contain">
+                    <p class="p1">
+                        <span>点击右上角 “</span>
+                        <i></i><i></i><i></i>
+                        <span>” 按钮</span>
+                    </p>
+                    <p class="p2" ng-show="android">
+                        <span>选择</span>
+                        <img src="./img/browser.png" alt="">
+                        <span>在浏览器中打开</span>
+                    </p>
+                    <p class="p2" ng-show="iphone">
+                        <span>选择</span>
+                        <img src="./img/safari.png" alt="">
+                        <span>在浏览器中打开</span>
+                    </p>
+                    <p class="p3">即可参与投票</p>
+                    <p class="arrow-up">
+                        <img src="./img/arrow-up.png" alt="">
+                    </p>
+                    <p class="close-cont">
+                        <button class="close-btn" type="button" ng-click="openInBrowser=0">
+                            <img src="./img/close.png" alt="">
+                        </button>
+                    </p>
+                </div>
             </div>
         </div>
         <!-- build:js /js/app.js -->

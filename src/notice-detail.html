@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+	<title>平台公告</title>
+	<style>
+		[ng-cloak]{
+			display: none !important;
+		}
+	</style>
+	<link rel="stylesheet" href="./css/base.css">
+	<link rel="stylesheet" href="./css/notice.css">
+	<script src="./js/hotcss.js"></script>
+	<script src="./js/angular.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="noticeDetail" ng-cloak>
+    <div class="notice-detail" ng-if="contentReceived">
+        <div class="tit">{{typeName}}：{{title}}</div>
+        <div class="time">{{pushTime | date:"yyyy/M/d HH:mm"}}</div>
+        <hr>
+        <div class="content" ng-bind-html="sceContent"></div>
+    </div>
+	<script type="text/javascript">
+
+		var app = angular.module('app', []);
+		app.constant('host', 'https://api.2tai.com/');
+		// app.constant('host', 'http://192.168.1.188');
+		app.config(['$locationProvider',function($locationProvider) {
+				$locationProvider.html5Mode({enabled: true, requireBase: false});
+			}
+		]);
+		app.controller('noticeDetail',['$scope','$http','host','$location','$sce',
+		function($scope,$http,host,$location,$sce){
+
+			if ($location.search().token) {
+				$scope.token = $location.search().token;
+			} else {
+				// $scope.token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2Jhc2VfaWQiOiIxNTA2MXwwfDE0NzA5OTU3NzY0MzAifQ._5vvnbwrPdMw8RM9xF5F54UvQO-cTyNDVy8ORq6fBUs";
+				$scope.token = "";
+			}
+
+			if($location.search().id){
+				$scope.id = $location.search().id;
+			}else{
+				// $scope.id = 18;
+				$scope.id = "";
+			}
+
+			if(!$scope.id || !$scope.token){
+				return;
+			}
+			 $scope.contentReceived = false;
+			///v1/aut/usercenter/h5/notice?id=14  根据id获取公告
+			$http.get(host + '/v1/aut/usercenter/h5/notice', {
+				headers: {
+					'Authorization': $scope.token,
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+				params: {
+					id: $scope.id,
+					token: $scope.token
+				}
+			}).success(function(data){
+				console.log(data);
+				if(data.data){
+					$scope.contentReceived = true;
+					$scope.typeName = data.data.typeName;
+					$scope.title = data.data.title;
+					$scope.pushTime = data.data.pushTime;
+					var start = data.data.content.indexOf("<body>")+6;
+					var end = data.data.content.indexOf("</body>");
+					var domStr = data.data.content.substring(start,end);
+					$scope.sceContent = $sce.trustAsHtml(domStr);;
+				}
+			})
+		}]);
+
+	</script>
+</body>
+</html>
