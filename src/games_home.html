@@ -33,9 +33,9 @@
                     <div class="gameInfoCoverContent">{{x.content}}</div>
                     <div class="gameInfoCoverSubTitle">{{x.subTitle}}</div>
                 </div>
-                <a ng-href="{{x.go}}">
-                    <button class="gameInfoButton">进入</button>
-                </a>
+                <!--<a ng-href="{{x.go}}">-->
+                    <button ng-click="letgo(x.go)" class="gameInfoButton">进入</button>
+                <!--</a>-->
             </div>
         </div>
     </body>
