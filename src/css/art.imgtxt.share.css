@@ -123,10 +123,10 @@ body {
   margin-right: 4px;
   line-height: 1;
   background-image: url("../img/sprite.png");
-  background-position: -1.875rem -3.875rem;
+  background-position: -6rem 0rem;
   width: 1.25rem;
   height: 1.25rem;
-  background-size: 10.4375rem 8.3125rem;
+  background-size: 10.375rem 10.125rem;
 }
 
 .praise .btn_box button span {
@@ -138,10 +138,10 @@ body {
 
 .praise .btn_box button.active {
   background-image: url("../img/sprite.png");
-  background-position: -3.875rem -2rem;
+  background-position: -3.90625rem -3.875rem;
   width: 1.25rem;
   height: 1.25rem;
-  background-size: 10.4375rem 8.3125rem;
+  background-size: 10.375rem 10.125rem;
 }
 
 .praise .praise_list {
@@ -169,10 +169,10 @@ body {
   display: block;
   margin: 0 auto;
   background-image: url("../img/sprite.png");
-  background-position: -9.5625rem -3rem;
+  background-position: -7.875rem -6.5rem;
   width: 0.625rem;
   height: 0.4375rem;
-  background-size: 10.4375rem 8.3125rem;
+  background-size: 10.375rem 10.125rem;
 }
 
 .comment .comment_tit {
@@ -267,10 +267,10 @@ body {
   display: inline-block;
   vertical-align: baseline;
   background-image: url("../img/sprite.png");
-  background-position: -9.5625rem 0rem;
+  background-position: -9.5rem -7.5rem;
   width: 0.875rem;
   height: 0.875rem;
-  background-size: 10.4375rem 8.3125rem;
+  background-size: 10.375rem 10.125rem;
   border: 0;
   box-sizing: content-box;
   background-color: transparent;

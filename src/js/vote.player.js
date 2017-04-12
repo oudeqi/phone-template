@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var app = angular.module("app",["app.confirm","app.openInBrowser"]);
+    var app = angular.module("app",["app.confirm","app.openInBrowser","app.back"]);
     app.constant("HOST","http://101.200.129.132");
     app.config(["$locationProvider",
         function($locationProvider) {

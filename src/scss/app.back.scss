@@ -1,0 +1,25 @@
+@import "./helper/px2rem.scss";
+@import "./helper/_sprite.scss";
+@import "./helper/_mixin.scss";
+.app-back{
+    border: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    padding-right: base16px2rem(4);
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: base16px2rem(10);
+    left: base16px2rem(10);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon{
+        display: block;
+        @include sprite($icon-back-white);
+    }
+    &:active{
+        opacity: 0.5;
+    }
+}

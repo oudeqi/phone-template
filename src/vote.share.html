@@ -13,6 +13,8 @@
         <!-- build:css /css/app.css -->
         <link rel="stylesheet" href="/css/base.css"/>
         <link rel="stylesheet" href="/css/vote.share.css">
+        <link rel="stylesheet" href="/css/app.confirm.css">
+        <link rel="stylesheet" href="/css/app.open-in-browser.css">
         <!-- endbuild -->
     </head>
     <body>
@@ -79,6 +81,11 @@
                         <span>点击查看活动说明及奖励</span>
                     </a>
                 </div>
+                <div class="sign-up-btn">
+                    <a class="link" ng-click="goSignup(detail.id)">
+                        <span>我要报名</span>
+                    </a>
+                </div>
                 <div class="search-btn">
                     <div class="ipt">
                         <i class="icon"></i>
@@ -101,8 +108,13 @@
                                 <span>名次</span>
                                 <strong>{{item.ranking}}</strong>
                             </p>
-                            <button class="notgive" type="button" ng-click="confirm()">投一票</button>
-                            <!-- http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai -->
+                            <!-- 0 明天再来；1 可以投票；2 已经投票 2.1判断倒计时字符串 2.2 红色明日再来 -->
+                            <button ng-if="detail.voteStatus == 2 && item.canVote==2 && !!item.countdown" class="countdown" type="button">{{item.countdown}}</button>
+                            <button ng-if="detail.voteStatus == 2 && item.canVote==2 && !item.countdown" class="tomorrow" type="button">明日再来</button>
+                            <button ng-if="detail.voteStatus == 2 && item.canVote==1" class="canvote" type="button" ng-click="confirm()">投一票</button>
+                            <button ng-if="detail.voteStatus == 2 && item.canVote==0" class="disabled" type="button">明天再来</button>
+                            <button ng-if="detail.voteStatus == 1" class="disabled" type="button">投票未开始</button>
+                            <button ng-if="detail.voteStatus == 3" class="disabled" type="button">投票已结束</button>
                         </div>
                     </li>
                 </ul>
@@ -111,6 +123,9 @@
                 </p>
                 <p class="load-all" ng-show="loading==3">
                     已加载完所有
+                </p>
+                <p class="load-all" ng-show="loading==5">
+                    暂无数据
                 </p>
                 <p class="list-loading" ng-show="loading==1 || loading==4">
                     加载中...
