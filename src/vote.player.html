@@ -13,10 +13,14 @@
         <!-- build:css /css/app.css -->
         <link rel="stylesheet" href="/css/base.css"/>
         <link rel="stylesheet" href="/css/vote.share.css">
+        <link rel="stylesheet" href="/css/app.confirm.css">
+        <link rel="stylesheet" href="/css/app.open-in-browser.css">
+        <link rel="stylesheet" href="/css/app.back.css">
         <!-- endbuild -->
     </head>
     <body>
         <div ng-controller="detail" class="warpper" ng-cloak>
+            <app-back></app-back>
             <div class="base-info" ng-show="detail">
                 <div class="row1">
                     <h3 class="name">{{detail.name}}</h3>
@@ -41,15 +45,16 @@
                 <p>
                     <button class="notgive" type="button" ng-click="confirm()">投TA一票</button>
                 </p>
-                <p>
+                <!-- <p>
                     <a type="button" ui-sref="signup" ng-click="confirm()">我也要参加</a>
-                </p>
+                </p> -->
             </div>
         </div>
         <!-- build:js /js/app.js -->
         <script type="text/javascript" src="/js/angular.js"></script>
         <script type="text/javascript" src="./js/app.confirm.js"></script>
         <script type="text/javascript" src="./js/app.open-in-browser.js"></script>
+        <script type="text/javascript" src="./js/app.back.js"></script>
         <script type="text/javascript" src="/js/vote.player.js"></script>
         <!-- endbuild -->
         <script type="text/javascript">

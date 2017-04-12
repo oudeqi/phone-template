@@ -53,10 +53,10 @@
   display: inline-block;
   vertical-align: middle;
   background-image: url("../img/sprite.png");
-  background-position: -98px -117px;
+  background-position: -152px -72px;
   width: 14px;
   height: 14px;
-  background-size: 167px 133px;
+  background-size: 166px 162px;
 }
 
 .warpper .padd-cont .tip .p1 .time {
@@ -92,10 +92,10 @@
 .warpper .padd-cont .tip .p2 .icon {
   margin-right: 0.5rem;
   background-image: url("../img/sprite.png");
-  background-position: -62px 0px;
+  background-position: 0px -62px;
   width: 22px;
   height: 22px;
-  background-size: 167px 133px;
+  background-size: 166px 162px;
 }
 
 .warpper .padd-cont .tip .p2 .status {
@@ -204,13 +204,43 @@
   margin-right: 5px;
   display: block;
   background-image: url("../img/sprite.png");
-  background-position: -122px -117px;
+  background-position: -152px -96px;
   width: 14px;
   height: 14px;
-  background-size: 167px 133px;
+  background-size: 166px 162px;
 }
 
 .look-detail-btn .link:active {
+  opacity: 0.8;
+}
+
+.sign-up-btn {
+  margin-top: 0.9375rem;
+}
+
+.sign-up-btn .link {
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fd9e24;
+  border-radius: 0.1875rem;
+  width: 100%;
+  height: 2.5rem;
+  color: #fff;
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sign-up-btn .link:active {
   opacity: 0.8;
 }
 
@@ -252,10 +282,10 @@
           flex-shrink: 0;
   margin-right: 0.375rem;
   background-image: url("../img/sprite.png");
-  background-position: 0px -62px;
+  background-position: -96px -30px;
   width: 20px;
   height: 20px;
-  background-size: 167px 133px;
+  background-size: 166px 162px;
 }
 
 .search-btn .ipt input {
@@ -363,21 +393,26 @@
   border-radius: 0.125rem;
 }
 
-.player-list li .inner button:disabled {
-  background-color: #2b333b;
+.player-list li .inner button.countdown {
+  background-color: #FB4747;
   cursor: not-allowed;
 }
 
-.player-list li .inner button.notgive {
+.player-list li .inner button.tomorrow {
+  background-color: #FB4747;
+  cursor: not-allowed;
+}
+
+.player-list li .inner button.canvote {
   background-color: #129AEE;
 }
 
-.player-list li .inner button.notgive:active {
+.player-list li .inner button.canvote:active {
   opacity: 0.8;
 }
 
-.player-list li .inner button.give {
-  background-color: #FB4747;
+.player-list li .inner button.disabled {
+  background-color: #d7d7d7;
   cursor: not-allowed;
 }
 
@@ -404,6 +439,7 @@
   padding: 0.8125rem;
   padding-bottom: 1rem;
   border-bottom: 1px dashed #BFBFBF;
+  padding-top: 3.4375rem;
 }
 
 .base-info .row1 {
@@ -544,6 +580,10 @@
   opacity: 0.8;
 }
 
+.rule-list {
+  padding-bottom: 1.25rem;
+}
+
 .rule-list li {
   border-bottom: 1px dashed #BFBFBF;
   padding-bottom: 1.25rem;
@@ -561,10 +601,10 @@
   display: inline-block;
   vertical-align: middle;
   background-image: url("../img/sprite.png");
-  background-position: -127px -78px;
+  background-position: -126px -78px;
   width: 16px;
   height: 16px;
-  background-size: 167px 133px;
+  background-size: 166px 162px;
 }
 
 .rule-list li .tit span {
@@ -607,131 +647,153 @@
   background: #686868;
 }
 
-.open-in-browser {
-  position: fixed;
-  z-index: 2000;
+#signup {
+  max-width: 640px;
   min-width: 320px;
-  top: 0;
-  left: 0;
+  margin: 0 auto;
+}
+
+#signup .poster {
+  width: 100%;
+  background-color: #ddd;
+  height: 11.25rem;
+  overflow: hidden;
+}
+
+#signup .poster img {
   width: 100%;
   height: 100%;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  object-fit: cover;
+  object-position: center;
+}
+
+#signup .time {
+  background: #fbfbfb;
+  border-bottom: 1px dashed #ccc;
+}
+
+#signup .time p {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-left: 0.625rem;
+  font-size: 0.9375rem;
+  color: #666;
 }
 
-.open-in-browser .contain {
-  max-width: 640px;
-  min-width: 320px;
+#signup .time p .icon {
+  margin-right: 6px;
+  background-image: url("../img/sprite.png");
+  background-position: -152px -72px;
+  width: 14px;
+  height: 14px;
+  background-size: 166px 162px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+#signup .time p span {
+  line-height: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+#signup .time p:first-child {
+  padding-top: 0.875rem;
+}
+
+#signup .time p:last-child {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+#signup .padd-cont {
+  padding: 0 0.625rem;
+  padding-bottom: 1.25rem;
+}
+
+#signup .padd-cont .form-group {
+  margin-top: 20px;
+}
+
+#signup .padd-cont .form-group .form-label {
+  color: #555;
+  font-size: 1rem;
+}
+
+#signup .padd-cont .form-group .pic-view-list {
+  margin-top: 8px;
+}
+
+#signup .padd-cont .form-group .pic-view-list:after {
+  content: "";
+  display: block;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+  line-height: 0;
+  clear: both;
+}
+
+#signup .padd-cont .form-group .pic-view-list li {
+  float: left;
+  width: 33.33%;
+  padding: 0 2px;
+}
+
+#signup .padd-cont .form-group .pic-view-list li .inner {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+#signup .padd-cont .form-group .pic-view-list li .inner .content {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  text-align: left;
-  color: #fff;
-  font-size: 1.25rem;
-  padding-left: 3.75rem;
-  font-weight: bold;
-  position: relative;
+  background-color: #e6e6e6;
+  overflow: hidden;
 }
 
-.open-in-browser .contain .p1 {
-  padding-top: 4.375rem;
-}
-
-.open-in-browser .contain .p1 span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.open-in-browser .contain .p1 i {
-  display: inline-block;
-  vertical-align: middle;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #fff;
-  position: relative;
-  top: 5px;
-  margin: 0 2px;
-}
-
-.open-in-browser .contain .p2 {
-  padding-top: 1.5625rem;
-}
-
-.open-in-browser .contain .p2 span {
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.open-in-browser .contain .p2 img {
-  vertical-align: middle;
-  display: inline-block;
-  margin: 0 4px;
-  width: 3.125rem;
-  height: auto;
-}
-
-.open-in-browser .contain .p3 {
-  padding-top: 1.5625rem;
-  text-align: left;
-}
-
-.open-in-browser .contain .arrow-up {
+#signup .padd-cont .form-group .pic-view-list li .inner .content .delpic {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 1.875rem;
-}
-
-.open-in-browser .contain .arrow-up img {
-  width: 2.5rem;
-  height: auto;
-}
-
-.open-in-browser .contain .close-cont {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding-bottom: 5rem;
-}
-
-.open-in-browser .contain .close-cont .close-btn {
   border: 0;
-  padding: 1.25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
 }
 
-.open-in-browser .contain .close-cont .close-btn img {
-  width: 2.5rem;
-  height: auto;
+#signup .padd-cont .form-group .pic-view-list li .inner .content .delpic .icon {
+  display: block;
+  background-image: url("../img/sprite.png");
+  background-position: -62px 0px;
+  width: 24px;
+  height: 24px;
+  background-size: 166px 162px;
 }
 
-.open-in-browser .contain .close-cont .close-btn:active {
-  opacity: 0.5;
-}
-
-.confirm {
-  position: fixed;
-  z-index: 2000;
-  min-width: 320px;
+#signup .padd-cont .form-group .pic-view-list li .inner .content .addpic {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 20;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -744,18 +806,6 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.confirm .inner {
-  height: 11.25rem;
-  width: 16.875rem;
-  background-color: #fff;
-  border-radius: 0.375rem;
-  text-align: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -763,21 +813,108 @@
           flex-direction: column;
 }
 
-.confirm .inner .confirm-header {
-  padding: 0 1.125rem;
-  color: #2b333b;
-  padding-top: 1.25rem;
+#signup .padd-cont .form-group .pic-view-list li .inner .content .addpic p {
+  font-size: 0.875rem;
+  text-align: center;
+  color: #fff;
+  margin-top: 0.5rem;
+  line-height: 1;
 }
 
-.confirm .inner .confirm-body {
-  padding: 0 0.625rem;
-  line-height: 1.5;
-  font-size: 0.9375rem;
-  color: #2b333b;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+#signup .padd-cont .form-group .pic-view-list li .inner .content .addpic button {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  height: 3.125rem;
+  width: 4.375rem;
+  background: url(../img/add-pic.png) no-repeat center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+#signup .padd-cont .form-group .pic-view-list li .inner .content .addpic button input {
+  opacity: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#signup .padd-cont .form-group .pic-view-list li .inner .content .pic-view {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+#signup .padd-cont .form-group .pic-view-list li .inner .content .pic-view img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#signup .padd-cont .form-group .pic-view-list li:first-child {
+  padding-right: 4px;
+  padding-left: 0;
+}
+
+#signup .padd-cont .form-group .pic-view-list li:last-child {
+  padding-right: 0;
+  padding-left: 4px;
+}
+
+#signup .padd-cont .form-group .form-tip {
+  font-size: 0.875rem;
+  line-height: 1;
+  padding-top: 10px;
+  color: rgba(255, 0, 0, 0.5);
+}
+
+#signup .padd-cont .form-group .form-ipt {
+  margin-top: 8px;
+}
+
+#signup .padd-cont .form-group .form-ipt input {
+  padding: 0.625rem 0.375rem;
+  width: 100%;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.125rem;
+}
+
+#signup .padd-cont .form-group .form-ipt input:focus {
+  border: 1px solid rgba(18, 154, 238, 0.6);
+}
+
+#signup .padd-cont .form-group .form-ipt input.has-error {
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+#signup .padd-cont .form-group .form-ipt textarea {
+  width: 100%;
+  display: block;
+  border: 1px solid #dfdfdf;
+  border-radius: 0.125rem;
+  padding: 0.25rem 0.3125rem;
+  resize: vertical;
+}
+
+#signup .padd-cont .form-group .form-ipt textarea:focus {
+  border: 1px solid rgba(18, 154, 238, 0.6);
+}
+
+#signup .padd-cont .form-group .form-btn {
+  height: 2.75rem;
+  width: 100%;
+  color: #fff;
+  background: #129AEE;
+  border-radius: 0.25rem;
+  font-size: 1.125rem;
+  border: 0;
+  text-decoration: none;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -790,41 +927,64 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
 }
 
-.confirm .inner .confirm-footer {
-  border-top: 1px solid #eee;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 2.875rem;
-  margin-top: 0.25rem;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+#signup .padd-cont .form-group .form-btn .icon-loading {
+  display: none;
 }
 
-.confirm .inner .confirm-footer .btns {
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
+#signup .padd-cont .form-group .form-btn:active {
+  opacity: 0.8;
 }
 
-.confirm .inner .confirm-footer .btns:first-child {
-  border-right: 1px solid #eee;
+#signup .padd-cont .form-group .form-btn.disabled {
+  background-color: #d7d7d7;
+  cursor: not-allowed;
 }
 
-.confirm .inner .confirm-footer .btns button {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  color: #0076FF;
-  background-color: inherit;
+#signup .padd-cont .form-group .form-btn.disabled:active {
+  opacity: 1;
 }
 
-.confirm .inner .confirm-footer .btns button:active {
-  opacity: 0.5;
+#signup .padd-cont .form-group .form-btn.isloading .icon-loading {
+  display: inline-block;
+  -webkit-animation: loading 500ms linear infinite;
+          animation: loading 500ms linear infinite;
+  background-image: url("../img/sprite.png");
+  background-position: -32px -62px;
+  width: 20.5px;
+  height: 20.5px;
+  background-size: 166px 162px;
+  margin-right: 0.5rem;
+}
+
+#signup .padd-cont .form-group .form-btn.isloading:active {
+  opacity: 1;
+}
+
+#signup .padd-cont .form-group .form-btn.succeed {
+  background-color: #FB4747;
+}
+
+@-webkit-keyframes loading {
+  form {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  form {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }

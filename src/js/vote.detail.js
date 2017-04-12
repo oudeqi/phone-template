@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var app = angular.module("app",["app.confirm","app.openInBrowser"]);
+    var app = angular.module("app",["app.confirm","app.openInBrowser","app.back"]);
     app.constant("HOST","http://101.200.129.132");
     app.config(["$locationProvider",
         function($locationProvider) {
@@ -56,6 +56,10 @@
 
             $scope.download = function(){
                 location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
+            };
+
+            $scope.goSignup = function(id){
+                location.href = "./vote.signup.html?id="+$rootScope.id;
             };
 
             $scope.confirm = function(){

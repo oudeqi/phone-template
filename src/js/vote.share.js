@@ -1,6 +1,6 @@
 ;(function(){
 
-    'use strict';
+    "use strict";
     var app = angular.module("app",["app.confirm","app.openInBrowser"]);
     app.constant("HOST","https://api.2tai.com");
     app.config(["$locationProvider",
@@ -100,6 +100,10 @@
                 location.href = "./vote.detail.html?id="+id;
             };
 
+            $scope.goSignup = function(id){
+                location.href = "./vote.signup.html?id="+id;
+            };
+
             $scope.download = function(){
                 location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
             };
@@ -134,13 +138,13 @@
             $scope.pageSize = 10;
             $scope.pageIndex = 1;
             $scope.list = [];
-            $scope.loading = 0;//1，加载中 2，加载更多 3，加载完所有 4，历史加载中
+            $scope.loading = 0;//1，加载中 2，加载更多 3，加载完所有 4，历史加载中 5,暂无数据
             $scope.getList = function(){
                 $scope.loading = 1;
                 $http.get(HOST+"/v1/player/list",{
                     params: {
                         id: $rootScope.id,
-                        type: 1,//type:1 最新，2，排名
+                        type: 2,//type:1 最新，2，排名
                         keywords:$scope.keywords,
                         pageSize:$scope.pageSize,
                         pageIndex:$scope.pageIndex
@@ -155,11 +159,15 @@
                         angular.forEach(res.data.data.data,function(item){
                             $scope.list.push(item);
                         });
-                        if(res.data.data.pageCount == res.data.data.pageIndex){
-                            $scope.loading = 3;
+                        if(res.data.data.rowCount === 0){
+                            $scope.loading = 5;
                         }else{
-                            $scope.pageIndex = res.data.data.pageIndex + 1;
-                            $scope.loading = 2;
+                            if(res.data.data.pageCount == res.data.data.pageIndex){
+                                $scope.loading = 3;
+                            }else{
+                                $scope.pageIndex = res.data.data.pageIndex + 1;
+                                $scope.loading = 2;
+                            }
                         }
                     }else{
                         $scope.loading = 0;
