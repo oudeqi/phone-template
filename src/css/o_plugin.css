@@ -1,0 +1,202 @@
+/*举报模态框*/
+#reportModal{
+	background: rgba(0,0,0,.7);
+	width: 100%;
+	height: 100%;
+	/*display: -webkit-box;
+	display: box;*/
+	display: none;
+	-webkit-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	box-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 300;
+}
+#reportModal .content{
+	width: 15em;
+	background: #fff;
+	border-radius: .5em;
+	-webkit-border-radius: .5em;
+	overflow: hidden;
+}
+@media only screen and (min-width: 375px){
+	#reportModal .content{
+		font-size: 18px;
+	}
+}
+#reportModal .content .tit{
+	color: #000;
+	font-size: .9375em;
+	text-align: center;
+	line-height: 1;
+	padding: 1em;
+}
+#reportModal .content .lists{}
+#reportModal .content .lists .item{
+	float: left;
+	width: 4em;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 1.8em;
+	line-height: 1.8em;
+	text-align: center;
+	color: #999;
+	margin: 0 .5em .8em .5em;
+	border-radius: .3em;
+	-webkit-border-radius: .3em;
+	display: -webkit-box;
+	display: box;
+	-webkit-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	box-align: center;
+}
+#reportModal .content .lists .item.active{
+	background: #0d62f1;
+	color: #fff;
+	border: 0;
+}
+#reportModal .content .lists .item span{
+	display: block;
+	font-size: .75em;
+	line-height: 1;
+}
+#reportModal .content .btnGroup{
+	display: -webkit-box;
+	display: box;
+}
+#reportModal .content .btnGroup .btn{
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	color: #0d62f1;
+	font-size: 1em;
+	text-align: center;
+	line-height: 2.4em;
+	height: 2.4em;
+}
+
+/* TODO 弹出二维码*/
+#popup{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+	display: none;
+	/*display: -webkit-box;
+	display: box;*/
+	-webkit-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	box-align: center;
+	text-align: center;
+}
+#popup .content{
+	width: 7rem;
+	overflow: hidden;
+	background: #fff;
+	border-radius: 0.35em;
+	-webkit-border-radius: 0.35em;
+}
+#popup .content .opra{
+	padding: 0.4rem 0.5rem;
+	text-align: right;
+}
+#popup .content .opra .close{
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.5rem;
+	background: url(../img/popup_close.png) scroll no-repeat center;
+	background-size: contain;
+}
+#popup .content .txt1{
+	font-size: 0.5rem;
+	color: #686868;
+}
+#popup .content .codepic{
+	width: 4.2rem;
+	height: 4.2rem;
+	background: #ddd;
+	margin: 0.5rem auto;
+}
+#popup .content .codepic img{
+	width: 100%;
+	height: auto;
+}
+#popup .content .txt2{
+	font-size: 0.4rem;
+	color: #686868;
+	padding-bottom: 1rem;
+}
+
+
+/* TODO 弹出二维码2*/
+#popupcode{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+	display: none;
+	/*display: -webkit-box;
+	display: box;*/
+	-webkit-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	box-align: center;
+	z-index: 100;
+}
+
+#popupcode .content{
+	padding: 0 12px;
+	width: 60%;
+	overflow: hidden;
+	background: #fff;
+	border-radius: 0.35em;
+	-webkit-border-radius: 0.35em;
+}
+
+#popupcode .content .opra{
+	padding-top: 12px;
+	padding-bottom: 0;
+}
+
+#popupcode .content .opra .close{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(../img/popup_close.png) scroll no-repeat center;
+	background-size: contain;
+}
+#popupcode .content .codepic{
+	width: 100%;
+	background-color: #ddd;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	background-attachment: scroll;
+}
+#popupcode .content .codepic img{
+	width: 100%;
+	height: auto;
+	display: block;
+}
+#popupcode .content .txt{
+	padding-bottom: 10px;
+	text-align: center;
+	font-size: .875em;
+	color: #999;
+}
+
+
+
+
+
+
+

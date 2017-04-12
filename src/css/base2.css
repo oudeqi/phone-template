@@ -1,0 +1,262 @@
+﻿@charset "utf-8";
+html {
+	width: 100%;
+	height: 100%;
+	-ms-touch-action: none;
+}
+body {
+	width: 100%;
+	height: 100%;
+	line-height: 1;
+	color: #000;
+	background: #fff;
+	font-family: Helvetica sans-serif;
+	/*font-family: Helvetica;*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+a,
+button,
+input,
+textarea,
+select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-appearance: none;
+	appearance: none;
+	font-size: 100%;
+	outline: 0;
+}
+input::-webkit-input-placeholder {
+	color: #aaa;
+}
+input:focus::-webkit-input-placeholder {
+	color: #eee;
+}
+input[type=radio]::-ms-check,
+input[type=checkbox]::-ms-check,
+input[type=text]::-ms-clear,
+input[type=tel]::-ms-clear,
+input[type=number]::-ms-clear,
+input::-webkit-input-speech-button,
+select::-ms-expand {
+	display: none
+}
+
+.hide {
+	display: none !important;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	overflow: hidden;
+	clear: both;
+}
+
+.header {
+	width: 100%;
+	height: 46px;
+	text-align: center;
+	line-height: 46px;
+	background: #394047;
+	font-size: 16px;
+}
+
+[data-dpr="2"] .header {
+	height: 92px;
+	line-height: 92px;
+	font-size: 32px;
+}
+
+[data-dpr="3"] .header {
+	height: 138px;
+	line-height: 138px;
+	font-size: 48px;
+}
+
+.header .navbtn {
+	width: 15%;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: -webkit-box;
+	display: box;
+	-webkit-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	box-align: center;
+}
+
+.header .navtit {
+	width: 70%;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #FFFFFF;
+}
+
+.header .back span {
+	display: block;
+	height: 1.4em;
+	width: 1.4em;
+	background: url(../img/icon_small_1.png) scroll no-repeat -7.9em -2.13em;
+	background-size: 18.75em;
+}
+
+.btn-blue {
+	display: block;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+	border-radius: 4px;
+	font-size: 18px;
+	color: #FFFFFF;
+	background-color: #4185F3;
+}
+
+.btn-blue:active {
+	background-color: #357AE8;
+}
+
+
+/*模拟按钮hover效果*/
+
+@media all and (orientation:portrait) {
+	.css {}
+	/*竖屏时使用的样式*/
+	@media all and (orientation: landscape) {
+		.css {}
+	}
+	/*横屏时使用的样式*/
+	/* ============================================================
+   flex：定义布局为盒模型
+   flex-v：盒模型垂直布局
+   flex-1：子元素占据剩余的空间
+   flex-align-center：子元素垂直居中
+   flex-pack-center：子元素水平居中
+   flex-pack-justify：子元素两端对齐
+   兼容性：ios 4+、android 2.3+、winphone8+
+   ============================================================ */
+	.flex {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+	}
+	.flex-v {
+		-webkit-box-orient: vertical;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.flex-1 {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
+	}
+	.flex-align-center {
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+	.flex-pack-center {
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+	.flex-pack-justify {
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+	/* ============================================================
+   flex：定义布局为盒模型
+   flex-v：盒模型垂直布局
+   flex-1：子元素占据剩余的空间
+   flex-align-center：子元素垂直居中
+   flex-pack-center：子元素水平居中
+   flex-pack-justify：子元素两端对齐
+   兼容性：ios 4+、android 2.3+、winphone8+
+   ============================================================ */
+	.flex {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+	}
+	.flex-v {
+		-webkit-box-orient: vertical;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.flex-1 {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		-ms-flex: 1;
+		flex: 1;
+	}
+	.flex-align-center {
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+	.flex-pack-center {
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+	.flex-pack-justify {
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+	/* 定义盒模型为怪异和模型（宽高不受边框影响） */
+	.boxSiz {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	/* 强制换行 */
+	.toWrap {
+		word-break: break-all;
+		word-wrap: break-word;
+		white-space: pre-wrap;
+	}
+	/* 禁止换行 */
+	.noWrap {
+		white-space: nowrap;
+	}
+	/* 禁止换行,超出省略号 */
+	.noWrapEllipsis {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	/* 文字两端对齐 */
+	.text-justify {
+		text-align: justify;
+		text-justify: inter-ideograph;
+	}
+	

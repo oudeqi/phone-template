@@ -1,0 +1,244 @@
+/************************* 样式重置  ****************************/
+* {margin: 0;padding: 0;}
+html {width: 100%;height: 100%;}
+body {
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	font-family: Helvetica "微软雅黑" sans-serif;
+	font-size: 16px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;}
+a {	text-decoration: none;}
+button {border: 0;outline: 0;}
+img {border: none;vertical-align: top;}
+table {border-collapse: collapse;}
+textarea {resize: none;	overflow: auto;outline: 0;}
+ol,ul{list-style: none;}
+
+/*********************** 公共样式 ******************************/
+
+.divide{
+	height: 1px;
+	background: #e3e3e3;
+	width: 100%;
+	-webkit-transform: scale(1,0.5);
+	transform: scale(1,0.5);
+	transform-origin: bottom;
+	-webkit-transform-origin: bottom;
+}
+
+
+.btn-clicked{
+	background: #ccc !important;
+}
+
+.btn-disable{
+	background: #aeaeae !important;
+}
+
+.hide{display: none;}
+.abs-hide{display: none !important;}
+.clearfix {zoom: 1;}
+.clearfix:after {content: "";display: block;height: 0;overflow: hidden;clear: both;}
+/* 定义盒模型为怪异和模型（宽高不受边框影响） */
+.boxSiz {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;box-sizing: border-box;}
+/* 强制换行 */
+.toWrap {word-break: break-all;	word-wrap: break-word;white-space: pre-wrap;}
+/* 禁止换行 */
+.noWrap {white-space: nowrap;}
+/* 禁止换行,超出省略号 */
+.noWrapEllipsis {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+/* 文字两端对齐 */
+.text-justify {text-align: justify;text-justify: inter-ideograph;}
+/* 定义盒模型为 flex布局兼容写法并让内容水平垂直居中 */
+.flex-center {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -o-box;
+	display: box;
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	-o-box-pack: center;
+	box-pack: center;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	-o-box-align: center;
+	box-align: center;
+}
+.box {display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -o-box;display: box;}
+.flex-01 {-webkit-box-flex: 1;}
+
+
+.header {width: 100%;height: 46px;text-align: center;line-height: 46px;	background: #394047;}
+
+.header .navbtn {width:15%;height:100%;	float:left;	overflow:hidden;text-overflow:ellipsis;	white-space:nowrap;
+	display: -webkit-box;display: box;-webkit-box-pack: center;box-pack: center;
+	-webkit-box-align: center;box-align: center;}
+.header .navtit {width: 70%;height: 100%;float: left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;	font-size: 1.18em;color: #FFFFFF;}
+
+
+
+.divide-l{
+	width: 1px;
+    background: #e3e3e3;
+    -webkit-transform: scale(0.5,1);
+    transform: scale(0.5,1);
+    transform-origin: left;
+    -webkit-transform-origin: left;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+}	
+
+.divide-t{
+	height: 1px;
+    background: #e3e3e3;
+    width: 100%;
+    -webkit-transform: scale(1,0.5);
+    transform: scale(1,0.5);
+    transform-origin: top;
+    -webkit-transform-origin: top;
+}		
+
+.toTop{
+	
+	overflow: hidden;
+	position: fixed;
+	width: 3.5em;
+	height: 3.5em;
+	bottom: 4em;
+	right: 1.5em;
+	z-index: 100;
+	border-radius: 50%;
+	color: #fff;
+	text-align: center;
+	background: rgba(0,0,0,0.5);
+}
+
+.toTop .ic{
+	
+	display: block;
+	margin-top: 1em;
+	height: 2.2em;
+	width: 1.6em;
+	margin: 0 auto;
+	background:  url(../img/icon_small_1.png) scroll no-repeat -16.2em -15.7em;
+	background-size: 20em;
+}
+
+.toTop .txt{
+	font-size: .75em;
+	line-height: 1;
+	display: block;
+}
+
+.header .back span {
+    display: block;
+    height: 1.4em;
+    width: 1.4em;
+    background: url(../img/icon_small_1.png) scroll no-repeat -7.9em -2.13em;
+    background-size: 18.75em;
+}
+
+
+#footer{
+	background: #fff;
+	height: 2.875em;
+	position: absolute;
+	width: 100%;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+}
+
+#footer .nav{
+	display: -webkit-box;
+	display: box;
+}
+
+#footer .nav .item{
+	padding-top: .2em;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    text-align: center;
+    color: #b3b3b3;
+}
+
+#footer .nav .item.active{
+	color: #3495ee;
+}
+
+#footer .nav .item .ic{
+	display: block;
+    height: 1.6em;
+    width: 1.6em;
+    margin: 0 auto;
+}
+
+#footer .nav .item .txt{
+	display: block;
+	text-align: center;
+    font-size: 0.75em;
+    line-height: 1.2;
+}
+
+
+
+
+#footer .nav .item.youle .ic{
+	background: url(../img/icon_small_1.png) no-repeat -0.2em -0.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.hongbao .ic{
+	background: url(../img/icon_small_1.png) no-repeat -2.2em -0.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.renwu .ic{
+	background: url(../img/icon_small_1.png) no-repeat -4.2em -0.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.geren .ic{
+	background: url(../img/icon_small_1.png) no-repeat -6.2em -0.2em;
+	background-size: 20em;
+}
+
+
+
+#footer .nav .item.youle.active .ic{
+	background: url(../img/icon_small_1.png) no-repeat -0.2em -2.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.hongbao.active .ic{
+	background: url(../img/icon_small_1.png) no-repeat -2.2em -2.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.renwu.active .ic{
+	background: url(../img/icon_small_1.png) no-repeat -4.2em -2.2em;
+	background-size: 20em;
+}
+
+#footer .nav .item.geren.active .ic{
+	background: url(../img/icon_small_1.png) no-repeat -6.2em -2.2em;
+	background-size: 20em;
+}
+
+
+
+
+
+
+
+
+
+
