@@ -576,11 +576,12 @@
 
 .rule-list li .rule-cont {
   color: #686868;
-  padding-top: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .rule-list li .rule-cont p {
-  padding-bottom: 0.625rem;
+  padding-bottom: 0.125rem;
   line-height: 1.5;
   font-size: 1rem;
 }

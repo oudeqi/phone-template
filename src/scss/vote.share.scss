@@ -433,9 +433,10 @@
         }
         .rule-cont{
             color: #686868;
-            padding-top: 20px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
             p{
-                padding-bottom: base16px2rem(10);
+                padding-bottom: base16px2rem(2);
                 line-height: 1.5;
                 font-size: base16px2rem(16);
             }
