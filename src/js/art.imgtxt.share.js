@@ -1,6 +1,7 @@
 var app = angular.module("app",[]);
 // http://192.168.10.96:3000/art.imgtxt.share.html?id=24017
 // 24023
+// 26633 有微信视屏的id
 app.constant("APP_HOST", "https://api.2tai.com");
 // app.constant("APP_HOST", "https://101.200.129.132");
 // app.constant("APP_HOST", "http://192.168.10.254:8080");
@@ -211,7 +212,7 @@ app.controller("detail",["$scope","$http","APP_HOST","$rootScope","$sce",
             $http.get(APP_HOST + "/v1/invite/code/info?id="+$rootScope.id)
             .success(function(res){
                 console.log("获取comeinCode：",res);
-                location.href = "http://tpl.2tai.net/webreg-2.html?comeinCode="+res.data;
+                location.href = "http://tpl.2tai.net/webreg.html?comeinCode="+res.data;
             }).error(function(res){
 
             });

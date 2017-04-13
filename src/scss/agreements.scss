@@ -1,47 +1,50 @@
 
+body{
+    font-size: 16px;
+}
 #agreements{
     .container{
-        width: 10rem;
+        max-width: 640px;
+        min-width: 320px;
+        width: 100%;
         margin: 0 auto;
-        background: #eee;
-        position: relative;
-        text-align: justify;
-        /*word-break: break-all;*/
-       .copyright{
-            text-align: right;
-            padding-right: 1.5em;
-            padding-bottom: 3em;
-            font-weight: bold;
-        }
+        background: #fbfbfb;
+        color: #444;
        h1{
             text-align: center;
-            padding-top: 2em;
-            font-size: 1.5em;
+            padding-top: 2rem;
+            font-size: 1.3rem;
+            line-height: 1.5;
         }
         p{
-            padding: 1em;
-            line-height: 1.4;
-            text-indent: 2em;
-            font-size: 1.1em;
+            padding: 1rem 0.8rem;
+            line-height: 1.5;
+            text-indent: 2rem;
+            font-size: 1rem;
+            text-align: justify;
         }
         dl{
-            margin: 1.5em;
+            margin: 1rem 0.8rem;
             dt{
-                font-size: 1.2em;
+                font-size: 1rem;
+                font-weight: bold;
             }
             dd{
-                line-height: 1.4;
-                margin: .6em 0;
-                /*text-indent: 2em;*/
-                font-size: 1.1em;
+                line-height: 1.5;
+                margin-top: 1rem;
+                text-align: justify;
+                font-size: 1rem;
                 ul{
-                    /*text-indent: 1.3em;*/
                     margin-top: 0.1em;
                 }
             }
         }
+        .copyright{
+             text-align: right;
+             padding-right: 1.5rem;
+             padding-bottom: 3rem;
+             font-weight: bold;
+             font-size: 1rem;
+         }
     }
 }
-
-
-

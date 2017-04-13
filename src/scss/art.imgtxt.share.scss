@@ -2,17 +2,9 @@
 @import "./helper/_sprite.scss";
 @import "./helper/_mixin.scss";
 
-// 修复微信视频
-.rich_media_content{
-    img{
-        max-width: 100% !important;
-    }
-}
 body{
     background-color: #fff !important;
 }
-
-// 
 #container{
     max-width: 640px;
     min-width: 320px;
@@ -36,6 +28,12 @@ body{
 }
 .tpl_container{
     padding: 0 base14rem2base16rem(1);
+    iframe{
+        width: 100%;
+    }
+    img{
+        max-width:100% !important;
+    }
 }
 .reward{
     text-align: center;
@@ -292,8 +290,6 @@ body{
                     height: auto;
                 }
             }
-
-
         }
         .desc{
             flex-grow: 1;
