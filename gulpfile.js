@@ -158,7 +158,7 @@ gulp.task("htmlmin", function() {
 });
 
 gulp.task("imagemin", function(){
-    return gulp.src("./src/img/*.*")
+    return gulp.src("./src/img/**/*.*")
         // .pipe(imagemin())
         .pipe(gulp.dest("./dist/img"));
 });
