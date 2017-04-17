@@ -153,7 +153,7 @@
                     if(res.data.data){
                         var modalInstance = confirmModal.open({
                             tit:"温馨提示",
-                            desc:"报名成功，请耐心等待圣审核！",
+                            desc:"报名成功，请耐心等待审核！如有疑问请联系客服。",
                             cancelBtnTxt:"关闭",
                             okBtnTxt:"活动首页",
                         });

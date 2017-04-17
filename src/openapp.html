@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <title>2台投票</title>
+        <style>
+            body {
+                font-size: 16px;
+            }
+            p {
+                margin-top: 40px;
+            }
+            button {
+                height: 40px;
+                -webkit-appearance: none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>
+            <button id="xxx" type="button" name="button">location打开二台</button>
+        </p>
+        <p>
+            <button id="yyy" type="button" name="button">location打开二台</button>
+            打不开去下载页面
+        </p>
+        <p>
+            <a href="union://ertai?content=%7B%22h5Url%22%3A%22http%3A%2F%2Fvote.2tai.net%2Findex.html%3Fid%3D5%26nh%22%2C%22action%22%3A1%2C%22busType%22%3A30%7D">超链接打开二台</a>
+        </p>
+        <p>
+            <button id="btn">iframe打开app1</button>
+            点我点我啊！alert，不会弹出
+        </p>
+        <p>
+            <button id="btn2">iframe打开app2</button>
+            alert2，虽然有alert和info，info执行，但是alert不弹出
+        </p>
+        <p>
+            <button id="btninfo">iframe打开app3</button>
+            info可以
+        </p>
+        <h1>info</h1>
+        <div id="info">
+
+        </div>
+    </body>
+    <script type="text/javascript">
+
+        var param = {
+            h5Url: "http://vote.2tai.net/index.html?id=5&nh",
+            action: 1,
+            busType: 30
+        };
+        var paramStr = JSON.stringify(param);
+        var appsrc = 'union://ertai?content=' + encodeURIComponent(paramStr);
+
+        document.querySelector("#xxx").addEventListener("click", function() {
+            console.log("xxx");
+            console.log(appsrc);
+            location.href = appsrc;
+        }, false);
+
+        document.querySelector("#yyy").addEventListener("click", function() {
+            var ifr = document.createElement('iframe');
+            ifr.src = appsrc;
+            ifr.style.display = 'none';
+            document.body.appendChild(ifr);
+            window.setTimeout(function(){
+                document.body.removeChild(ifr);
+                window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai';
+            },2000)
+        }, false);
+
+        function info(msg) {
+            document.querySelector("#info").innerHTML ='<p>' + msg + '</p>';
+        }
+
+        document.querySelector("#btn").addEventListener('click', function() {
+            openIos(appsrc, function(t) {
+                if (t) {
+                    alert('timeout or no baidu APP1');
+                } else {
+                    alert('invoke success');
+                }
+            });
+        },false);
+
+        document.querySelector("#btn2").addEventListener('click', function() {
+            openIos(appsrc, function(t) {
+                if (t) {
+                    info('timeout or no baidu APP2');
+                    alert('timeout or no baidu APP2');
+                } else {
+                    info('invoke success2');
+                    alert('invoke success2');
+                }
+            });
+        },false);
+
+        document.querySelector("#btninfo").addEventListener('click', function() {
+            openIos(appsrc, function(t) {
+                if (t) {
+                    info('timeout or no baidu APP3');
+                } else {
+                    info('invoke success');
+                }
+            });
+        },false);
+
+
+        function openIos(url, callback) {
+            if (!url) {
+                return;
+            }
+            var node = document.createElement('iframe');
+            node.style.display = 'none';
+            var body = document.body;
+            var timer;
+            var clear = function(evt, isTimeout) {
+                (typeof callback === 'function') && callback(isTimeout);
+                window.removeEventListener('pagehide', hide, true);
+                window.removeEventListener('pageshow', hide, true);
+                if (!node) {
+                    return;
+                }
+                node.onload = null;
+                body.removeChild(node);
+                node = null;
+            };
+            var hide = function(e) {
+                clearTimeout(timer);
+                clear(e, false);
+            };
+            window.addEventListener('pagehide', hide, true);
+            window.addEventListener('pageshow', hide, true);
+            node.onload = clear;
+            node.src = url;
+            body.appendChild(node);
+            var now = +new Date();
+            //如果事件失败，则1秒设置为空
+            timer = setTimeout(function() {
+                timer = setTimeout(function() {
+                    var newTime = +new Date();
+                    if (now - newTime > 1300) {
+                        clear(null, false);
+                    } else {
+                        clear(null, true);
+                    }
+
+                }, 1200);
+            }, 60);
+        }
+
+
+
+    </script>
+</html>
