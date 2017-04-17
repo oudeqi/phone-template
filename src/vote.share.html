@@ -64,6 +64,10 @@
                         </tr>
                     </table>
                 </div>
+                <div class="theme">
+                    <h3>活动主题</h3>
+                    <p ng-bind="detail.actProfile"></p>
+                </div>
                 <div class="reward">
                     <div class="reward-pic">
                         <img src="./img/vote-reward.png" alt="">
@@ -74,6 +78,16 @@
                             <p>奖品：{{item.goods}}</p>
                         </li>
                     </ul>
+                </div>
+                <div class="contact">
+                    <p>
+                        <span>客服微信：</span>
+                        <span>{{detail.serviceWeixin || '无'}}</span>
+                    </p>
+                    <p>
+                        <span>客服电话：</span>
+                        <span>{{detail.servicePhone || '无'}}</span>
+                    </p>
                 </div>
                 <div class="look-detail-btn">
                     <a class="link" ng-click="goVoteDetail(detail.id)">

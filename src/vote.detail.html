@@ -22,13 +22,13 @@
         <div ng-controller="detail" class="warpper" ng-cloak>
             <app-back></app-back>
             <div class="poster">
-                <img ng-src="{{detail.coverPhoto}}" alt="">
+                <img ng-src="{{detail.prizePhoto}}" alt="">
             </div>
             <ul class="rule-list" ng-show="detail">
                 <li class="padd-cont">
                     <h2 class="tit">
                         <i class="icon"></i>
-                        <span>活动介绍</span>
+                        <span>活动主题</span>
                     </h2>
                     <div class="rule-cont">
                         <p>{{detail.actProfile}}</p>
@@ -90,6 +90,22 @@
                     </h2>
                     <div class="rule-cont">
                         <p ng-repeat="item in detail.voteRule">{{$index+1}}、{{item}}</p>
+                    </div>
+                </li>
+                <li class="padd-cont">
+                    <h2 class="tit">
+                        <i class="icon"></i>
+                        <span>联系客服</span>
+                    </h2>
+                    <div class="rule-cont">
+                        <p>
+                            <span>客服微信：</span>
+                            <span>{{detail.serviceWeixin || '无'}}</span>
+                        </p>
+                        <p>
+                            <span>客服电话：</span>
+                            <span>{{detail.servicePhone || '无'}}</span>
+                        </p>
                     </div>
                 </li>
             </ul>
