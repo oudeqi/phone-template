@@ -64,6 +64,9 @@
                                 </div>
                             </li>
                         </ul>
+                        <ul class="pic_list" ng-if="post.videoUrl">
+                        	<video autoplay ng-src="{{post.videoUrl}}"></video>
+                        </ul>
                     </div>
                     <div class="other">
                         <p class="l">
