@@ -72,6 +72,14 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
         $scope.reload = function(token){
             location.href = "./postdetail.circle.html?id="+$rootScope.worldId+"&token="+token;
         };
+        
+        $scope.videoUrl = function(url){  
+	       return $sce .trustAsResourceUrl(url);  
+	    }  
+	   
+//		$scope.videoH=null;
+//		$scope.videoW=null;
+		
 
         $scope.screenW = parseInt($window.innerWidth / 2);
         // console.log($window);
@@ -398,4 +406,11 @@ function rewardcb(){
 function getAngularService(name){
     var $injector = angular.element("body").injector();
     return $injector.get(name);
+}
+
+window.onload=function(){
+	var vid=document.getElementById("gogovd");
+	
+//	alert(vid.getAttribute("width"));
+//	alert(vid.getAttribute("height"));
 }

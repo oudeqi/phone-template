@@ -55,7 +55,7 @@
                         <div class="cont">
                             <span ng-class="{'topic':!!item.type}" ng-if="item.value" ng-click="topic(item,worldId)" ng-repeat="item in domArr">{{item.value}}</span>
                         </div>
-                        <ul class="pic_list">
+                        <ul class="pic_list" ng-if="!post.videoUrl">
                             <li ng-repeat="item in post.imgList">
                                 <div class="inner">
                                     <div class="pic" style="background-image:url({{item}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}});" ng-click="picViewer(post.imgList,$index)">
@@ -65,7 +65,15 @@
                             </li>
                         </ul>
                         <ul class="pic_list" ng-if="post.videoUrl">
-                        	<video autoplay ng-src="{{post.videoUrl}}"></video>
+                        	<!--<div style="max-width: 100%;">
+                        	<div style="max-width: 100%; position: absolute; display: block;">323</div>-->
+                        	<div style="position: relative;">
+                        		
+                        		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; height: 100%; width: 100%; background-image:url({{post.imgList[0]}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}}); background-size: cover;"></div>
+                        		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; left: calc(50% - 2.5rem); top: calc(50% - 2.5rem); width: 5rem; height: 5rem; background-image: url(img/icon-video.png); background-size: cover;"></div>
+                        		<video id="gogovd" style="max-width: 100%; visibility:hidden;" ng-src="{{videoUrl(post.videoUrl)}}"></video>
+                        	</div>
+                        	<!--</div>-->
                         </ul>
                     </div>
                     <div class="other">
