@@ -86,8 +86,8 @@ select {
   box-sizing: border-box;
   background-color: #bfbfbf;
   -webkit-transform: scale(0, 0.5);
-  -ms-transform: scale(0, 0.5);
-  transform: scale(0, 0.5);
+      -ms-transform: scale(0, 0.5);
+          transform: scale(0, 0.5);
 }
 
 .LINE_ONE {
@@ -128,27 +128,27 @@ select {
   height: .3rem;
   background-color: red;
   -webkit-animation: loading 1s ease infinite;
-  animation: loading 1s ease infinite;
+          animation: loading 1s ease infinite;
 }
 
 @-webkit-keyframes loading {
   from {
     -webkit-transform: translateX(-80%);
-    transform: translateX(-80%);
+            transform: translateX(-80%);
   }
   to {
     -webkit-transform: translateX(170%);
-    transform: translateX(170%);
+            transform: translateX(170%);
   }
 }
 
 @keyframes loading {
   from {
     -webkit-transform: translateX(-80%);
-    transform: translateX(-80%);
+            transform: translateX(-80%);
   }
   to {
     -webkit-transform: translateX(170%);
-    transform: translateX(170%);
+            transform: translateX(170%);
   }
 }

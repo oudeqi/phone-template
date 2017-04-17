@@ -207,7 +207,7 @@ app.controller("detail",["$scope","$http","APP_HOST","$rootScope","$sce",
             $http.get(APP_HOST + "/v1/invite/code/info?id="+$rootScope.id)
             .success(function(res){
                 console.log("获取comeinCode：",res);
-                location.href = "http://tpl.2tai.net/webreg-2.html?comeinCode="+res.data;
+                location.href = "http://tpl.2tai.net/webreg.html?comeinCode="+res.data;
             }).error(function(res){
 
             });
