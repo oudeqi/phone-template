@@ -13,7 +13,7 @@
 			<div class="head">
 				<img ng-src="{{post.headIconUrl}}" src="img/logo.jpg" class="headurl" alt="" />
 				<div class="head_name">{{post.nickName}}</div>
-				<div class="head_more">...</div>
+				<div class="head_more" ng-click="goDownload()">...</div>
 				<div class="head_time">{{post.timeStr}}</div>			
 			</div>
 			<div class="ct">{{post.content}}
@@ -85,7 +85,7 @@
                 </div>
                 <p class="desc">本地资讯 尽在2台</p>
                 <div class="btn_box">
-                    <button type="button" name="button" ng-click="callApp()">打开</button>
+                    <button type="button" name="button" ng-click="goDownload()">下载</button>
                 </div>
             </div>
         </div>
