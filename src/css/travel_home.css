@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 35px;
+}
+.oneline {
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.oneborder {
+	width: 92.3%;
+	margin: 0 auto;
+	height: 0;
+	border: 1px dashed #BFBFBF;
+	opacity: .5;
+}
+.onetime {
+	font-size: 1rem;
+	color: #848689;
+	width: 100%;
+	text-align: center;
+}
+
+.te1 {
+	width: 92.3%;
+	margin: 1rem auto;
+	background-color: #FFFFFF;
+	height: auto;
+	padding: .5rem 0 0 0;
+}
+.te2 {
+	width: 92.3%;
+	margin: 1rem auto;
+	background-color: #FFFFFF;
+	height: auto;
+	padding: 0 0 2rem 0;
+}
+
+
+.te1_title {
+	font-size: 1.29rem;
+	color: #2B333B;
+	letter-spacing: 0;
+	width: 90%;
+	margin: .5rem auto;
+}
+.te1_img {
+	width: 100%;
+	height: 12.14rem;
+	overflow: hidden;
+	position: relative;
+}
+.te1_img img {
+	width: 100%;
+}
+.te1_des {
+	width: 92.3%;
+	margin: .5rem auto;
+	color: #848689;
+	letter-spacing: 0;
+	line-height: 1.86rem;
+	font-size: 1rem;
+}
+.te1_more {
+	width: 92.3%;
+	margin: 0 auto;
+	height: 2.86rem;
+	color: #2B333B;
+	font-size: 1.14rem;
+	line-height: 2.86rem;
+}
+.te1_more_img {
+	float: right;
+	margin: .75rem 0 0 0;
+	width: .71rem;
+	height: 1.29rem;
+}
+/*模板2 */
+.te2_top {
+	position: absolute;
+	width: 100%;
+	height: 4.29rem;
+	background-color: #000000;
+	opacity: .7;
+	/*top: 0;*/
+	bottom: 0;
+	overflow: hidden;
+}
+.te2_toptitle {
+	font-size: 1.29rem;
+	color: #FFFFFF;
+	width: 90%;
+	margin: .4rem auto 0 auto;
+	letter-spacing: 0;
+}
+.te2_sub {
+	width: 92.3%;
+	margin: 0 auto;
+	height: 5.71rem;
+}
+.te2_sub_titlec {
+	height: 4.29rem;
+	float: left;
+	overflow: hidden;
+	width: 80%;
+	margin: calc((5.71rem - 4.29rem) / 2) 0 0 0;
+}
+.te2_sub_title {
+	margin: .4rem 0 0 0;
+	font-size: 1.14rem;
+	color: #2B333B;
+}
+.te2_sub_img {
+	width: 4.29rem;
+	height: 4.29rem;
+	margin: calc((5.71rem - 4.29rem) / 2) 0 0 0;
+	float: right;
+}
