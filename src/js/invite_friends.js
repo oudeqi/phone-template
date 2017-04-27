@@ -1,3 +1,5 @@
+/*2台 邀请好友*/
+/*chemingwei rain@myi.us */
 (function(win,doc){
     var docEl = document.documentElement,
         resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize',

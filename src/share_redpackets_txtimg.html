@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/share.css"/>
+</head>
+<body id="shareTxtImg">
+	<!--<div class="header">
+		<div class="navbtn back">
+				<a href="javascript:void(0);">
+					<span></span>
+				</a>
+			</div>
+		<div class="navtit">分享</div>
+		<div class="navbtn r">
+			<span>换一个</span>
+		</div>
+	</div>-->
+	
+	<div id="ad"></div>
+	<script type="text/html" id="ad_temp">
+		<div class="content">
+			<div class="row-01">
+				<div class="tit">
+					{{title}}
+				</div>
+			</div>
+			<div class="divide"></div>
+			<div class="row-02">
+				<div class="head_pic" style="background-image: url({{logo}});"></div>
+				<div class="addr">{{sellerName}}</div>
+				<div class="time">{{$timeFormart(createDate,"y-m-d hh:mm")}}</div>
+			</div>
+		</div>
+		<!--<div class="divide-01"></div>-->
+		<div class="content-02">
+			{{#content}}
+		</div>
+		<div class="ydl" id="exposureNumber">
+			阅读：{{readNumber}}
+		</div>
+		
+	</script>
+	
+	
+	<div id="total" class="total hide">
+		<div class="tit">
+			<span>总共</span>
+			<span class="digit">0</span>
+			<span>个赞，</span>
+			<span class="digit">0</span>
+			<span>条评论</span>
+		</div>
+	</div>
+	
+	
+	<div id="praise"></div>
+	<script type="text/html" id="praise_temp">
+		<div class="content_3">
+			<div class="headPic_list">
+				{{each data}}
+					<div class="item" style="background-image: url({{$value.userInfo.headIconUrl}});"></div>
+               	{{/each}}
+			</div>
+			<div class="divide-t"></div>
+		</div>
+	</script>
+	
+	
+	<div id="comment"></div>
+	<div class="placeholder-h"></div>
+	<script type="text/html" id="comment_temp1">
+		<div class="noComment">
+			<div class="tit_2">所有评论</div>
+			<div class="pic"></div>
+			<div class="txt">没有任何评论</div>
+			<button type="button" class="btn" onclick="goToComment();">抢沙发</button>
+		</div>
+	</script>
+	
+	<script type="text/html" id="comment_temp2">
+		<div class="comment_con">
+			<div class="tit">所有评论</div>
+			<div class="divide"></div>
+			<ul class="comment_list">
+				
+			</ul>
+			<div class="more hide" onclick="moreComment();">
+				查看更多
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/html" id="commentList_temp">
+		<li class="item">
+			<div class="l" style="background-image: url({{uHeadImg}});"></div>
+			<div class="r">
+				<div class="t">
+					<span>{{uName}}</span>
+					<span>{{$timeFormart(createDate,"y-m-d hh:mm")}}</span>
+				</div>
+				<div class="b">{{content}}</div>
+			</div>
+		</li>
+		<li class="divide"></li>
+	</script>
+
+	
+	<!--<div id="download">
+		<div class="close"></div>
+		<div class="logo"></div>
+		<div class="txt">
+			<p class="t">有 读</p>
+			<p class="b">发现身边的品质生活</p>
+		</div>
+		<div class="download"></div>
+	</div>-->
+	
+	<div id="download">
+		<div class="logo">
+			<div class="inner"></div>
+		</div>
+		<div class="txt">
+			2台-本地资讯 尽在2台
+		</div>
+		<div class="btngroup">
+			<button><a href="download_2.html">下 载</a></button>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hammer.min.js"></script>
+	<script type="text/javascript" src="js/public.js"></script>
+	<script type="text/javascript" src="js/artTemplate.js" ></script>
+	<script type="text/javascript" src="js/core.js"></script>
+	<script type="text/javascript" src="js/sha1.js"></script>
+	<script type="text/javascript" src="js/device.min.js"></script>
+	<script type="text/javascript">
+		
+		var platform = device.android()?1:device.ios()?2:3; //1 安卓 ，2ios，3其他
+		
+		//http://127.0.0.1:8020/youle/share_redpackets_txtImg.html?id=15
+	
+		var pageIndex = 1;
+		var id = getUrlParam("id");
+		
+		$("#download .close").hammer().bind("tap",function(){
+			$("#download").remove();
+		});
+		
+		$("#download .download").hammer().bind("tap",function(){
+			window.location.href = "download_2.html";
+		});
+		
+		template.helper('$timeFormart', function (timeStamp,format){
+			var data = new Date(timeStamp);
+			format = format.replace(/y/,(data.getFullYear()).toString());
+			var m = data.getMonth() + 1 < 10 ? "0"+(data.getMonth()+1) : data.getMonth() + 1;
+			var d = data.getDate() < 10 ? "0"+data.getDate() : data.getDate();
+			var hh = data.getHours() < 10 ? "0"+data.getHours() : data.getHours();
+			var mm = data.getMinutes() < 10 ? "0"+data.getMinutes() : data.getMinutes();
+			format = format.replace(/m/,m);
+			format = format.replace(/d/,d);
+			format = format.replace(/hh/,hh);
+			format = format.replace(/mm/,mm);
+	        return format;
+	    });
+
+		getAdDetal(id,function(err,res){
+			if(err){
+				toast(err);
+				console.error(err);
+				console.error(res);
+				return;
+			}
+			if(res.errMessage){
+				toast(res.errMessage);
+				console.info(res.errMessage);
+				console.info(res);
+				return;
+			}
+			console.info("获取广告成功");
+			console.info(res);
+			//渲染页面
+			var html = template('ad_temp', res.data);
+			document.getElementById('ad').innerHTML = html;
+			//自定义分享
+			shareAd(res.data);
+			
+		});
+		var dataForWeixin = {
+			signurl: location.href,
+			nonceStr: "x" + new Date().getTime(),
+			timestamp: new Date().getTime(),
+			imgUrl: "",
+			lineLink: shareHost + "/share_redpackets_txtImg.html?id=" + id,
+			descContent: '',
+			shareTitle: '',
+			appid: appid,
+			cbtrigger: function(res) {
+				dataForWeixin.nonceStr = "x" + new Date().getTime();
+			},
+			cbsuccess: function(res) {
+				;
+			},
+			cbcancel: function(res) {
+				;
+			},
+			cbfail: function(res) {
+				;
+			},
+			cbcomplete: function(res) {
+				;
+			}
+		};
+		
+		function shareAd(data){
+			dataForWeixin.imgUrl = data.shareImg;
+			dataForWeixin.descContent = data.introduction;
+			dataForWeixin.shareTitle = data.title;
+			
+			getTicket(function(res) {
+				//生成签名
+				var signature = "jsapi_ticket=" + res.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
+				console.log("signature");
+				console.log(signature);
+				signature = CryptoJS.SHA1(signature).toString();
+				console.log(signature);
+				//配置jssdk
+				wx.config({
+					debug: false,
+					appId: dataForWeixin.appid,
+					timestamp: dataForWeixin.timestamp,
+					nonceStr: dataForWeixin.nonceStr,
+					signature: signature,
+					jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
+				});
+				//接口调用错误处理
+				wx.error(function(res) {
+//					alert(res.errMsg);
+				});
+				wx.ready(function() {
+					//分享给好友
+					wx.onMenuShareAppMessage({
+						title: dataForWeixin.shareTitle,
+						desc: dataForWeixin.descContent,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+					//分享到朋友圈
+					wx.onMenuShareTimeline({
+						title: dataForWeixin.shareTitle,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+					//分享到qq
+					wx.onMenuShareQQ({
+						title: dataForWeixin.shareTitle,
+						desc: dataForWeixin.descContent,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						complete: function(res) {
+							dataForWeixin.cbcomplete(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+				});
+			});
+		}
+		
+		getPraise(id,function(err,res){
+			if(err){
+				toast(err);
+			}else{
+				//渲染页面
+				res.data.splice(18);
+				var praise = template('praise_temp', res);
+				document.getElementById('praise').innerHTML = praise;
+				$("#total").removeClass("hide");
+				$("#total span").eq(1).html(res.rowCount);
+			}
+		});
+		
+		moreComment();
+		
+		function goToComment(){
+			window.location.href = "download_2.html";
+		}
+
+		function moreComment(){
+			getComment(id,pageIndex,function(err,res){
+				if(err){
+					toast(err);
+				}else{
+					pageIndex ++;
+					//渲染页面
+					if(res.data.length == 0){
+						//没有评论
+						var cmt = template('comment_temp1',{});
+						document.getElementById('comment').innerHTML = cmt;
+					}else{
+						if($("#comment").has(".comment_con").length == 0){
+							var cmt = template('comment_temp2', res);
+							document.getElementById('comment').innerHTML = cmt;
+						}
+						for (var i=0; i<res.data.length; i++) {
+							var commentItem = template('commentList_temp', res.data[i]);
+							$("#comment .comment_list").append(commentItem);
+						}
+						if(res.pageCount > res.pageIndex){
+							$("#comment .more").removeClass("hide");
+						}else{
+							$("#comment .more").addClass("hide");
+						}
+					}
+					$("#total").removeClass("hide");
+					$("#total span").eq(3).html(res.rowCount);
+				}
+			});
+		}
+		
+		
+		function getComment(id,idx,callback){
+			//http://192.168.0.189:8080/YOULE/v1/common/comment?busType=1&busId=2
+			$.ajax({
+				type:"get",
+				contentType:"application/json",
+				url:IFaddr+"/v1/common/comment?busType=3&busId="+id+"&pageIndex="+idx+"&pageSize=10",
+				dataType:"json",
+				beforeSend: function(xhr, setting) {
+					
+				},
+				success:function(data,status,xhr){
+					if(data.errMessage){
+						console.info("获取评论失败");
+						callback(data.errMessage);
+					}else{
+						console.info("获取评论成功");
+						console.info(data);
+						callback("",data);
+					}
+				},
+				error:function(data,states,c){
+					console.error("获取评论失败");
+					callback("获取评论失败");
+				}
+			});
+		}
+
+		
+		function getAdDetal(id,callback){
+			//http://192.168.0.189:8080/YOULE/v1/ad/visitor/2684
+			$.ajax({
+				type:"get",
+				contentType:"application/json",
+				url:IFaddr+"/v1/rp/visitor/"+id+"?platform="+platform,
+				dataType:"json",
+				beforeSend: function(xhr, setting) {
+					
+				},
+				success:function(data,status,xhr){
+					callback("",data);
+				},
+				error:function(data,states,c){
+					callback("获取广告模板失败",data);
+				}
+			});
+		}
+		
+		function getPraise(id,callback){
+			//http://192.168.0.189:8080/YOULE/v1/common/follow?busType=1&busId=2&isFollow=0
+			$.ajax({
+				type:"get",
+				contentType:"application/json",
+				url:IFaddr+"/v1/common/follow?busType=1&busId="+id+"&isFollow=0",
+				dataType:"json",
+				beforeSend: function(xhr, setting) {
+					
+				},
+				success:function(data,status,xhr){
+					if(data.errMessage){
+						console.info("获取点赞失败");
+						callback(data.errMessage);
+					}else{
+						console.info("获取点赞成功");
+						console.info(data);
+						callback("",data);
+					}
+				},
+				error:function(data,states,c){
+					console.error("获取点赞失败");
+					callback("获取点赞失败");
+				}
+			});
+		}
+		
+		
+		
+		
+		
+		
+		
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,5 @@
-
+/*联联旅游 主页*/
+/*chemingwei rain@myi.us */
 var APP_HOST="https://api.2tai.com"
 var app=angular.module("app",[]);
 app.config(['$locationProvider',
