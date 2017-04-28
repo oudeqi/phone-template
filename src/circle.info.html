@@ -22,10 +22,10 @@
 			<img ng-if="!post.videoUrl" ng-repeat="cti in post.imgList" class="ctimg" ng-src="{{cti}}" alt="" />
 			
 			<ul class="pic_list" style="padding: 0; width: 90%; margin: 0 auto;" ng-if="post.videoUrl">
-			<div style="position: relative; width: 100%;">                        		
+			<div style="position: relative; width: 100%; height: 12rem;">                        		
         		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; height: 100%; width: 100%; background-image:url({{post.imgList[0]}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}}); background-size: cover;"></div>
         		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; left: calc(50% - 2.5rem); top: calc(50% - 2.5rem); width: 5rem; height: 5rem; background-image: url(img/icon-video.png); background-size: cover;"></div>
-        		<video id="gogovd" style="max-width: 100%; visibility:hidden;" ng-src="{{videoUrl(post.videoUrl)}}"></video>
+        		<video id="gogovd" style="display: none;" ng-src="{{videoUrl(post.videoUrl)}}"></video>
         	</div>
         	</ul>
 			
@@ -41,19 +41,27 @@
 				<div class="read_num">阅读量 {{post.userReadNumbers}}</div>
 				<img class="read_img" src="./img/icon-more.png" alt="" />
 			</div>
+			<div class="tools" ng-show="toolsShow">
+				<div class="toolstop">
+						<span>分享</span>
+						<span>打赏</span>
+						<span>举报</span>
+						<span>点赞</span>
+					</div>
+			</div>
 			
-			<div class="cklike" ng-if="post.likeUserList">
+			<div ng-click="toolsClose()" class="cklike" ng-if="post.likeUserList">
 			<div class="likeck" ng-repeat="kk in post.likeUserList">{{kk.nickName}}、</div>
 			<!--<div class="likeck">AIOOOO、</div>-->
 			<div class="likeck">等{{post.likeUserList.length}}人觉得很赞</div>
 			</div>
 			
-			<div class="reward" ng-if="post.rewardList">
+			<div ng-click="toolsClose()" class="reward" ng-if="post.rewardList">
 				<img ng-repeat="x in post.rewardList" class="reward-pic" ng-src="{{x.headIconUrl}}" alt="" />
 				<div class="likeck">{{post.rewardList.length}}人打赏</div>
 			</div>
 			
-			<div class="commit" ng-repeat="go in post.commentList">
+			<div ng-click="toolsClose()" class="commit" ng-repeat="go in post.commentList">
 				<span class="likeck">{{go.uName}}：</span>
 				<span>{{go.content}}</span>
 			</div>

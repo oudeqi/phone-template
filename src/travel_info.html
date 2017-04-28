@@ -10,6 +10,7 @@
 		
 	</head>
 	<body ng-app="app" ng-controller="appct" ng-cloak>
+		<div class="loadingtitle" ng-style="loadingtitlestyle">{{loadingtitletxt}}</div>
 		<div class="title" ng-bind="detail.title"></div>
 		<div class="subtitle">/ {{detail.sellerName}} / {{detail.createDate | date:"MM-dd HH:mm"}}</div>
 		<!--<div class="content">再也没有连WiFi需要输入繁琐密码的困扰! 只需要在手机上打开无线局域网设置页面,待kisslink的指示灯环境变成蓝色后,手机靠近kisslink认证面板即可成功上网!</div>-->
@@ -46,14 +47,18 @@
 			<span ng-click="openComment(1)">写评论</span>
 			<img ng-click="goShare()" class="bom1" src="img/cmw/cmw_share.png" alt="" />
 			<span class="bom3" ng-bind="rowCount"></span>
-			<img class="bom2" src="img/cmw/icon-comment.png" alt="" />
+			<img ng-click="goCmmentPage()" class="bom2" src="img/cmw/icon-comment.png" alt="" />
 			
 		</div>
 		
-		<div ng-show="commentShow">
+		<div style="position: relative;" ng-show="commentShow">
+			
 		<div ng-click="openComment(2)" style="height: 100%; width: 100%; background-color: #000000; opacity: .5; position: fixed; top: 0;"></div>
 		<div class="inbt">
-			<textarea ng-style="checkPic1" class="inbttext" placeholder="评论" name=""></textarea>
+			<div class="loading" ng-show="loading">
+            <img ng-src="./img/loading.gif" alt="" />
+        	</div>
+			<textarea ng-style="checkPic1" ng-model="ctContent" class="inbttext" placeholder="评论" name=""></textarea>
 			<div ng-show="checkPic" class="inbtimgd" ng-click="delpic()"><img class="inbtimg2" src="img/lottery_close.png" alt="" /><img align="center" id="gogo" class="inbtimg1" ng-src="{{gogogo}}" src="img/add-pic.png" alt="" /></div>
 			<label for="cac">
 			<img class="inbt2" src="img/cmw/icon-camera.png" alt="" />
@@ -61,11 +66,11 @@
 			<label for="caa">
 			<img class="inbt1" src="img/cmw/icon-image.png" alt="" />
 			</label>
-			<button ng-style="checkPic2" class="inbt3" ng-click="ctlog()">评论</button>
+			<button ng-style="checkPic2" class="inbt3" ng-click="goComment()">评论</button>
 			
 		</div>
-		<input  id="cac" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*" capture="camera">
-		<input  id="caa" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*">
+		<input style="display: none;" id="cac" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*" capture="camera">
+		<input style="display: none;" id="caa" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*">
 		</div>
 		
 		

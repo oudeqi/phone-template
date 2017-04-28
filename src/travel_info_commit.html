@@ -14,13 +14,14 @@
         <link rel="stylesheet" href="/css/base.css"/>
         <link rel="stylesheet" href="/css/travel_info_commit.css">
 	</head>
-	<body>
-		<div ng-app="app_travel_info_commit" ng-controller="ctl_travel_info_commit" ng-cloak>
-			<div class="title">
-				不受累不挨冻就能看日出云海，晚上还能有汽车营地住！
+	<body onscroll="hidetools()">
+		<div style="padding-bottom: 5rem;" ng-app="app_travel_info_commit" ng-controller="ctl_travel_info_commit" ng-cloak>
+			<div class="loadingtitle" ng-style="loadingtitlestyle">{{loadingtitletxt}}</div>
+			<div class="title" ng-click="closeTools()">
+				{{title}}
 			</div>
-			<div class="subtitle">
-				/ 南宁日报 / 06-31 20:11
+			<div ng-click="closeTools()" class="subtitle">
+				/ {{sellerName}} / {{createDate | date:"MM-dd HH:mm"}}
 			</div>
 			<div class="LINE" style="margin: 0 auto 1rem auto;"></div>
 			
@@ -30,23 +31,49 @@
 				<div class="no_commit_btn">抢沙发</div>
 			</div>
 			
-			<div>
+			<!--<div class="tools" ng-style="toolsShowStyle" ng-show="toolsShow">
+				<div class="toolstop">
+					<span ng-click="likeComment()">点赞</span>
+					<span>回复</span>
+					<span>举报</span>
+					<span>复制</span>
+				</div>
+				<div class="toolsbottom">
+					<img src="img/cmw/icon-bottom.png" alt="" />
+				</div>
+			</div>-->
+			
+			<div style="margin-bottom: 1rem;" ng-repeat="x in commentList">
+				<div class="tools" ng-show="x.showtools">
+					<div class="toolstop">
+						<span ng-click="likeComment(x)">点赞</span>
+						<span ng-click="openComment1(1,x)">回复</span>
+						<span ng-click="report(x)">举报</span>
+						<span ng-click="copyTxt()">复制</span>
+					</div>
+					<div class="toolsbottom">
+						<img src="img/cmw/icon-bottom.png" alt="" />
+					</div>
+				</div>
+				
 				<div class="c_left">
-					<img src="img/goods_view.png" alt="" />
+					<img ng-src="{{x.uHeadImg}}" src="img/goods_view.png" alt="" />
 				</div>
 				<div class="c_right">
 					<div class="c_right_name">
-						<span>那年我们彼此陌生</span>
+						<span>{{x.uName}}</span>
 						
-						<img src="img/cmw/icon-good-active.png" alt="" />
-						<span style="float: right;">131</span>
+						<img ng-show="!!x.isLike" src="img/cmw/icon-good-active.png" alt="" />
+						<img ng-click="likeComment(x)" ng-show="!x.isLike" src="img/cmw/icon-good.png" alt="" />
+						<span style="float: right;">{{x.likesNumber}}</span>
 					</div>
-					<div class="c_right_where">成都网友 1小时前</div>
-					<div class="c_right_ct">韩国人太敏感了吧，是不是个个都患有恐惧症？好好笑……</div>
-					<img class="c_right_ct" style="width: 40%;" src="img/add-pic.png" alt="" />
-					
-					<div class="all_cmt">
-						<div class="cmt" ng-repeat="x in [0,1,2,3,4,5,6]">
+					<!--<div class="c_right_where">成都网友 1小时前</div>-->
+					<div ng-click="toggleTools($event,x)" class="c_right_ct">{{x.content}}</div>
+					<div ng-click="closeTools()">
+					<img ng-show="x.imgList[0]" ng-click="picViewer(x.imgList[0])" ng-repeat="xx in x.imgList" class="c_right_ct" style="width: 40%;" ng-src="{{xx}}" src="img/add-pic.png" alt="" />
+					</div>
+					<div class="all_cmt" ng-click="closeTools()" ng-show="x.sumComment[0]">
+						<div class="cmt" ng-repeat="xb in x.sumComment">
 							<div class="cmt_name">某某:</div>
 							<div class="cmt_ct">写的太好了写的太好了写的太好了写的太好了写的太好了写的太好了</div>
 						</div>
@@ -59,13 +86,65 @@
 				</div>
 			</div>
 			
+			<div ng-show="ldmoreShow" ng-click="getComment()" class="ldmore">
+				{{ldmoreShowTxt}}
+			</div>
+			
+			<div class="bottom_cmt">
+			<img ng-click="openComment(1)" class="bottom_img1" src="img/cmw/write_commit.png"/>
+			<span ng-click="openComment(1)">写评论</span>
+			<img ng-click="goShare()" class="bom1" src="img/cmw/cmw_share.png" alt="" />
+			<span ng-click="goHome()" class="bom3">正文</span>
+			<img ng-click="goHome()" class="bom2" src="img/cmw/icon-caida.png" alt="" />
+			
+			</div>
 			
 			
+			<div style="position: relative;" ng-show="commentShow">
+				
+			<div ng-click="openComment(2)" style="height: 100%; width: 100%; background-color: #000000; opacity: .5; position: fixed; top: 0;"></div>
+			<div class="inbt">
+				<div class="loading" ng-show="loading">
+	            <img ng-src="./img/loading.gif" alt="" />
+	        	</div>
+				<textarea ng-style="checkPic1" ng-model="ctContent" class="inbttext" placeholder="评论" name=""></textarea>
+				<div ng-show="checkPic" class="inbtimgd" ng-click="delpic()"><img class="inbtimg2" src="img/lottery_close.png" alt="" /><img align="center" id="gogo" class="inbtimg1" ng-src="{{gogogo}}" src="img/add-pic.png" alt="" /></div>
+				<label for="cac">
+				<img class="inbt2" src="img/cmw/icon-camera.png" alt="" />
+				</label>
+				<label for="caa">
+				<img class="inbt1" src="img/cmw/icon-image.png" alt="" />
+				</label>
+				<button ng-style="checkPic2" class="inbt3" ng-click="goComment()">评论</button>
+				
+			</div>
+			<input style="display: none;" id="cac" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*" capture="camera">
+			<input style="display: none;" id="caa" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*">
+			</div>
+			
+			
+			<!--回复评论的评论-->
+			<div style="position: relative;" ng-show="cmtcmtshow">
+				
+			<div ng-click="openComment1(2,null)" style="height: 100%; width: 100%; background-color: #000000; opacity: .5; position: fixed; top: 0;"></div>
+			<div class="inbt">
+				<div class="loading" ng-show="loading1">
+	            <img ng-src="./img/loading.gif" alt="" />
+	        	</div>
+				<textarea id="otid" ng-style="checkPic1" style="width: 92.8%;" ng-model="ctContent1" class="inbttext" name=""></textarea>
+				<button ng-style="checkPic2" class="inbt3" ng-click="goComment1()">评论</button>
+				
+			</div>
+			</div>
 			
 			
 			
 		</div>
 	</body>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script type="text/javascript" src="./js/angular.min.js"></script>
+	<script type="text/javascript" src="./js/core.js"></script>
+	<script type="text/javascript" src="./js/sha1.js"></script>
+	
 	<script src="js/travel_info_commit.js" type="text/javascript" charset="utf-8"></script>
 </html>

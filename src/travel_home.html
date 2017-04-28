@@ -11,39 +11,51 @@
 		
 	</head>
 	<body style="background-color: #EBEBEB;">
-		<div style="background-color: #EBEBEB;" ng-app="app" ng-controller="appct" ng-cloak>
+		<div style="background-color: #EBEBEB;" ng-app="app" ng-controller="appct" class="warpper" ng-cloak>
+			
+				
+			<div ng-repeat="x in gd">
 			<!--模板1-->
-			<div class="onetime">2017/12/12 20:32</div>
-			<div class="te1">
-				<div class="te1_title">不受累不挨冻就能看日出云海，晚上还能有汽车营地住！</div>
+			<div ng-if="x.list.length<2?true:false">
+			<div class="onetime">{{x.pushTime | date:"yyyy/MM/dd HH:mm"}}</div>
+			<div ng-click="goInfo(x.list[0])" class="te1" style="margin: 0 auto 1rem auto;">
+				<div class="te1_title">{{x.list[0].title}}</div>
 				<div class="te1_img">
-				<img align="center" src="img/banner.jpg" alt="" />
+				<img align="center" ng-src="{{x.list[0].previewUrl}}" src="img/banner.jpg" alt="" />
 				</div>
-				<div class="te1_des oneline">春暖花开、阳光明媚的季节，好多人问哪里好耍，春暖花开、阳光明媚的季节，好多人问哪里好耍</div>
+				<div class="te1_des oneline">{{x.list[0].introduce}}</div>
 				<div class="oneborder"></div>
 				<div class="te1_more">查看资讯详情 <img class="te1_more_img" src="img/icon-details.png" alt="" /></div>
 			</div>
+			</div>
 			
 			<!--模板2-->
-			<div class="onetime">2017/12/12 20:32</div>
-			<div style="margin: 1rem auto 0 auto;" class="te2">
+			<div ng-if="x.list.length>1?true:false">
+			<div class="onetime">{{x.pushTime | date:"yyyy/MM/dd HH:mm"}}</div>
+			<div ng-click="goInfo(x.list[0])" style="margin: 0 auto 1rem auto;" class="te2">
 				<div class="te1_img">
-					<img align="center" src="img/banner.jpg" alt="" />
+					<img align="center" ng-src="{{x.list[0].previewUrl}}" src="img/banner.jpg" alt="" />
 					
 					<div class="te2_top">
-						<div class="te2_toptitle">不受累不挨冻就能看日出云海，晚上还能有汽车营地住！</div>
+						<div class="te2_toptitle">{{x.list[0].title}}</div>
 					</div>
 				</div>
 				
-				<div class="te2_sub" ng-repeat="x in [0,1,2,3,4]">
+				<div ng-click="goInfo(bk)" class="te2_sub" ng-repeat="(key,bk) in x.list" ng-if="key>0">
+					<!--{{key}}-->
 					<div class="te2_sub_titlec">
-					<div class="te2_sub_title">辛夷花海中拍汉服大片，据说开成这样的5年才一遇</div>
+					<div class="te2_sub_title">{{bk.title}}</div>
 					</div>
-					<img class="te2_sub_img" src="img/goods_view.png" alt="" />
+					<img class="te2_sub_img" ng-src="{{bk.previewUrl}}" src="img/goods_view.png" alt="" />
 					<div class="oneborder" style="width: 100%; float: right; margin: 1rem 0 0 0;"></div>
 				</div>
 			</div>
+			</div>
 			
+			
+			</div>
+			
+			<div class="ldmore">{{ldtitle}}</div>
 		
 			
 		</div>

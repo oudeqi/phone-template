@@ -41,8 +41,8 @@ app.factory("device",["$window",function($window){
     };
 }]);
 
-app.controller("appct",["$scope","$http","$rootScope","$sce",
-	function($scope,$http,$rootScope,$sce){
+app.controller("appct",["$scope","$http","$rootScope","$sce","$timeout",
+	function($scope,$http,$rootScope,$sce,$timeout){
 			var dataForWeixin = {
 			signurl: location.href,
 			nonceStr: "2tai" + new Date().getTime(),
@@ -60,7 +60,26 @@ app.controller("appct",["$scope","$http","$rootScope","$sce",
 			cbfail: function(res) {},
 			cbcomplete: function(res) {}
 		};
-		
+			$scope.loading=false;
+			$scope.goload=function(txth){
+				$scope.loadingtitletxt=txth;
+				$scope.loadingtitlestyle={
+				"top":"0.5rem",
+				}
+				var _this=$scope.loadingtitlestyle;
+				$timeout(function(){
+					$scope.loadingtitlestyle={
+						"top":"-5rem",
+					}
+				},2500)
+//				setTimeout(function(){
+//					$scope.loadingtitlestyle={
+//						"top":"-5rem",
+//					}
+//				},3000)
+				
+			}
+			
 			$scope.manx={
 				"height":"6.1rem",
 			}
@@ -149,6 +168,7 @@ app.controller("appct",["$scope","$http","$rootScope","$sce",
                 reader.readAsDataURL(file);
                 reader.onload=function(e){
                 	$scope.gogogo=e.target.result;
+//              	console.log($scope.gogogo)
                 	$scope.checkPic=true;
                 	$scope.checkPic1={
 						"width":"calc(92.8% - 6rem)"
@@ -187,6 +207,16 @@ app.controller("appct",["$scope","$http","$rootScope","$sce",
        $scope.busId=$rootScope.id;
        
        $scope.goComment=function(){
+       	$scope.loading=true;
+       	if($scope.gogogo){
+       		$scope.ctImg=$scope.gogogo.split(",")[1]
+       	}
+       	if($scope.ctContent){}else{
+       		$scope.goload("请输入评论内容");
+       		$scope.loading=false;
+       		return;
+       	}
+       	
        	$http.post(APP_HOST+"/v1/aut/common/comment",{
        		busType:30,
        		busId:$scope.busId,
@@ -195,15 +225,48 @@ app.controller("appct",["$scope","$http","$rootScope","$sce",
        		imgBase64List:[$scope.ctImg]
        	},{
        		headers:{
-      				'Authorization': $rootScope.token
-      			}
+  				'Authorization': $rootScope.token
+  			}
        	}).success(function(data){
-       		
+       		if(data.errMessage){$scope.goload(data.errMessage);}else{
+       			$scope.ctContent=null;
+       			$scope.ctImg=null;
+				$scope.goload("成功评论");
+				$scope.delpic();
+				$scope.openComment(2);
+       		}
+     			
+       		$scope.loading=false;
+       		console.log("评论成功:",data)
        	}).error(function(data){
-       		
+       		$scope.loading=false;
+       		$scope.goload("网络错误");
        	})
        }
-            
+       
+//     window.onload=function(){
+//     	
+//     }
+       
+//     document.querySelectorAll("iframe")[0].contentWindow.document.getElementsByTagName("video")[0].pause();
+       
+//       var iframeArr = document.querySelectorAll("iframe")[0];
+//       var k=iframeArr.contentDocument;
+//       k.getElementsByTagName("video")[0].pause();
+         
+//      var tplDom = document.querySelector(".tpl_content");
+//      var style = window.getComputedStyle ? window.getComputedStyle(tplDom,null) : null || tplDom.currentStyle;
+//      var w = style.width;
+//      for (var i = 0; i < iframeArr.length; i++) {
+//          iframeArr[i].width = w;
+//          iframeArr[i].height = parseInt(w)*258/345+"px";
+//          // console.log(iframeArr[i].contentWindow.document.querySelector("video"));
+//      }
+//      document.getElementsByTagName("video")[0].pause();
+        /*去评论*/
+       $scope.goCmmentPage=function(){
+       	 location.href="./travel_info_commit.html?id="+$rootScope.id+"&token="+$rootScope.token+"&title="+$scope.detail.title+"&sellerName="+$scope.detail.sellerName+"&createDate="+$scope.detail.createDate; 
+       }
             
         /*获取详情*/
         $http.get(APP_HOST + "/v1/info/visitor/"+$rootScope.id,{
@@ -360,10 +423,10 @@ app.controller("appct",["$scope","$http","$rootScope","$sce",
 
 		/*share*/
 		$scope.goShare=function(){
-				var n1="邀请您加入「2台」了解本地资讯，分享快乐生活";
-                var n2="Hi,我向您砸了1000U币，快来下载2台APP，了解本地资讯，优惠购买地方特产，赶快领取吧！";
-                var n3="http://tpl.2tai.net/img/logo.jpg";
-				var n4="http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai"
+				var n1=$scope.detail.title;
+                var n2=$scope.detail.introduction;
+                var n3=$scope.detail.shareImg;
+				var n4="https://tpl.2tai.com/travel_info_share.html?id="+$scope.detail.id;
                if(typeof h5=="object"){
                     h5.showNativeShareDialog(n1,n2,n3,n4)
                 } 

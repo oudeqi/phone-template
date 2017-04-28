@@ -123,6 +123,20 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
             
         }).error(function(data){});
         
+        $scope.toolsShow=false;
+        $scope.toolsOpen=function(){
+        	$scope.toolsShow=true;
+        }
+        $scope.toolsClose=function(){
+        	$scope.toolsShow=false;
+        }
+        $scope.toolsToggle=function(){
+        	if($scope.toolsShow){
+        		$scope.toolsShow=false;
+        	}else{
+        		$scope.toolsShow=true;
+        	}
+        }
         
         /*评论文章*/
         $scope.postComment = function(){
