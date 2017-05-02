@@ -64,6 +64,27 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
     function($scope,$rootScope,APP_HOST,$http,$timeout,$sce,$window,$compile){
 
         $scope.screenW = parseInt($window.innerWidth / 2);
+        
+         var dataForWeixin = {
+			signurl: location.href,
+			nonceStr: "2tai" + new Date().getTime(),
+			timestamp: new Date().getTime(),
+			imgUrl: "",
+            // lineLink: "http://tpl.2tai.net/art.multpic.share.html?id=" + $rootScope.id,
+            lineLink: location.href,
+			descContent: "",
+			shareTitle: "",
+			appid: "wx7c0b913b4c5452ad",
+			cbtrigger: function(res) {
+				dataForWeixin.nonceStr = "x" + new Date().getTime();
+			},
+			cbsuccess: function(res) {},
+			cbcancel: function(res) {},
+			cbfail: function(res) {},
+			cbcomplete: function(res) {}
+		};
+        
+        
         // console.log($window);
         //http://192.168.10.96:3000/postdetail.circle.html?id=w17031400000006&token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2Jhc2VfaWQiOiIxMDAwNXwxNDc5MzgxNTgzODE4In0.NM3HBAxhpJgjh8WXvDpz8qO599olClzMFdDis7hh4r0
         $scope.post = null;
@@ -72,6 +93,9 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
                 worldId:$rootScope.worldId,
             }
         }).success(function(data){
+        	dataForWeixin.imgUrl = data.data.imgList[0];
+            dataForWeixin.descContent = data.data.content;
+            dataForWeixin.shareTitle = data.data.nickName;
             console.log("获取详情");
             console.log(data);
             data.data.clicked = false;
@@ -310,6 +334,90 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
 
             });
         };
+        
+        //获取 Ticket
+            $http.get(APP_HOST + "/v1/wx/token")
+            .success(function(res){
+                console.log("获取Ticket：",res);
+                var signature = "jsapi_ticket=" + res.data.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
+                // console.log(signature);
+                signature = CryptoJS.SHA1(signature).toString();
+                wx.config({
+    				debug: false,
+    				appId: dataForWeixin.appid,
+    				timestamp: dataForWeixin.timestamp,
+    				nonceStr: dataForWeixin.nonceStr,
+    				signature: signature,
+    				jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
+    			});
+                // wx.error(function(res) {});
+                wx.ready(function(e) {
+        			//分享给好友
+        			wx.onMenuShareAppMessage({
+        				title: dataForWeixin.shareTitle,
+        				desc: dataForWeixin.descContent,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        			//分享到朋友圈
+        			wx.onMenuShareTimeline({
+        				title: dataForWeixin.shareTitle,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        			//分享到qq
+        			wx.onMenuShareQQ({
+        				title: dataForWeixin.shareTitle,
+        				desc: dataForWeixin.descContent,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				complete: function(res) {
+        					dataForWeixin.cbcomplete(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        		});
+            }).error(function(res){
+
+            });
+        
+        
+        
 
     }
 ]);
