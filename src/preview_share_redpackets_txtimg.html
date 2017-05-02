@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/share.css"/>
+</head>
+<body id="shareTxtImg">
+	<!--<div class="header">
+		<div class="navbtn back">
+				<a href="javascript:void(0);">
+					<span></span>
+				</a>
+			</div>
+		<div class="navtit">分享</div>
+		<div class="navbtn r">
+			<span>换一个</span>
+		</div>
+	</div>-->
+	
+	<div id="ad"></div>
+	<script type="text/html" id="ad_temp">
+		<div class="content">
+			<div class="row-01">
+				<div class="tit">
+					{{title}}
+				</div>
+			</div>
+			<div class="divide"></div>
+			<div class="row-02">
+				<div class="head_pic" style="background-image: url({{logo}});"></div>
+				<div class="addr">{{sellerName}}</div>
+				<div class="time">{{$timeFormart(createDate,"y-m-d hh:mm")}}</div>
+			</div>
+		</div>
+		<!--<div class="divide-01"></div>-->
+		<div class="content-02">
+			{{#content}}
+		</div>
+		<div class="ydl" id="exposureNumber">
+			阅读：{{readNumber}}
+		</div>
+		
+	</script>
+
+
+	
+	<div id="download">
+		<div class="close"></div>
+		<div class="logo"></div>
+		<div class="txt">
+			<p class="t">2 台</p>
+			<p class="b">发现身边的品质生活</p>
+		</div>
+		<div class="download"></div>
+	</div>
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hammer.min.js"></script>
+	<script type="text/javascript" src="js/public.js"></script>
+	<script type="text/javascript" src="js/artTemplate.js" ></script>
+	<script type="text/javascript" src="js/core1.js"></script>
+	<script type="text/javascript" src="js/sha1.js"></script>
+	<script type="text/javascript">
+	
+	//http://127.0.0.1:8020/youle/share_redpackets_txtImg.html?id=15
+
+		var id = getUrlParam("id");
+		
+		$("#download .close").hammer().bind("tap",function(){
+			$("#download").remove();
+		});
+		
+		template.helper('$timeFormart', function (timeStamp,format){
+			var data = new Date(timeStamp);
+			format = format.replace(/y/,(data.getFullYear()).toString());
+			var m = data.getMonth() + 1 < 10 ? "0"+(data.getMonth()+1) : data.getMonth() + 1;
+			var d = data.getDate() < 10 ? "0"+data.getDate() : data.getDate();
+			var hh = data.getHours() < 10 ? "0"+data.getHours() : data.getHours();
+			var mm = data.getMinutes() < 10 ? "0"+data.getMinutes() : data.getMinutes();
+			format = format.replace(/m/,m);
+			format = format.replace(/d/,d);
+			format = format.replace(/hh/,hh);
+			format = format.replace(/mm/,mm);
+	        return format;
+	    });
+
+		getAdDetal(id,function(err,res){
+			if(err){
+				toast(err);
+				console.error(err);
+				console.error(res);
+				return;
+			}
+			if(res.errMessage){
+				toast(res.errMessage);
+				console.info(res.errMessage);
+				console.info(res);
+				return;
+			}
+			console.info("获取广告成功");
+			console.info(res);
+			//渲染页面
+			var html = template('ad_temp', res.data);
+			document.getElementById('ad').innerHTML = html;
+			//自定义分享
+			shareAd(res.data);
+			
+		});
+		var dataForWeixin = {
+			signurl: location.href,
+			nonceStr: "x" + new Date().getTime(),
+			timestamp: new Date().getTime(),
+			imgUrl: "",
+			lineLink: shareHost + "/share_redpackets_txtImg.html?id=" + id,
+			descContent: '',
+			shareTitle: '',
+			appid: appid,
+			cbtrigger: function(res) {
+				dataForWeixin.nonceStr = "x" + new Date().getTime();
+			},
+			cbsuccess: function(res) {
+				;
+			},
+			cbcancel: function(res) {
+				;
+			},
+			cbfail: function(res) {
+				;
+			},
+			cbcomplete: function(res) {
+				;
+			}
+		};
+		
+		function shareAd(data){
+			dataForWeixin.imgUrl = data.shareImg;
+			dataForWeixin.descContent = data.introduction;
+			dataForWeixin.shareTitle = data.title;
+			
+			getTicket(function(res) {
+				//生成签名
+				var signature = "jsapi_ticket=" + res.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
+				console.log("signature");
+				console.log(signature);
+				signature = CryptoJS.SHA1(signature).toString();
+				console.log(signature);
+				//配置jssdk
+				wx.config({
+					debug: false,
+					appId: dataForWeixin.appid,
+					timestamp: dataForWeixin.timestamp,
+					nonceStr: dataForWeixin.nonceStr,
+					signature: signature,
+					jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
+				});
+				//接口调用错误处理
+				wx.error(function(res) {
+//					alert(res.errMsg);
+				});
+				wx.ready(function() {
+					//分享给好友
+					wx.onMenuShareAppMessage({
+						title: dataForWeixin.shareTitle,
+						desc: dataForWeixin.descContent,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+					//分享到朋友圈
+					wx.onMenuShareTimeline({
+						title: dataForWeixin.shareTitle,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+					//分享到qq
+					wx.onMenuShareQQ({
+						title: dataForWeixin.shareTitle,
+						desc: dataForWeixin.descContent,
+						link: dataForWeixin.lineLink,
+						imgUrl: dataForWeixin.imgUrl,
+						trigger: function(res) {
+							dataForWeixin.cbtrigger(res);
+						},
+						complete: function(res) {
+							dataForWeixin.cbcomplete(res);
+						},
+						success: function(res) {
+							dataForWeixin.cbsuccess(res);
+						},
+						cancel: function(res) {
+							dataForWeixin.cbcancel(res);
+						},
+						fail: function(res) {
+							dataForWeixin.cbfail(res);
+						}
+					});
+				});
+			});
+		}
+
+		function getAdDetal(id,callback){
+			//http://192.168.0.189:8080/YOULE/v1/ad/visitor/2684
+			$.ajax({
+				type:"get",
+				contentType:"application/json",
+				url:IFaddr+"/v1/rp/visitor/"+id,
+				dataType:"json",
+				beforeSend: function(xhr, setting) {
+					
+				},
+				success:function(data,status,xhr){
+					callback("",data);
+				},
+				error:function(data,states,c){
+					callback("获取广告模板失败",data);
+				}
+			});
+		}
+		
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

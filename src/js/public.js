@@ -5,7 +5,7 @@
 var IFaddr = "http://101.200.129.132";
 // var IFaddr = "https://api.2tai.com";
 // var shareHost = "http://fx.2tai.net/";
-var shareHost = "http://fx.2tai.net";
+var shareHost = "http://tpl.2tai.net";
 // var appid= "wx518839c486443ce1";
 var appid= "wx7c0b913b4c5452ad";
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/travel_info.css"/>
+		<script src="./js/adapt1.js"></script>
+		
+	</head>
+	<body ng-app="app" ng-controller="appct" ng-cloak>
+		<div class="loadingtitle" ng-style="loadingtitlestyle">{{loadingtitletxt}}</div>
+		<div class="title" ng-bind="detail.title"></div>
+		<div class="subtitle">/ {{detail.sellerName}} / {{detail.createDate | date:"MM-dd HH:mm"}}</div>
+		<!--<div class="content">再也没有连WiFi需要输入繁琐密码的困扰! 只需要在手机上打开无线局域网设置页面,待kisslink的指示灯环境变成蓝色后,手机靠近kisslink认证面板即可成功上网!</div>-->
+		
+		<div class="content">
+                <div class="tpl_content" ng-bind-html="tpl"></div>
+		</div>
+		<!--<div>
+			<div class="reward">
+				赏
+			</div>
+		</div>-->
+		<!--<div class="reward_title">点赞是美意，打赏是鼓励！</div>-->
+		<!--<div class="reward_man">16人打赏</div>-->
+		<!--<div class="reward_cv">-->
+			<!--<img ng-repeat="x in [0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18]" src="img/browser.png" alt="" class="reward_cvimg" />-->
+		<!--</div>-->
+		
+		<div class="reward_like">
+			<img src="img/icon-goods-before.png" alt="" />
+			{{liket.rowCount}}人赞
+		</div>
+		
+		<div class="reward_manx" ng-style="manx">
+			<span ng-repeat="x in praise" class="reward_man_sp">{{x.nickName}}、</span>
+		</div>
+		
+		<div ng-click="loadLike()" style="text-align: center; margin-bottom: 6rem;">
+			<img class="reward_more" ng-style="reward_more" src="img/icon-details.png" alt="" />
+		</div>
+		
+		<div class="bottom_cmt">
+			<img ng-click="openComment(1)" class="bottom_img1" src="img/cmw/write_commit.png"/>
+			<span ng-click="openComment(1)">写评论</span>
+			<img ng-click="goShare()" class="bom1" src="img/cmw/cmw_share.png" alt="" />
+			<span class="bom3" ng-bind="rowCount"></span>
+			<img ng-click="goCmmentPage()" class="bom2" src="img/cmw/icon-comment.png" alt="" />
+			
+		</div>
+		
+		<div style="position: relative;" ng-show="commentShow">
+			
+		<div ng-click="openComment(2)" style="height: 100%; width: 100%; background-color: #000000; opacity: .5; position: fixed; top: 0;"></div>
+		<div class="inbt">
+			<div class="loading" ng-show="loading">
+            <img ng-src="./img/loading.gif" alt="" />
+        	</div>
+			<textarea ng-style="checkPic1" ng-model="ctContent" class="inbttext" placeholder="评论" name=""></textarea>
+			<div ng-show="checkPic" class="inbtimgd" ng-click="delpic()"><img class="inbtimg2" src="img/lottery_close.png" alt="" /><img align="center" id="gogo" class="inbtimg1" ng-src="{{gogogo}}" src="img/add-pic.png" alt="" /></div>
+			<label for="cac">
+			<img class="inbt2" src="img/cmw/icon-camera.png" alt="" />
+			</label>
+			<label for="caa">
+			<img class="inbt1" src="img/cmw/icon-image.png" alt="" />
+			</label>
+			<button ng-style="checkPic2" class="inbt3" ng-click="goComment()">评论</button>
+			
+		</div>
+		<input style="display: none;" id="cac" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*" capture="camera">
+		<input style="display: none;" id="caa" clean-file-value name="file" onchange="angular.element(this).scope().fileChange(this,1)" type="file" accept="image/*">
+		</div>
+		
+		
+		<!--0.64remx6+0.64rem*2 0.32rem*12 1.86remx6-->
+	</body>
+	 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	 <script src="./js/angular.min.js"></script>
+	 <script type="text/javascript" src="./js/core.js"></script>
+	 <script type="text/javascript" src="./js/sha1.js"></script>
+	 <script type="text/javascript" src="js/travel_info.js"></script>
+</html>

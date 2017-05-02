@@ -72,6 +72,33 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
         $scope.reload = function(token){
             location.href = "./postdetail.circle.html?id="+$rootScope.worldId+"&token="+token;
         };
+        
+        $scope.videoUrl = function(url){  
+	       return $sce .trustAsResourceUrl(url);  
+	    }  
+	    
+	    var dataForWeixin = {
+    			signurl: location.href,
+    			nonceStr: "2tai" + new Date().getTime(),
+    			timestamp: new Date().getTime(),
+    			imgUrl: "",
+                // lineLink: "http://tpl.2tai.net/art.multpic.share.html?id=" + $rootScope.id,
+                lineLink: location.href,
+    			descContent: "",
+    			shareTitle: "",
+    			appid: "wx7c0b913b4c5452ad",
+    			cbtrigger: function(res) {
+    				dataForWeixin.nonceStr = "x" + new Date().getTime();
+    			},
+    			cbsuccess: function(res) {},
+    			cbcancel: function(res) {},
+    			cbfail: function(res) {},
+    			cbcomplete: function(res) {}
+    		};
+	   
+//		$scope.videoH=null;
+//		$scope.videoW=null;
+		
 
         $scope.screenW = parseInt($window.innerWidth / 2);
         // console.log($window);
@@ -87,6 +114,9 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
         }).success(function(data){
             console.log("获取详情");
             console.log(data);
+            dataForWeixin.imgUrl = data.data.imgList[0];
+            dataForWeixin.descContent = data.data.content;
+            dataForWeixin.shareTitle = data.data.nickName;
             data.data.clicked = false;
             $scope.post = data.data;
             // $scope.post.isMe = 1;
@@ -327,6 +357,87 @@ app.controller('content',['$scope','$rootScope','APP_HOST','$http','$timeout','$
             $scope.holder = i.uName;
             $scope.index = index;
         };
+        //获取 Ticket
+            $http.get(APP_HOST + "/v1/wx/token")
+            .success(function(res){
+                console.log("获取Ticket：",res);
+                var signature = "jsapi_ticket=" + res.data.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
+                // console.log(signature);
+                signature = CryptoJS.SHA1(signature).toString();
+                wx.config({
+    				debug: false,
+    				appId: dataForWeixin.appid,
+    				timestamp: dataForWeixin.timestamp,
+    				nonceStr: dataForWeixin.nonceStr,
+    				signature: signature,
+    				jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
+    			});
+                // wx.error(function(res) {});
+                wx.ready(function(e) {
+        			//分享给好友
+        			wx.onMenuShareAppMessage({
+        				title: dataForWeixin.shareTitle,
+        				desc: dataForWeixin.descContent,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        			//分享到朋友圈
+        			wx.onMenuShareTimeline({
+        				title: dataForWeixin.shareTitle,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        			//分享到qq
+        			wx.onMenuShareQQ({
+        				title: dataForWeixin.shareTitle,
+        				desc: dataForWeixin.descContent,
+        				link: dataForWeixin.lineLink,
+        				imgUrl: dataForWeixin.imgUrl,
+        				trigger: function(res) {
+        					dataForWeixin.cbtrigger(res);
+        				},
+        				complete: function(res) {
+        					dataForWeixin.cbcomplete(res);
+        				},
+        				success: function(res) {
+        					dataForWeixin.cbsuccess(res);
+        				},
+        				cancel: function(res) {
+        					dataForWeixin.cbcancel(res);
+        				},
+        				fail: function(res) {
+        					dataForWeixin.cbfail(res);
+        				}
+        			});
+        		});
+            }).error(function(res){
+
+            });
+        
         $scope.sendComment = function(){
             if(!$scope.commentContent){
                 return;
@@ -398,4 +509,11 @@ function rewardcb(){
 function getAngularService(name){
     var $injector = angular.element("body").injector();
     return $injector.get(name);
+}
+
+window.onload=function(){
+	var vid=document.getElementById("gogovd");
+	
+//	alert(vid.getAttribute("width"));
+//	alert(vid.getAttribute("height"));
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/circle.info.css"/>
+		<script type="text/javascript" src="js/adapt1.js"></script>
+	</head>
+	<body ng-app="app" ng-controller="content">
+		<div class="main">
+			<div class="head">
+				<img ng-src="{{post.headIconUrl}}" src="img/logo.jpg" class="headurl" alt="" />
+				<div class="head_name">{{post.nickName}}</div>
+				<div class="head_more" ng-click="goDownload()">...</div>
+				<div class="head_time">{{post.timeStr}}</div>			
+			</div>
+			<div class="ct">{{post.content}}
+			</div>
+			
+			<img ng-if="!post.videoUrl" ng-repeat="cti in post.imgList" class="ctimg" ng-src="{{cti}}" alt="" />
+			
+			
+			<!--<img ng-src="{{post.imgList[0]}}" alt="" />-->
+			<ul class="pic_list" style="padding: 0; width: 90%; margin: 0 auto;" ng-if="post.videoUrl">
+			<div style="position: relative; width: 100%; height: 12rem;">                        		
+        		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; height: 100%; width: 100%; background-image:url({{post.imgList[0]}}?x-oss-process=image/resize,m_fill,h_{{screenW}},w_{{screenW}}); background-size: cover;"></div>
+        		<div onclick="document.getElementById('gogovd').play()" style="position: absolute; left: calc(50% - 2.5rem); top: calc(50% - 2.5rem); width: 5rem; height: 5rem; background-image: url(img/icon-video.png); background-size: cover;"></div>
+        		<video id="gogovd" style="display: none;" ng-src="{{videoUrl(post.videoUrl)}}"></video>
+        	</div>
+        	</ul>
+			
+			<!--<img class="ctimg" src="img/banner.jpg" alt="" />-->
+			
+			
+			<div class="address" ng-if="post.location">
+				<img src="./img/address_ic.png" alt="" class="address_ic" />
+				<div class="address_txt">{{post.location}}</div>
+			</div>
+			
+			<div class="read">
+				<div class="read_num">阅读量 {{post.userReadNumbers}}</div>
+				<img ng-click="goDownload()" class="read_img" src="./img/icon-more.png" alt="" />
+			</div>
+			
+			<div class="cklike" ng-if="post.likeUserList">
+			<div class="likeck" ng-repeat="kk in post.likeUserList">{{kk.nickName}}、</div>
+			<!--<div class="likeck">AIOOOO、</div>-->
+			<div class="likeck">等{{post.likeUserList.length}}人觉得很赞</div>
+			</div>
+			
+			<div class="reward" ng-if="post.rewardList">
+				<img ng-repeat="x in post.rewardList" class="reward-pic" ng-src="{{x.headIconUrl}}" alt="" />
+				<div class="likeck">{{post.rewardList.length}}人打赏</div>
+			</div>
+			
+			<div class="commit" ng-repeat="go in post.commentList">
+				<span class="likeck">{{go.uName}}：</span>
+				<span>{{go.content}}</span>
+			</div>
+			<!--<div class="commit">
+				<span class="likeck">夏天：</span>
+				<span>我也是超级喜欢自己的家乡，哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span>
+			</div> -->
+			
+			</div>
+			
+			
+			
+			
+		</div>	
+		
+		<!--<div class="bottom">
+			<input class="inpgo" placeholder="我要评论" type="text" />
+			<div class="btngo" ng-click="postComment()"></div>
+		</div>-->
+		
+		<div class="fixed_btn">
+            <div class="fixed_btn_inner">
+                <div class="pic_box">
+                    <div class="pic_cont">
+                        <img src="./img/share-bottom.png" alt="">
+                    </div>
+                </div>
+                <p class="desc">本地资讯 尽在2台</p>
+                <div class="btn_box">
+                    <button type="button" name="button" ng-click="goDownload()">下载</button>
+                </div>
+            </div>
+        </div>
+		
+		
+	</body>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="./js/core.js"></script>
+	<script type="text/javascript" src="./js/sha1.js"></script>
+	<script type="text/javascript" src="./js/angular.min.js"></script>
+    <script type="text/javascript" src="./js/circle.info.js"></script>
+</html>

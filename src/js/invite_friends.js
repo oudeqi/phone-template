@@ -1,3 +1,5 @@
+/*2台 邀请好友*/
+/*chemingwei rain@myi.us */
 (function(win,doc){
     var docEl = document.documentElement,
         resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize',
@@ -89,7 +91,7 @@ app.controller("appct",["$scope","$http",
             
                 var n1=$scope.xd.nickName+"邀请您加入「2台」了解本地资讯，分享快乐生活";
                 var n2="Hi,我向您砸了1000U币，快来下载2台APP，了解本地资讯，优惠购买地方特产，赶快领取吧！";
-                var n3="http://fx.2tai.net/img/logo.jpg";
+                var n3="http://tpl.2tai.net/img/logo.jpg";
 //              var n4="http://tpl.2tai.net/webreg.html?code="+$scope.xd.inviteCode;
 				var n4="http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai"
                if(typeof h5=="object"){
