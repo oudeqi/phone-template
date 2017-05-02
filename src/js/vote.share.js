@@ -83,8 +83,7 @@
                 dataForWeixin.imgUrl = res.data.data.coverPhoto;
                 dataForWeixin.descContent = res.data.data.actProfile;
                 dataForWeixin.shareTitle = res.data.data.title;
-                console.log("dataForWeixin:",dataForWeixin);
-
+                shareInit();
             }).catch(function(error){
                 console.log(error);
             });
@@ -183,7 +182,7 @@
             var currentPage = localStorage.getItem("currentPage");
             var currentScrollTop = localStorage.getItem("currentScrollTop");
             var currentKeywords = localStorage.getItem("currentKeywords");
-            console.log(currentPage,currentScrollTop,currentKeywords);
+
             if(currentPage && currentScrollTop){
                 $scope.loading = 4;
                 $http.get(HOST+"/v1/player/list",{
@@ -242,86 +241,87 @@
             };
 
             //获取 Ticket
-            $http.get(HOST + "/v1/wx/token")
-            .success(function(res){
-                console.log("获取Ticket：",res);
-                var signature = "jsapi_ticket=" + res.data.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
-                // console.log(signature);
-                signature = CryptoJS.SHA1(signature).toString();
-                wx.config({
-    				debug: false,
-    				appId: dataForWeixin.appid,
-    				timestamp: dataForWeixin.timestamp,
-    				nonceStr: dataForWeixin.nonceStr,
-    				signature: signature,
-    				jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
-    			});
-                // wx.error(function(res) {});
-                wx.ready(function(e) {
-        			//分享给好友
-        			wx.onMenuShareAppMessage({
-        				title: dataForWeixin.shareTitle,
-        				desc: dataForWeixin.descContent,
-        				link: dataForWeixin.lineLink,
-        				imgUrl: dataForWeixin.imgUrl,
-        				trigger: function(res) {
-        					dataForWeixin.cbtrigger(res);
-        				},
-        				success: function(res) {
-        					dataForWeixin.cbsuccess(res);
-        				},
-        				cancel: function(res) {
-        					dataForWeixin.cbcancel(res);
-        				},
-        				fail: function(res) {
-        					dataForWeixin.cbfail(res);
-        				}
+            function shareInit(){
+                $http.get(HOST + "/v1/wx/token")
+                .success(function(res){
+                    console.log("获取Ticket：",res);
+                    var signature = "jsapi_ticket=" + res.data.ticket + "&noncestr=" + dataForWeixin.nonceStr + "&timestamp=" + dataForWeixin.timestamp + "&url=" + dataForWeixin.signurl;
+                    // console.log(signature);
+                    signature = CryptoJS.SHA1(signature).toString();
+                    wx.config({
+        				debug: false,
+        				appId: dataForWeixin.appid,
+        				timestamp: dataForWeixin.timestamp,
+        				nonceStr: dataForWeixin.nonceStr,
+        				signature: signature,
+        				jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ']
         			});
-        			//分享到朋友圈
-        			wx.onMenuShareTimeline({
-        				title: dataForWeixin.shareTitle,
-        				link: dataForWeixin.lineLink,
-        				imgUrl: dataForWeixin.imgUrl,
-        				trigger: function(res) {
-        					dataForWeixin.cbtrigger(res);
-        				},
-        				success: function(res) {
-        					dataForWeixin.cbsuccess(res);
-        				},
-        				cancel: function(res) {
-        					dataForWeixin.cbcancel(res);
-        				},
-        				fail: function(res) {
-        					dataForWeixin.cbfail(res);
-        				}
-        			});
-        			//分享到qq
-        			wx.onMenuShareQQ({
-        				title: dataForWeixin.shareTitle,
-        				desc: dataForWeixin.descContent,
-        				link: dataForWeixin.lineLink,
-        				imgUrl: dataForWeixin.imgUrl,
-        				trigger: function(res) {
-        					dataForWeixin.cbtrigger(res);
-        				},
-        				complete: function(res) {
-        					dataForWeixin.cbcomplete(res);
-        				},
-        				success: function(res) {
-        					dataForWeixin.cbsuccess(res);
-        				},
-        				cancel: function(res) {
-        					dataForWeixin.cbcancel(res);
-        				},
-        				fail: function(res) {
-        					dataForWeixin.cbfail(res);
-        				}
-        			});
-        		});
-            }).error(function(res){
+                    wx.error(function(res) {});
+                    wx.ready(function(e) {
+                        //分享给好友
+                        wx.onMenuShareAppMessage({
+                            title: dataForWeixin.shareTitle,
+                            desc: dataForWeixin.descContent,
+                            link: dataForWeixin.lineLink,
+                            imgUrl: dataForWeixin.imgUrl,
+                            trigger: function(res) {
+                                dataForWeixin.cbtrigger(res);
+                            },
+                            success: function(res) {
+                                dataForWeixin.cbsuccess(res);
+                            },
+                            cancel: function(res) {
+                                dataForWeixin.cbcancel(res);
+                            },
+                            fail: function(res) {
+                                dataForWeixin.cbfail(res);
+                            }
+                        });
+                        //分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: dataForWeixin.shareTitle,
+                            link: dataForWeixin.lineLink,
+                            imgUrl: dataForWeixin.imgUrl,
+                            trigger: function(res) {
+                                dataForWeixin.cbtrigger(res);
+                            },
+                            success: function(res) {
+                                dataForWeixin.cbsuccess(res);
+                            },
+                            cancel: function(res) {
+                                dataForWeixin.cbcancel(res);
+                            },
+                            fail: function(res) {
+                                dataForWeixin.cbfail(res);
+                            }
+                        });
+                        //分享到qq
+                        wx.onMenuShareQQ({
+                            title: dataForWeixin.shareTitle,
+                            desc: dataForWeixin.descContent,
+                            link: dataForWeixin.lineLink,
+                            imgUrl: dataForWeixin.imgUrl,
+                            trigger: function(res) {
+                                dataForWeixin.cbtrigger(res);
+                            },
+                            complete: function(res) {
+                                dataForWeixin.cbcomplete(res);
+                            },
+                            success: function(res) {
+                                dataForWeixin.cbsuccess(res);
+                            },
+                            cancel: function(res) {
+                                dataForWeixin.cbcancel(res);
+                            },
+                            fail: function(res) {
+                                dataForWeixin.cbfail(res);
+                            }
+                        });
+                    });
+                }).error(function(res){
 
-            });
-
+                });
+            }
         }
     ]);
 })();
