@@ -7,8 +7,7 @@
         <title>2台</title>
         <link rel="stylesheet" type="text/css" href="./css/base.css"/>
         <link rel="stylesheet" type="text/css" href="./css/postdetail.circle.css"/>
-        <script type="text/javascript" src="./js/angular.min.js"></script>
-        <script type="text/javascript" src="./js/postdetail.circle.js"></script>
+        
     </head>
     <body ng-app="app" ng-controller="content">
         <div class="dropped" ng-if="delSuccInfo">
@@ -164,4 +163,9 @@
         </div>
         <button type="button" tap ng-click="postComment()" ng-show="!edit && post && !delSuccInfo" class="commentBtn"></button>
     </body>
+     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="./js/angular.min.js"></script>
+    <script type="text/javascript" src="./js/core.js"></script>
+		<script type="text/javascript" src="./js/sha1.js"></script>
+        <script type="text/javascript" src="./js/postdetail.circle.js"></script>
 </html>
