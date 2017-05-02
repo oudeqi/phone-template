@@ -26,3 +26,7 @@
 @function base16px2rem( $px ){
 	@return $px / 16 + rem;
 }
+
+@function base16px2em( $px ){
+	@return $px / 16 + em;
+}

@@ -30,6 +30,14 @@ body {
   padding: 0 0.875rem;
 }
 
+.tpl_container div {
+  width: 100% !important;
+}
+
+.tpl_container p {
+  width: 100% !important;
+}
+
 .tpl_container iframe {
   width: 100%;
 }

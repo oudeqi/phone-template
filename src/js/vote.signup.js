@@ -90,6 +90,10 @@
                 base64Photos:[]
             };
 
+            $scope.goShare = function(id){
+                location.href = "./vote.share.html?id="+$rootScope.id;
+            };
+
             $scope.nameInvalid = false;
             $scope.phoneNoInvalid = false;
 

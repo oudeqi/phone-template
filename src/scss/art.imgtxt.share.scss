@@ -28,6 +28,12 @@ body{
 }
 .tpl_container{
     padding: 0 base14rem2base16rem(1);
+    div{
+        width: 100% !important;
+    }
+    p{
+        width: 100% !important;
+    }
     iframe{
         width: 100%;
     }

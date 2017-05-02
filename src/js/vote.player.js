@@ -61,6 +61,10 @@
                 location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.union.ertai";
             };
 
+            $scope.goShare = function(id){
+                location.href = "./vote.share.html?id="+$rootScope.vote;
+            };
+
             $scope.confirm = function(){
                 if(device.weiXin() || device.iosQqApp()){
                     openInBrowser.open();

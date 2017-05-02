@@ -74,7 +74,7 @@
                     </div>
                     <ul class="reward-list">
                         <li ng-repeat="item in detail.reward">
-                            <h3>{{item.grade}} {{item.number}}人</h3>
+                            <h3>{{item.grade}} {{item.number}}名</h3>
                             <p>奖品：{{item.goods}}</p>
                         </li>
                     </ul>
@@ -115,7 +115,10 @@
                             <a class="pic" ng-click="goPlayerDetail(item.id)">
                                 <img ng-src="{{item.photos[0]}}?x-oss-process=image/resize,m_fill,h_{{h}},w_{{w}}" alt="">
                             </a>
-                            <p class="p1">{{item.name}}  编号:{{item.seriaNumber}}</p>
+                            <p class="p1">
+                                <span>{{item.name}}</span>
+                                <span>编号:{{item.seriaNumber}}</span>
+                            </p>
                             <p class="p2">
                                 <span>票数</span>
                                 <strong>{{item.votes}}</strong>

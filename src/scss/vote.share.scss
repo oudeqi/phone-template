@@ -8,7 +8,7 @@
     .poster{
         width: 100%;
         background-color: #ddd;
-        height: base16px2rem(180);
+        height: base16px2em(180);
         overflow: hidden;
         img{
             width: 100%;
@@ -16,10 +16,10 @@
         }
     }
     .padd-cont{
-        padding: 0 base16px2rem(10);
+        padding: 0 base16px2em(10);
         .title{
-            padding-top: base16px2rem(20);
-            font-size: base16px2rem(20);
+            padding-top: base16px2em(20);
+            font-size: base16px2em(20);
             color: #2B333B;
         }
         .tip{
@@ -29,8 +29,8 @@
                 position: absolute;
                 top: 0;
                 right: 5px;
-                width: base16px2rem(70);
-                height: base16px2rem(70);
+                width: base16px2em(70);
+                height: base16px2em(70);
                 overflow: hidden;
                 img{
                     max-width: 100%;
@@ -38,7 +38,7 @@
                 }
             }
             .p1{
-                padding: base16px2rem(10) 0;
+                padding: base16px2em(10) 0;
                 .icon{
                     display: inline-block;
                     vertical-align: middle;
@@ -47,30 +47,30 @@
                 .time{
                     display: inline-block;
                     vertical-align: middle;
-                    font-size: base16px2rem(14);
+                    font-size: base16px2em(14);
                     color: #686868;
                 }
                 .status{
                     display: inline-block;
                     vertical-align: middle;
-                    font-size: base16px2rem(14);
+                    font-size: base16px2em(14);
                     color: #FB4747;
                 }
             }
             .p2{
-                height: base16px2rem(40);
+                height: base16px2em(40);
                 background: #FDF8E3;
                 border: 1px solid #DACCAF;
-                border-radius: base16px2rem(4);
+                border-radius: base16px2em(4);
                 display: flex;
                 align-items: center;
-                padding-left: base16px2rem(10);
+                padding-left: base16px2em(10);
                 .icon{
-                    margin-right: base16px2rem(8);
+                    margin-right: base16px2em(8);
                     @include sprite($icon-warning);
                 }
                 .status{
-                    font-size: base16px2rem(14);
+                    font-size: base16px2em(14);
                     color: #8D5A5A;
                     position: relative;
                     top: 1px;
@@ -80,7 +80,7 @@
         .contact{
             // border-radius:px2rem(3);
             border: 1px solid #dfdfdf;
-            margin-top: base16px2rem(20);
+            margin-top: base16px2em(20);
             text-align: center;
             font-size: 1rem;
             padding: 0.9rem 0;
@@ -89,13 +89,14 @@
             background: #fff;
             p{
                 line-height: 1.5;
-                font-size: base16px2rem(15);
+                font-size: base16px2em(15);
                 margin-top: 4px;
+                padding: 0 4px;
             }
         }
         .theme{
             border: 1px solid #dfdfdf;
-            margin-top: base16px2rem(20);
+            margin-top: base16px2em(20);
             text-align: center;
             font-size: 1rem;
             padding: 0.9rem 0;
@@ -103,19 +104,19 @@
             box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
             background: #fff;
             h3{
-                font-size: base16px2rem(16);
+                font-size: base16px2em(16);
             }
             p{
                 line-height: 1.5;
-                font-size: base16px2rem(15);
-                padding: base16px2rem(10);
+                font-size: base16px2em(15);
+                padding: base16px2em(10);
                 text-align: left;
             }
         }
         .reward{
-            margin-top: base16px2rem(15);
+            margin-top: base16px2em(15);
             .reward-pic{
-                border-radius:base16px2rem(3) base16px2rem(3) 0 0;
+                border-radius:base16px2em(3) base16px2em(3) 0 0;
                 overflow: hidden;
                 width: 100%;
                 height: auto;
@@ -126,44 +127,44 @@
                 }
             }
             .reward-list{
-                padding: base16px2rem(10);
+                padding: base16px2em(10);
                 border: 1px solid #dfdfdf;
                 border-top: 0;
-                border-radius: 0 0 base16px2rem(3) base16px2rem(3);
+                border-radius: 0 0 base16px2em(3) base16px2em(3);
                 li{
-                    padding-bottom: base16px2rem(15);
+                    padding-bottom: base16px2em(15);
                     text-align: center;
                     color: #2b333b;
                     h3{
                         line-height: 1.5;
-                        font-size: base16px2rem(15);
+                        font-size: base16px2em(15);
                     }
                     p{
                         line-height: 1.5;
-                        font-size: base16px2rem(15);
+                        font-size: base16px2em(15);
                     }
                 }
             }
         }
         .table-cont{
-            margin-top: base16px2rem(15);
+            margin-top: base16px2em(15);
             table{
                 width: 100%;
                 border-collapse: collapse;
                 text-align: center;
                 color: #444;
-                font-size: base16px2rem(14);
+                font-size: base16px2em(14);
                 tr{
                     border: 0;
                     th{
                         background: #BDDBFF;
-                        padding: base16px2rem(8);
+                        padding: base16px2em(8);
                         border: 1px solid #ccc;
                         font-weight: normal;
                     }
                     td{
                         background: #fff;
-                        padding: base16px2rem(8);
+                        padding: base16px2em(8);
                         border: 1px solid #ccc;
                     }
                 }
@@ -174,14 +175,14 @@
 
 // 查看详情按钮
 .look-detail-btn{
-	margin-top: base16px2rem(20);
+	margin-top: base16px2em(20);
 	.link{
 		text-decoration: none;
 		display: flex;
 		background: #129AEE;
-		border-radius: base16px2rem(3);
+		border-radius: base16px2em(3);
 		width: 100%;
-		height: base16px2rem(40);
+		height: base16px2em(40);
 		color: #fff;
 		text-align: center;
 		justify-content: center;
@@ -199,14 +200,14 @@
 
 //报名按钮
 .sign-up-btn{
-    margin-top: base16px2rem(15);
+    margin-top: base16px2em(15);
     .link{
         text-decoration: none;
         display: flex;
         background: #fd9e24;
-        border-radius: base16px2rem(3);
+        border-radius: base16px2em(3);
         width: 100%;
-        height: base16px2rem(40);
+        height: base16px2em(40);
         color: #fff;
         text-align: center;
         justify-content: center;
@@ -221,19 +222,19 @@
 .search-btn{
 	display: flex;
 	align-items: center;
-	margin-top: base16px2rem(20);
+	margin-top: base16px2em(15);
 	.ipt{
 		flex-grow: 1;
-		margin-right: base16px2rem(10);
+		margin-right: base16px2em(10);
 		display: flex;
 		align-items: center;
-		padding-left: base16px2rem(10);
-		height: base16px2rem(40);
+		padding-left: base16px2em(10);
+		height: base16px2em(40);
 		border: 1px solid #dfdfdf;
-		border-radius: base16px2rem(3);
+		border-radius: base16px2em(3);
 		.icon{
 			flex-shrink: 0;
-			margin-right: base16px2rem(6);
+			margin-right: base16px2em(6);
 			@include sprite($icon-search);
 		}
 		input{
@@ -245,11 +246,11 @@
 		flex-shrink: 0;
 		button{
 			color: #fff;
-			width: base16px2rem(80);
-			height: base16px2rem(40);
+			width: base16px2em(80);
+			height: base16px2em(40);
 			background: #FB4747;
 			border: 0;
-			border-radius: base16px2rem(3);
+			border-radius: base16px2em(3);
 			&:active{
 				opacity: 0.8;
 			}
@@ -260,27 +261,27 @@
 // 选手列表
 .player-list{
 	@include clearfix();
-	margin-top: base16px2rem(20);
+	margin-top: base16px2em(20);
 	li{
 		float: left;
 		width: 50%;
-		margin-bottom: base16px2rem(10);
+		margin-bottom: base16px2em(10);
 		&:nth-child(odd){
-			padding-right: base16px2rem(5);
+			padding-right: base16px2em(5);
 		}
 		&:nth-child(even){
-			padding-left: base16px2rem(5);
+			padding-left: base16px2em(5);
 		}
 		.inner{
 			width: 100%;
 			border: 1px solid #dfdfdf;
-			border-radius: base16px2rem(3);
-			padding: base16px2rem(8);
+			border-radius: base16px2em(3);
+			padding: base16px2em(8);
 			.pic{
-				height: base16px2rem(200);
+				height: base16px2em(200);
 				width: 100%;
 				overflow: hidden;
-				border-radius: base16px2rem(2);
+				border-radius: base16px2em(2);
 				background-color: #eee;
 				display: block;
 				img{
@@ -290,31 +291,44 @@
 					object-position: center;
 				}
 			}
-			.p1{
-				font-size: base16px2rem(14);
+            .p1{
+				font-size: base16px2em(14);
 				color: #686868;
-				margin-top: base16px2rem(10);
+				margin-top: base16px2em(10);
+				display: flex;
+				span{
+					&:first-child{
+						flex-grow: 2;
+						flex-shrink: 1;
+						@include otw();
+					}
+					&:last-child{
+						flex-grow: 2;
+						word-break: keep-all;
+						flex-shrink: 0;
+					}
+				}
 			}
 			.p2{
-				font-size: base16px2rem(14);
+				font-size: base16px2em(14);
 				color: #686868;
-				line-height: base16px2rem(20);
-				margin-top: base16px2rem(3);
+				line-height: base16px2em(20);
+				margin-top: base16px2em(3);
 				strong{
 					background: #EBEBEB;
 					padding: 0 5px;
-					border-radius: base16px2rem(2);
+					border-radius: base16px2em(2);
 					font-weight: normal;
 				}
 			}
 			button{
-				margin-top: base16px2rem(8);
-				height: base16px2rem(30);
+				margin-top: base16px2em(8);
+				height: base16px2em(30);
 				text-align: center;
 				color: #fff;
 				border: 0;
 				width: 100%;
-				border-radius: base16px2rem(2);
+				border-radius: base16px2em(2);
                 &.countdown{
                     background-color: #FB4747;
                     cursor: not-allowed;
@@ -339,27 +353,27 @@
 }
 // 加载更多
 .load-more,.load-all,.list-loading{
-	padding-top: base16px2rem(4);
-	padding-bottom: base16px2rem(15);
+	padding-top: base16px2em(4);
+	padding-bottom: base16px2em(15);
 	text-align: center;
 	color: #ccc;
 }
 .load-more{
-	font-size: base16px2rem(15);
+	font-size: base16px2em(15);
 }
 .load-all{
-	font-size: base16px2rem(14);
+	font-size: base16px2em(14);
 }
 .list-loading{
-	font-size: base16px2rem(15);
+	font-size: base16px2em(15);
 }
 
 //选手详情
 .base-info{
-    padding: base16px2rem(13);
-    padding-bottom: base16px2rem(16);
+    padding: base16px2em(13);
+    padding-bottom: base16px2em(16);
     border-bottom: 1px dashed #BFBFBF;
-    padding-top: base16px2rem(55);
+    padding-top: base16px2em(55);
     .row1{
         display: flex;
         align-items: center;
@@ -371,11 +385,11 @@
         .btn-box{
             flex-shrink: 0;
             button{
-                height: base16px2rem(38);
-                width: base16px2rem(110);
+                height: base16px2em(38);
+                width: base16px2em(110);
                 border: 0;
                 color: #fff;
-                border-radius: base16px2rem(2);
+                border-radius: base16px2em(2);
                 &:disabled{
                     background-color: #2b333b;
                     cursor: not-allowed;
@@ -394,7 +408,7 @@
         }
     }
     .row2{
-        margin-top: base16px2rem(10);
+        margin-top: base16px2em(10);
         line-height: 1;
         color: #2b333b;
         strong{
@@ -403,7 +417,7 @@
         }
     }
     .row3{
-        margin-top: base16px2rem(10);
+        margin-top: base16px2em(10);
         color: #2b333b;
         line-height: 1;
     }
@@ -411,13 +425,13 @@
 
 .play-info{
     .declaration{
-        font-size: base16px2rem(16);
+        font-size: base16px2em(16);
         line-height: 1.5;
         color: #686868;
-        padding: base16px2rem(20) base16px2rem(13);
+        padding: base16px2em(20) base16px2em(13);
     }
     .pic{
-        margin-bottom: base16px2rem(10);
+        margin-bottom: base16px2em(10);
         img{
             width: 100%;
             display: block;
@@ -427,15 +441,15 @@
 
 
 .btn-group{
-    padding: base16px2rem(16) base16px2rem(13);
+    padding: base16px2em(16) base16px2em(13);
     p{
-        padding-bottom: base16px2rem(13);
+        padding-bottom: base16px2em(13);
         button{
             width: 100%;
-            height: base16px2rem(48);
+            height: base16px2em(40);
             color: #fff;
-            font-size: base16px2rem(18);
-            border-radius: base16px2rem(3);
+            font-size: base16px2em(18);
+            border-radius: base16px2em(3);
             border: 0;
             &:disabled{
                 background-color: #2b333b;
@@ -456,12 +470,12 @@
             background: #FD9E24;
             width: 100%;
             display: block;
-            height: base16px2rem(48);
-            line-height: base16px2rem(48);
+            height: base16px2em(40);
+            line-height: base16px2em(40);
             text-align: center;
             color: #fff;
-            font-size: base16px2rem(18);
-            border-radius: base16px2rem(3);
+            font-size: base16px2em(18);
+            border-radius: base16px2em(3);
             text-decoration: none;
             border: 0;
             &:active{
@@ -473,15 +487,15 @@
 
 //投票详情
 .rule-list{
-    padding-bottom: base16px2rem(20);
+    padding-bottom: base16px2em(20);
     li{
         border-bottom: 1px dashed #BFBFBF;
-        padding-bottom: base16px2rem(20);
+        padding-bottom: base16px2em(20);
         &:last-child{
             border-bottom:0;
         }
         .tit{
-            padding-top: base16px2rem(20);
+            padding-top: base16px2em(20);
             .icon{
                 display: inline-block;
                 vertical-align: middle;
@@ -490,7 +504,7 @@
             span{
                 display: inline-block;
                 vertical-align: middle;
-                font-size: base16px2rem(16);
+                font-size: base16px2em(16);
                 color: #2b333b;
             }
         }
@@ -499,21 +513,24 @@
             margin-top: 0.5rem;
             margin-bottom: 1rem;
             p{
-                padding-bottom: base16px2rem(2);
+                padding-bottom: base16px2em(2);
                 line-height: 1.5;
-                font-size: base16px2rem(16);
+                font-size: base16px2em(16);
             }
         }
     }
 }
 .signup-btn{
+    margin: 0;
+    padding: 0;
     .notover,.over{
-        height: 48px;
+        height: base16px2rem(46);
         color: #fff;
         display: block;
         width: 100%;
         border: 0;
-        font-size: base16px2rem(18);
+        font-size: base16px2em(18);
+        margin: 0;
     }
     .notover{
         background: #129AEE;
@@ -535,7 +552,7 @@
     .poster{
         width: 100%;
         background-color: #ddd;
-        height: base16px2rem(180);
+        height: base16px2em(180);
         overflow: hidden;
         img{
             width: 100%;
@@ -551,8 +568,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-left: base16px2rem(10);
-            font-size: base16px2rem(15);
+            padding-left: base16px2em(10);
+            font-size: base16px2em(15);
             color: #666;
             .icon{
                 margin-right: 6px;
@@ -564,22 +581,22 @@
                 flex-grow: 1;
             }
             &:first-child{
-                padding-top: base16px2rem(14);
+                padding-top: base16px2em(14);
             }
             &:last-child{
-                padding-top: base16px2rem(10);
-                padding-bottom: base16px2rem(10);
+                padding-top: base16px2em(10);
+                padding-bottom: base16px2em(10);
             }
         }
     }
     .padd-cont{
-        padding: 0 base16px2rem(10);
-        padding-bottom: base16px2rem(20);
+        padding: 0 base16px2em(10);
+        padding-bottom: base16px2em(20);
         .form-group{
             margin-top: 20px;
             .form-label{
                 color: #555;
-                font-size: base16px2rem(16);
+                font-size: base16px2em(16);
             }
             .pic-view-list{
                 @include clearfix();
@@ -624,18 +641,18 @@
                                 align-items: center;
                                 flex-direction: column;
                                 p{
-                                    font-size: base16px2rem(14);
+                                    font-size: base16px2em(14);
                                     text-align: center;
                                     color: #fff;
-                                    margin-top: base16px2rem(8);
+                                    margin-top: base16px2em(8);
                                     line-height: 1;
                                 }
                                 button{
                                     display: block;
                                     margin: 0 auto;
                                     border: 0;
-                                    height: base16px2rem(50);
-                                    width: base16px2rem(70);
+                                    height: base16px2em(50);
+                                    width: base16px2em(70);
                                     background: url(../img/add-pic.png) no-repeat center;
                                     background-size: cover;
                                     cursor: pointer;
@@ -676,7 +693,7 @@
                 }
             }
             .form-tip{
-                font-size: base16px2rem(14);
+                font-size: base16px2em(14);
                 line-height: 1;
                 padding-top: 10px;
                 color: rgba(255,0,0,0.5);
@@ -684,10 +701,10 @@
             .form-ipt{
                 margin-top: 8px;
                 input{
-                    padding: base16px2rem(10) base16px2rem(6);
+                    padding: base16px2em(10) base16px2em(6);
                     width: 100%;
                     border: 1px solid #dfdfdf;
-                    border-radius: base16px2rem(2);
+                    border-radius: base16px2em(2);
                     &:focus{
                         border: 1px solid rgba(18,154,238,0.6);
                     }
@@ -699,8 +716,8 @@
                     width: 100%;
                     display: block;
                     border: 1px solid #dfdfdf;
-                    border-radius: base16px2rem(2);
-                    padding: base16px2rem(4) base16px2rem(5);
+                    border-radius: base16px2em(2);
+                    padding: base16px2em(4) base16px2em(5);
                     resize: vertical;
                     &:focus{
                         border: 1px solid rgba(18,154,238,0.6);
@@ -708,12 +725,12 @@
                 }
             }
             .form-btn{
-                height: base16px2rem(44);
+                height: base16px2em(40);
                 width: 100%;
                 color: #fff;
                 background: #129AEE;
-                border-radius: base16px2rem(4);
-                font-size: base16px2rem(18);
+                border-radius: base16px2em(4);
+                font-size: base16px2em(18);
                 border: 0;
                 text-decoration: none;
                 display: flex;
@@ -738,7 +755,7 @@
                         display: inline-block;
                         animation: loading 500ms linear infinite;
                         @include sprite($icon-loading);
-                        margin-right: base16px2rem(8);
+                        margin-right: base16px2em(8);
                     }
                     &:active{
                         opacity: 1;

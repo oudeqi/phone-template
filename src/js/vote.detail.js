@@ -62,6 +62,10 @@
                 location.href = "./vote.signup.html?id="+$rootScope.id;
             };
 
+            $scope.goShare = function(id){
+                location.href = "./vote.share.html?id="+$rootScope.id;
+            };
+
             $scope.confirm = function(){
                 if(device.weiXin() || device.iosQqApp()){
                     openInBrowser.open();
